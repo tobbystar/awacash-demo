@@ -73,7 +73,7 @@ const TransactionTable = () => {
         <div className="card-title-group">
           <CardTitle>
             <h6 className="title">
-              <span className="mr-2">Transaction</span>{" "}
+              <span className="mr-2">Recent Transaction</span>{" "}
               <Link to={`${process.env.PUBLIC_URL}/transaction-basic`} className="link d-none d-sm-inline">
                 See History
               </Link>
@@ -121,19 +121,19 @@ const TransactionTable = () => {
             <span>Order No.</span>
           </DataTableRow>
           <DataTableRow size="sm">
-            <span>Customer</span>
+            <span>Transaction Type</span>
           </DataTableRow>
           <DataTableRow size="md">
-            <span>Date</span>
+            <span>Transaction Date</span>
           </DataTableRow>
           <DataTableRow size="lg">
-            <span>Ref</span>
+            <span>Account Number</span>
           </DataTableRow>
           <DataTableRow>
             <span>Amount</span>
           </DataTableRow>
           <DataTableRow>
-            <span className="d-none d-sm-inline">Status</span>
+            <span className="d-none d-sm-inline">Amount Status</span>
           </DataTableRow>
           <DataTableRow>
             <span>&nbsp;</span>
@@ -149,9 +149,10 @@ const TransactionTable = () => {
               </DataTableRow>
               <DataTableRow size="sm">
                 <div className="user-card">
-                  <UserAvatar size="sm" theme={item.theme} text={item.initial} image={item.img}></UserAvatar>
+                  {/*<UserAvatar size="sm" theme={item.theme} text={item.initial} image={item.img}></UserAvatar>*/}
                   <div className="user-name">
-                    <span className="tb-lead">{item.name}</span>
+                    <span className="tb-lead">{item.type}</span>
+                    {/*<span className="tb-lead">{item.name}</span>*/}
                   </div>
                 </div>
               </DataTableRow>

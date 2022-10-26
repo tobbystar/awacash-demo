@@ -8,17 +8,9 @@ const SalesOverview = () => {
     <React.Fragment>
       <div className="card-title-group align-start gx-3 mb-3">
         <div className="card-title">
-          <h6 className="title">Sales Overview</h6>
+          <h6 className="title">Total Transaction Volume</h6>
           <p>
-            In 30 days sales of product subscription.{" "}
-            <a
-              href="#details"
-              onClick={(ev) => {
-                ev.preventDefault();
-              }}
-            >
-              See Details
-            </a>
+            Total Transaction Volume In The Last 30 Days.
           </p>
         </div>
         <div className="card-tools">

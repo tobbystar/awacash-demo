@@ -1,24 +1,66 @@
 const menu = [
   {
-    icon: "dashlite",
-    text: "Default Dashboard",
+    icon: "dashboard",
+    text: "Dashboard",
     link: "/",
   },
+
   {
-    icon: "bitcoin-cash",
-    text: "Crypto Dashboard",
-    link: "/crypto",
+    icon: "tranx",
+    text: "Transaction",
+    active: false,
+    link: "/transactions",
   },
+
   {
-    icon: "growth",
-    text: "Analytics Dashboard",
-    link: "/analytics",
+    icon: "file-docs",
+    text: "Case management",
+    active: false,
+    link: "/case-management",
   },
+
+   {
+     icon: "users",
+     text: "Customer Management",
+    active: false,
+    link: "/customer-management",
+   },
+
+
   {
-    icon: "coins",
-    text: "Invest Dashboard",
-    link: "/invest",
+    icon: "tranx",
+    text: "Card Management",
+    active: false,
+    subMenu: [
+      {
+        icon: "users",
+        text: "Requests",
+        link: "/card-management",
+      },
+
+      {
+        icon: "setting",
+        text: "User Cards",
+        link: "/user-cards",
+      },
+    ],
   },
+
+  // {
+  //   icon: "bitcoin-cash",
+  //   text: "Crypto Dashboard",
+  //   link: "/crypto",
+  // },
+  // {
+  //   icon: "growth",
+  //   text: "Analytics Dashboard",
+  //   link: "/analytics",
+  // },
+  // {
+  //   icon: "coins",
+  //   text: "Invest Dashboard",
+  //   link: "/invest",
+  // },
   {
     heading: "Pre-built Pages",
   },

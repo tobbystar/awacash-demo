@@ -8,7 +8,7 @@ const ActiveSubscription = () => {
     <React.Fragment>
       <div className="card-title-group align-start mb-2">
         <CardTitle>
-          <h6 className="title">Active Subscriptions</h6>
+          <h6 className="title">Total Number of Customers</h6>
         </CardTitle>
         <div className="card-tools">
           <TooltipComponent
@@ -22,10 +22,10 @@ const ActiveSubscription = () => {
       </div>
       <div className="align-end flex-sm-wrap g-4 flex-md-nowrap">
         <div className="nk-sale-data">
-          <span className="amount">9.69K</span>
+          <span className="amount">1,937</span>
           <span className="sub-title">
-            <span className="change down text-danger">
-              <Icon name="arrow-long-down" />
+            <span className="change up text-success">
+              <Icon name="arrow-long-up" />
               1.93%
             </span>
             since last month

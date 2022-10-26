@@ -5,7 +5,9 @@ import SaleRevenue from "../components/partials/default/sale-revenue/SaleRevenue
 import ActiveSubscription from "../components/partials/default/active-subscription/ActiveSubscription";
 import AvgSubscription from "../components/partials/default/avg-subscription/AvgSubscription";
 import SalesOverview from "../components/partials/default/sales-overview/SalesOverview";
-import TransactionTable from "../components/partials/default/transaction/Transaction";
+import TransactionTable from "../components/partials/default/transaction/transaction";
+import RecentTransactions from "../components/partials/default/recentTransactions/RecentTransactions";
+
 import RecentActivity from "../components/partials/default/recent-activity/Activity";
 import NewsUsers from "../components/partials/default/new-users/User";
 import Support from "../components/partials/default/support-request/Support";
@@ -36,10 +38,10 @@ const Homepage = () => {
           <BlockBetween>
             <BlockHeadContent>
               <BlockTitle page tag="h3">
-                Sales Overview
+                Dashboard
               </BlockTitle>
               <BlockDes className="text-soft">
-                <p>Welcome to DashLite Dashboard Template</p>
+                <p>Welcome to Awacash Admin Dashboard</p>
               </BlockDes>
             </BlockHeadContent>
             <BlockHeadContent>
@@ -142,30 +144,39 @@ const Homepage = () => {
                 <SalesOverview />
               </PreviewAltCard>
             </Col>
+
             <Col xxl="8">
               <Card className="card-bordered card-full">
                 <TransactionTable />
               </Card>
             </Col>
+
+            <Col xxl="8">
+              {/*<Card className="card-bordered card-full">*/}
+              {/*  <RecentTransactions />*/}
+              {/*</Card>*/}
+            </Col>
+
             <Col xxl="4" md="6">
-              <Card className="card-bordered card-full">
-                <RecentActivity />
-              </Card>
+              {/*<Card className="card-bordered card-full">*/}
+              {/*  <RecentActivity />*/}
+              {/*</Card>*/}
+
             </Col>
             <Col xxl="4" md="6">
-              <Card className="card-bordered card-full">
-                <NewsUsers />
-              </Card>
-            </Col>
-            <Col lg="6" xxl="4">
-              <Card className="card-bordered h-100">
-                <Support />
-              </Card>
-            </Col>
-            <Col lg="6" xxl="4">
-              <Card className="card-bordered h-100">
-                <Notifications />
-              </Card>
+            {/*  <Card className="card-bordered card-full">*/}
+            {/*    <NewsUsers />*/}
+            {/*  </Card>*/}
+            {/*</Col>*/}
+            {/*<Col lg="6" xxl="4">*/}
+            {/*  <Card className="card-bordered h-100">*/}
+            {/*    <Support />*/}
+            {/*  </Card>*/}
+            {/*</Col>*/}
+            {/*<Col lg="6" xxl="4">*/}
+            {/*  <Card className="card-bordered h-100">*/}
+            {/*    <Notifications />*/}
+            {/*  </Card>*/}
             </Col>
           </Row>
         </Block>

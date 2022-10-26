@@ -81,6 +81,11 @@ import InvoiceDetails from "../pages/pre-built/invoice/InvoiceDetails";
 import PricingTable from "../pages/pre-built/pricing-table/PricingTable";
 import GalleryPreview from "../pages/pre-built/gallery/GalleryCardPreview";
 import ReactToastify from "../pages/components/misc/ReactToastify";
+import Transactions from "../pages/pre-built/Transactions/Transactions";
+import CaseManagement from "../pages/pre-built/case-management/CaseManagement";
+import CustomerManagement from "../pages/pre-built/Customer-Management/CustomerManagement";
+import CardManagement from "../pages/pre-built/cardManagement/ProjectList";
+import userCards from "../pages/pre-built/cardManagement/UserCards";
 
 import AppMessages from "../pages/app/messages/Messages";
 import Chat from "../pages/app/chat/ChatContainer";
@@ -190,6 +195,12 @@ const Pages = () => {
         <Route exact path={`${process.env.PUBLIC_URL}/invoice-details/:id`} component={InvoiceDetails}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/pricing-table`} component={PricingTable}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/image-gallery`} component={GalleryPreview}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/transactions`} component={Transactions}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/case-management`} component={CaseManagement}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/customer-management`} component={CustomerManagement}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/card-management`} component={CardManagement}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/user-cards`} component={userCards}></Route>
+
 
         {/*Demo Pages*/}
         <Route exact path={`${process.env.PUBLIC_URL}/pages/terms-policy`} component={Terms}></Route>
