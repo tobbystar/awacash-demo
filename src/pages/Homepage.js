@@ -6,7 +6,7 @@ import ActiveSubscription from "../components/partials/default/active-subscripti
 import AvgSubscription from "../components/partials/default/avg-subscription/AvgSubscription";
 import SalesOverview from "../components/partials/default/sales-overview/SalesOverview";
 import TransactionTable from "../components/partials/default/transaction/transaction";
-import RecentTransactions from "../components/partials/default/recentTransactions/RecentTransactions";
+import TransListBasic from "../components/partials/default/trans-list/TransListBasic";
 
 import RecentActivity from "../components/partials/default/recent-activity/Activity";
 import NewsUsers from "../components/partials/default/new-users/User";
@@ -151,11 +151,12 @@ const Homepage = () => {
               </Card>
             </Col>
 
-            <Col xxl="8">
-              {/*<Card className="card-bordered card-full">*/}
-              {/*  <RecentTransactions />*/}
-              {/*</Card>*/}
-            </Col>
+            {/*<Col xxl="8">*/}
+            {/*  <Card className="card-bordered card-full">*/}
+            {/*    <TransListBasic />*/}
+            {/*  </Card>*/}
+            {/*  */}
+            {/*</Col>*/}
 
             <Col xxl="4" md="6">
               {/*<Card className="card-bordered card-full">*/}

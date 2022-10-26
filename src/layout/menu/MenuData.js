@@ -62,24 +62,24 @@ const menu = [
   //   link: "/invest",
   // },
   {
-    heading: "Pre-built Pages",
-  },
-  {
-    icon: "tile-thumb",
-    text: "Projects",
-    active: false,
-    subMenu: [
-      {
-        text: "Project Cards",
-        link: "/project-card",
-      },
-      {
-        text: "Project List",
-        link: "/project-list",
-      },
-    ],
-  },
-  {
+  //   heading: "Pre-built Pages",
+  // },
+  // {
+  //   icon: "tile-thumb",
+  //   text: "Projects",
+  //   active: false,
+  //   subMenu: [
+  //     {
+  //       text: "Project Cards",
+  //       link: "/project-card",
+  //     },
+  //     {
+  //       text: "Project List",
+  //       link: "/project-list",
+  //     },
+  //   ],
+  // },
+  // {
     icon: "users",
     text: "User Manage",
     active: false,
