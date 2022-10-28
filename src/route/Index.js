@@ -9,7 +9,7 @@ import Crypto from "../pages/Crypto";
 import Analytics from "../pages/Analytics";
 import Invest from "../pages/Invest";
 import CustomerDetails from "../pages/pre-built/Customer-Management/CustomerDetails";
-
+import LevelData from "../pages/pre-built/Customer-Management/LevelData";
 import Component from "../pages/components/Index";
 import Accordian from "../pages/components/Accordions";
 import Alerts from "../pages/components/Alerts";
@@ -132,6 +132,7 @@ const Pages = () => {
 
         {/*Pre-built Pages*/}
         <Route exact path={`${process.env.PUBLIC_URL}/project-card`} component={ProjectCardPage}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/level-one`} component={LevelData}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/project-list`} component={ProjectListPage}></Route>
         <Route //Context Api added
           exact

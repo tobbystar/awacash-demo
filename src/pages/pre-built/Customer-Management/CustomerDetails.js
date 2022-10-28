@@ -18,6 +18,7 @@ import {
 import { findUpper } from "../../../utils/Utils";
 
 import { Link } from "react-router-dom";
+import LevelData from "./LevelData";
 
 const CustomerDetails = ({ match }) => {
   const [user, setUser] = useState();
@@ -40,7 +41,7 @@ const CustomerDetails = ({ match }) => {
       <Content>
         <BlockTitle page>
           {id === "1" ? (
-            <strong className="text-primary small">Hi</strong>
+           <LevelData/>
           ) : id === "2" ? (
             <strong className="text-primary small">hello</strong>
           ) : (

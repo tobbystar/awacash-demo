@@ -6,7 +6,7 @@ import User4 from "../../../images/avatar/d-sm.jpg";
 export const caseManagementData = [
   {
     id: "UD01544",
-    name: "Abu Bin Ishtiyak",
+    name: "Adeagbo Oluwatobi",
     avatarBg: "primary",
     doc: "Passport",
     check: false,

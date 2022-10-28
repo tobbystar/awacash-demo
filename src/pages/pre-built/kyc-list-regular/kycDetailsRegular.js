@@ -41,11 +41,11 @@ const KycDetailsRegular = ({ match }) => {
       <Content>
         <BlockTitle page>
           {id === "1" ? (
-            <strong className="text-primary small">Hi</strong>
+            <kycData/>
           ) : id === "2" ? (
-            <strong className="text-primary small">hello</strong>
+            <strong className="text-primary small">victor</strong>
           ) : (
-            <strong className="text-primary small">hey</strong>
+            <strong className="text-primary small">winner</strong>
           )}
         </BlockTitle>
       </Content>
