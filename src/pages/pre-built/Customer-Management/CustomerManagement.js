@@ -508,7 +508,7 @@ const CustomerManagement = ({ history }) => {
                                         onClick={(ev) => {
                                           ev.preventDefault();
                                           console.log(item.Level);
-                                          history.push(`${process.env.PUBLIC_URL}/kyc-details-regular/${item.Level}`);
+                                          history.push(`${process.env.PUBLIC_URL}/customer-details/${item.Level}`);
                                         }}
                                       >
                                         <Icon name="focus"></Icon>

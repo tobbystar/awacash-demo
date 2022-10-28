@@ -16,11 +16,10 @@ import {
   UserAvatar,
 } from "../../../components/Component";
 import { findUpper } from "../../../utils/Utils";
-import { kycData } from "./KycData";
+
 import { Link } from "react-router-dom";
 
-const KycDetailsRegular = ({ match }) => {
-  const [data] = useState(kycData);
+const CustomerDetails = ({ match }) => {
   const [user, setUser] = useState();
   const id = match.params.id;
 
@@ -52,4 +51,4 @@ const KycDetailsRegular = ({ match }) => {
     </React.Fragment>
   );
 };
-export default KycDetailsRegular;
+export default CustomerDetails;

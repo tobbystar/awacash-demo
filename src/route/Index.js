@@ -8,6 +8,7 @@ import Homepage from "../pages/Homepage";
 import Crypto from "../pages/Crypto";
 import Analytics from "../pages/Analytics";
 import Invest from "../pages/Invest";
+import CustomerDetails from "../pages/pre-built/Customer-Management/CustomerDetails";
 
 import Component from "../pages/components/Index";
 import Accordian from "../pages/components/Accordions";
@@ -181,6 +182,7 @@ const Pages = () => {
         <Route exact path={`${process.env.PUBLIC_URL}/transaction-basic`} component={TransListBasic}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/transaction-crypto`} component={TransListCrypto}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/product-list`} component={ProductList}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/customer-details/:id`} component={CustomerDetails}></Route>
 
         <Route // context api added
           exact
