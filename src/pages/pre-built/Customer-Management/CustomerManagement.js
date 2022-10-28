@@ -47,6 +47,7 @@ const CustomerManagement = ({ history }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemPerPage, setItemPerPage] = useState(10);
   const [sort, setSortState] = useState("");
+  const [currentLevel, setCurrentLevel] = useState(1);
 
   // Sorting data
   const sortFunc = (params) => {
@@ -156,9 +157,7 @@ const CustomerManagement = ({ history }) => {
           <BlockBetween>
             <BlockHeadContent>
               <BlockTitle page>Customer Management</BlockTitle>
-
             </BlockHeadContent>
-
           </BlockBetween>
         </BlockHead>
 
@@ -166,10 +165,7 @@ const CustomerManagement = ({ history }) => {
           <DataTable className="card-stretch">
             <div className="card-inner position-relative card-tools-toggle">
               <div className="card-title-group">
-                <div className="card-tools">
-
-
-                </div>
+                <div className="card-tools"></div>
                 <div className="card-tools mr-n1">
                   <ul className="btn-toolbar gx-1">
                     <li>
@@ -397,84 +393,59 @@ const CustomerManagement = ({ history }) => {
 
               {currentItems.length > 0
                 ? currentItems.map((item) => {
-                  return (
-                    <DataTableItem key={item.id}>
-                      <DataTableRow className="nk-tb-col-check">
-                        <div className="custom-control custom-control-sm custom-checkbox notext">
-                          <input
-                            type="checkbox"
-                            className="custom-control-input form-control"
-                            defaultChecked={item.check}
-                            id={item.id + "uid1"}
-                            key={Math.random()}
-                            onChange={(e) => onSelectChange(e, item.id)}
-                          />
-                          <label className="custom-control-label" htmlFor={item.id + "uid1"}></label>
-                        </div>
-                      </DataTableRow>
-                      <DataTableRow>
-
-                                <span className="tb-lead">
-                                  {item.Firstname}
-
-                                </span>
-
-
-                      </DataTableRow>
-                      <DataTableRow size="">
-                        <span className="tb-lead-sub">{item.Lastname}</span>
-                      </DataTableRow>
-                      <DataTableRow size="">
-                        <span>{item.BVN}</span>
-                      </DataTableRow>
-                      <DataTableRow size="">
-                        <span className="tb-date">{item.account}</span>
-                      </DataTableRow>
-                      <DataTableRow size="">
-                        <span className="tb-date">{item.date}</span>
-                      </DataTableRow>
-
-                      <DataTableRow className="nk-tb-col-tools">
-                        <ul className="nk-tb-actions gx-1">
-                          <li
-                            className="nk-tb-action-hidden"
-                            onClick={() => {
-                              loadDetail(item.level);
-                              setViewModal(true);
-                            }}
-                          >
-                            <TooltipComponent
-                              tag="a"
-                              containerClassName="btn btn-trigger btn-icon"
-                              id={"view" + item.id}
-                              icon="eye-fill"
-                              direction="top"
-                              text="Quick View"
+                    return (
+                      <DataTableItem key={item.id}>
+                        <DataTableRow className="nk-tb-col-check">
+                          <div className="custom-control custom-control-sm custom-checkbox notext">
+                            <input
+                              type="checkbox"
+                              className="custom-control-input form-control"
+                              defaultChecked={item.check}
+                              id={item.id + "uid1"}
+                              key={Math.random()}
+                              onChange={(e) => onSelectChange(e, item.id)}
                             />
-                          </li>
-                          {item.status === "Rejected" ? null : item.status === "Approved" ? (
-                            <li className="nk-tb-action-hidden" onClick={() => onRejectClick(item.id)}>
+                            <label className="custom-control-label" htmlFor={item.id + "uid1"}></label>
+                          </div>
+                        </DataTableRow>
+                        <DataTableRow>
+                          <span className="tb-lead">{item.Firstname}</span>
+                        </DataTableRow>
+                        <DataTableRow size="">
+                          <span className="tb-lead-sub">{item.Lastname}</span>
+                        </DataTableRow>
+                        <DataTableRow size="">
+                          <span>{item.BVN}</span>
+                        </DataTableRow>
+                        <DataTableRow size="">
+                          <span className="tb-date">{item.account}</span>
+                        </DataTableRow>
+                        <DataTableRow size="">
+                          <span className="tb-date">{item.date}</span>
+                        </DataTableRow>
+                        <DataTableRow size="">
+                          <span className="tb-date">{item.Level}</span>
+                        </DataTableRow>
+
+                        <DataTableRow className="nk-tb-col-tools">
+                          <ul className="nk-tb-actions gx-1">
+                            <li
+                              className="nk-tb-action-hidden"
+                              onClick={() => {
+                                loadDetail(item.level);
+                                setViewModal(true);
+                              }}
+                            >
                               <TooltipComponent
                                 tag="a"
                                 containerClassName="btn btn-trigger btn-icon"
-                                id={"reject" + item.id}
-                                icon="cross-fill-c"
+                                id={"view" + item.id}
+                                icon="eye-fill"
                                 direction="top"
-                                text="Reject"
+                                text="Quick View"
                               />
                             </li>
-                          ) : (
-                            <React.Fragment>
-                              <li className="nk-tb-action-hidden" onClick={() => onApproveClick(item.id)}>
-                                <TooltipComponent
-                                  tag="a"
-                                  containerClassName="btn btn-trigger btn-icon"
-                                  id={"approve" + item.id}
-                                  icon="check-fill-c"
-                                  direction="top"
-                                  text="Approve"
-                                />
-                              </li>
+                            {item.status === "Rejected" ? null : item.status === "Approved" ? (
                               <li className="nk-tb-action-hidden" onClick={() => onRejectClick(item.id)}>
                                 <TooltipComponent
                                   tag="a"
@@ -485,92 +456,115 @@ const CustomerManagement = ({ history }) => {
                                   text="Reject"
                                 />
                               </li>
-                            </React.Fragment>
-                          )}
-                          <li>
-                            <UncontrolledDropdown>
-                              <DropdownToggle tag="a" className="dropdown-toggle btn btn-icon btn-trigger">
-                                <Icon name="more-h"></Icon>
-                              </DropdownToggle>
-                              <DropdownMenu right>
-                                <ul className="link-list-opt no-bdr">
-                                  <li>
-                                    <DropdownItem
-                                      tag="a"
-                                      href="#view"
-                                      onClick={(ev) => {
-                                        ev.preventDefault();
-                                        loadDetail(item.id);
-                                        setViewModal(true);
-                                      }}
-                                    >
-                                      <Icon name="eye"></Icon>
-                                      <span>Quick View</span>
-                                    </DropdownItem>
-                                  </li>
-                                  <li>
-                                    <DropdownItem
-                                      tag="a"
-                                      href="#details"
-                                      onClick={(ev) => {
-                                        ev.preventDefault();
-                                        history.push(`${process.env.PUBLIC_URL}/kyc-details-regular/${item.id}`);
-                                      }}
-                                    >
-                                      <Icon name="focus"></Icon>
-                                      <span>View Details</span>
-                                    </DropdownItem>
-                                  </li>
-                                  {item.status === "Rejected" ? null : item.status === "Approved" ? (
-                                    <li onClick={() => onRejectClick(item.id)}>
+                            ) : (
+                              <React.Fragment>
+                                <li className="nk-tb-action-hidden" onClick={() => onApproveClick(item.id)}>
+                                  <TooltipComponent
+                                    tag="a"
+                                    containerClassName="btn btn-trigger btn-icon"
+                                    id={"approve" + item.id}
+                                    icon="check-fill-c"
+                                    direction="top"
+                                    text="Approve"
+                                  />
+                                </li>
+                                <li className="nk-tb-action-hidden" onClick={() => onRejectClick(item.id)}>
+                                  <TooltipComponent
+                                    tag="a"
+                                    containerClassName="btn btn-trigger btn-icon"
+                                    id={"reject" + item.id}
+                                    icon="cross-fill-c"
+                                    direction="top"
+                                    text="Reject"
+                                  />
+                                </li>
+                              </React.Fragment>
+                            )}
+                            <li>
+                              <UncontrolledDropdown>
+                                <DropdownToggle tag="a" className="dropdown-toggle btn btn-icon btn-trigger">
+                                  <Icon name="more-h"></Icon>
+                                </DropdownToggle>
+                                <DropdownMenu right>
+                                  <ul className="link-list-opt no-bdr">
+                                    <li>
                                       <DropdownItem
                                         tag="a"
-                                        href="#reject"
+                                        href="#view"
                                         onClick={(ev) => {
                                           ev.preventDefault();
+                                          loadDetail(item.id);
+                                          setViewModal(true);
                                         }}
                                       >
-                                        <Icon name="na"></Icon>
-                                        <span>Reject User</span>
+                                        <Icon name="eye"></Icon>
+                                        <span>Quick View</span>
                                       </DropdownItem>
                                     </li>
-                                  ) : (
-                                    <React.Fragment>
-                                      <li onClick={() => onApproveClick(item.id)}>
-                                        <DropdownItem
-                                          tag="a"
-                                          href="#approve"
-                                          onClick={(ev) => {
-                                            ev.preventDefault();
-                                          }}
-                                        >
-                                          <Icon name="check-thick"></Icon>
-                                          <span>Approve</span>
-                                        </DropdownItem>
-                                      </li>
+                                    <li>
+                                      <DropdownItem
+                                        tag="a"
+                                        href="#details"
+                                        onClick={(ev) => {
+                                          ev.preventDefault();
+                                          console.log(item.Level);
+                                          history.push(`${process.env.PUBLIC_URL}/kyc-details-regular/${item.Level}`);
+                                        }}
+                                      >
+                                        <Icon name="focus"></Icon>
+                                        <span>View Details</span>
+                                      </DropdownItem>
+                                    </li>
+                                    {item.status === "Rejected" ? null : item.status === "Approved" ? (
                                       <li onClick={() => onRejectClick(item.id)}>
                                         <DropdownItem
                                           tag="a"
-                                          href="#suspend"
+                                          href="#reject"
                                           onClick={(ev) => {
                                             ev.preventDefault();
                                           }}
                                         >
                                           <Icon name="na"></Icon>
-                                          <span>Suspend User</span>
+                                          <span>Reject User</span>
                                         </DropdownItem>
                                       </li>
-                                    </React.Fragment>
-                                  )}
-                                </ul>
-                              </DropdownMenu>
-                            </UncontrolledDropdown>
-                          </li>
-                        </ul>
-                      </DataTableRow>
-                    </DataTableItem>
-                  );
-                })
+                                    ) : (
+                                      <React.Fragment>
+                                        <li onClick={() => onApproveClick(item.id)}>
+                                          <DropdownItem
+                                            tag="a"
+                                            href="#approve"
+                                            onClick={(ev) => {
+                                              ev.preventDefault();
+                                            }}
+                                          >
+                                            <Icon name="check-thick"></Icon>
+                                            <span>Approve</span>
+                                          </DropdownItem>
+                                        </li>
+                                        <li onClick={() => onRejectClick(item.id)}>
+                                          <DropdownItem
+                                            tag="a"
+                                            href="#suspend"
+                                            onClick={(ev) => {
+                                              ev.preventDefault();
+                                            }}
+                                          >
+                                            <Icon name="na"></Icon>
+                                            <span>Suspend User</span>
+                                          </DropdownItem>
+                                        </li>
+                                      </React.Fragment>
+                                    )}
+                                  </ul>
+                                </DropdownMenu>
+                              </UncontrolledDropdown>
+                            </li>
+                          </ul>
+                        </DataTableRow>
+                      </DataTableItem>
+                    );
+                  })
                 : null}
             </DataTableBody>
             <div className="card-inner">
@@ -605,9 +599,7 @@ const CustomerManagement = ({ history }) => {
             <Icon name="cross-sm"></Icon>
           </a>
           <div className="nk-modal-head">
-            <h4 className="nk-modal-title title">
-              Case Management
-            </h4>
+            <h4 className="nk-modal-title title">Case Management</h4>
           </div>
           <div className="nk-tnx-details mt-sm-3">
             <Row className="gy-3">
@@ -635,7 +627,6 @@ const CustomerManagement = ({ history }) => {
                 <span className="sub-text">Account Level</span>
                 <span className="caption-text">{detail.Level}</span>
               </Col>
-
             </Row>
           </div>
         </ModalBody>

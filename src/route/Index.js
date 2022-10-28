@@ -96,7 +96,6 @@ import SavingManagement from "../pages/pre-built/savings-list/savingManagement";
 import SavingDetails from "../pages/pre-built/savings-list/savingDetails";
 import SavingConfiguration from "../pages/pre-built/savings-list/savingConfiguration";
 
-
 import AppMessages from "../pages/app/messages/Messages";
 import Chat from "../pages/app/chat/ChatContainer";
 import Calender from "../pages/app/calender/Calender";
@@ -221,8 +220,6 @@ const Pages = () => {
           )}
         ></Route>
 
-
-
         <Route exact path={`${process.env.PUBLIC_URL}/invoice-list`} component={InvoiceList}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/invoice-details/:id`} component={InvoiceDetails}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/pricing-table`} component={PricingTable}></Route>
@@ -238,7 +235,6 @@ const Pages = () => {
         <Route exact path={`${process.env.PUBLIC_URL}/email-list`} component={EmailList}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/savings-management`} component={SavingManagement}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/savings-configuration`} component={SavingConfiguration}></Route>
-
 
         {/*Demo Pages*/}
         <Route exact path={`${process.env.PUBLIC_URL}/pages/terms-policy`} component={Terms}></Route>
@@ -268,7 +264,11 @@ const Pages = () => {
         <Route exact path={`${process.env.PUBLIC_URL}/components/form-elements`} component={FormElements}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/components/form-layouts`} component={FormLayouts}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/components/checkbox-radio`} component={CheckboxRadio}></Route>
-        <Route exact path={`${process.env.PUBLIC_URL}/components/advanced-control`} component={AdvancedControls}></Route>
+        <Route
+          exact
+          path={`${process.env.PUBLIC_URL}/components/advanced-control`}
+          component={AdvancedControls}
+        ></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/components/input-group`} component={InputGroup}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/components/form-upload`} component={FormUpload}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/components/number-spinner`} component={NumberSpinner}></Route>

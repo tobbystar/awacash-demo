@@ -7,7 +7,6 @@ import AvgSubscription from "../components/partials/default/avg-subscription/Avg
 import SalesOverview from "../components/partials/default/sales-overview/SalesOverview";
 import TransactionTable from "../components/partials/default/transaction/transaction";
 
-
 import RecentActivity from "../components/partials/default/recent-activity/Activity";
 import NewsUsers from "../components/partials/default/new-users/User";
 import Support from "../components/partials/default/support-request/Support";
@@ -162,22 +161,21 @@ const Homepage = () => {
               {/*<Card className="card-bordered card-full">*/}
               {/*  <RecentActivity />*/}
               {/*</Card>*/}
-
             </Col>
             <Col xxl="4" md="6">
-            {/*  <Card className="card-bordered card-full">*/}
-            {/*    <NewsUsers />*/}
-            {/*  </Card>*/}
-            {/*</Col>*/}
-            {/*<Col lg="6" xxl="4">*/}
-            {/*  <Card className="card-bordered h-100">*/}
-            {/*    <Support />*/}
-            {/*  </Card>*/}
-            {/*</Col>*/}
-            {/*<Col lg="6" xxl="4">*/}
-            {/*  <Card className="card-bordered h-100">*/}
-            {/*    <Notifications />*/}
-            {/*  </Card>*/}
+              {/*  <Card className="card-bordered card-full">*/}
+              {/*    <NewsUsers />*/}
+              {/*  </Card>*/}
+              {/*</Col>*/}
+              {/*<Col lg="6" xxl="4">*/}
+              {/*  <Card className="card-bordered h-100">*/}
+              {/*    <Support />*/}
+              {/*  </Card>*/}
+              {/*</Col>*/}
+              {/*<Col lg="6" xxl="4">*/}
+              {/*  <Card className="card-bordered h-100">*/}
+              {/*    <Notifications />*/}
+              {/*  </Card>*/}
             </Col>
           </Row>
         </Block>
