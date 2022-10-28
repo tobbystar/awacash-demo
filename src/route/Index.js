@@ -86,6 +86,16 @@ import CaseManagement from "../pages/pre-built/case-management/CaseManagement";
 import CustomerManagement from "../pages/pre-built/Customer-Management/CustomerManagement";
 import CardManagement from "../pages/pre-built/cardManagement/ProjectList";
 import userCards from "../pages/pre-built/cardManagement/UserCards";
+import LoanRequests from "../pages/pre-built/loan-requests/loanRequests";
+import LoanRequestDetails from "../pages/pre-built/loan-requests/loanRequestDetails";
+import SMSList from "../pages/pre-built/sms-email-list/smsList";
+import EmailList from "../pages/pre-built/sms-email-list/emailList";
+import SmsDetails from "../pages/pre-built/sms-email-list/sms-details";
+import EmailDetails from "../pages/pre-built/sms-email-list/email-details";
+import SavingManagement from "../pages/pre-built/savings-list/savingManagement";
+import SavingDetails from "../pages/pre-built/savings-list/savingDetails";
+import SavingConfiguration from "../pages/pre-built/savings-list/savingConfiguration";
+
 
 import AppMessages from "../pages/app/messages/Messages";
 import Chat from "../pages/app/chat/ChatContainer";
@@ -191,6 +201,28 @@ const Pages = () => {
             </ProductContextProvider>
           )}
         ></Route>
+
+        <Route //Context Api added
+          exact
+          path={`${process.env.PUBLIC_URL}/sms-details/:id`}
+          render={(props) => (
+            <UserContextProvider>
+              <SmsDetails {...props} />
+            </UserContextProvider>
+          )}
+        ></Route>
+        <Route //Context Api added
+          exact
+          path={`${process.env.PUBLIC_URL}/email-details/:id`}
+          render={(props) => (
+            <UserContextProvider>
+              <EmailDetails {...props} />
+            </UserContextProvider>
+          )}
+        ></Route>
+
+
+
         <Route exact path={`${process.env.PUBLIC_URL}/invoice-list`} component={InvoiceList}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/invoice-details/:id`} component={InvoiceDetails}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/pricing-table`} component={PricingTable}></Route>
@@ -200,6 +232,12 @@ const Pages = () => {
         <Route exact path={`${process.env.PUBLIC_URL}/customer-management`} component={CustomerManagement}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/card-management`} component={CardManagement}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/user-cards`} component={userCards}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/loan-requests`} component={LoanRequests}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/loan-request/:id`} component={LoanRequestDetails}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/sms-list`} component={SMSList}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/email-list`} component={EmailList}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/savings-management`} component={SavingManagement}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/savings-configuration`} component={SavingConfiguration}></Route>
 
 
         {/*Demo Pages*/}

@@ -1,17 +1,18 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import Content from "../../../layout/content/Content";
 import Head from "../../../layout/head/Head";
 import {
+  Modal,
+  ModalBody,
+  UncontrolledDropdown,
   DropdownMenu,
   DropdownToggle,
   FormGroup,
-  UncontrolledDropdown,
-  Modal,
-  ModalBody,
   DropdownItem,
-  Form,
+  Badge,
 } from "reactstrap";
 import {
+  Button,
   Block,
   BlockBetween,
   BlockDes,
@@ -19,70 +20,29 @@ import {
   BlockHeadContent,
   BlockTitle,
   Icon,
-  Row,
   Col,
+  Row,
+  TooltipComponent,
   UserAvatar,
-  PaginationComponent,
-  Button,
   DataTable,
   DataTableBody,
   DataTableHead,
   DataTableRow,
   DataTableItem,
-  TooltipComponent,
+  PaginationComponent,
   RSelect,
 } from "../../../components/Component";
-import { filterRole, filterStatus, userData } from "./CustomerData";
-import { bulkActionOptions, findUpper } from "../../../utils/Utils";
+import { customerData, filterStatus, filterDoc, bulkActionKycOptions } from "./CustomerData";
+import { findUpper } from "../../../utils/Utils";
 import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import { UserContext } from "../user-manage/UserContext";
-import userEvent from "@testing-library/user-event";
-var searchData = "";
-var token = window.localStorage.getItem("accessToken");
 
-const CustomerManagement = () => {
-  // const { contextData } = useContext(UserContext);
-  const [data, setData] = useState([]);
-
-  // const [searchData] = contextData
-
-  const handleUserFetch = async () => {
-    fetch("http://35.222.28.53/AwacashAdminApi/api/admin/customers", {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        setData(data);
-      });
-  };
-
-  // useEffect(() => {
-  //   handleUserFetch();
-  // }, []);
-
-  // console.log(contextData)
-
-  const [sm, updateSm] = useState(false);
-  const [tablesm, updateTableSm] = useState(false);
+const CustomerManagement = ({ history }) => {
   const [onSearch, setonSearch] = useState(true);
   const [onSearchText, setSearchText] = useState("");
-  const [modal, setModal] = useState({
-    edit: false,
-    add: false,
-  });
-  const [editId, setEditedId] = useState();
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    balance: "",
-    phone: "",
-    status: "Active",
-  });
+  const [tablesm, updateTableSm] = useState(false);
+  const [data, setData] = useState(customerData);
+  const [viewModal, setViewModal] = useState(false);
+  const [detail, setDetail] = useState({});
   const [actionText, setActionText] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [itemPerPage, setItemPerPage] = useState(10);
@@ -100,166 +60,81 @@ const CustomerManagement = () => {
     }
   };
 
-  // unselects the data on mount
-  useEffect(() => {
-    let newData;
-    newData = data.map((item) => {
-      item.checked = false;
-      return item;
-    });
-    setData([...newData]);
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
   // Changing state value when searching name
   useEffect(() => {
     if (onSearchText !== "") {
-      const filteredObject = searchData.filter((item) => {
-        return (
-          item.login.toLowerCase().includes(onSearchText.toLowerCase()) ||
-          item.login.toLowerCase().includes(onSearchText.toLowerCase())
-        );
+      const filteredObject = customerData.filter((item) => {
+        return item.name.toLowerCase().includes(onSearchText.toLowerCase());
       });
       setData([...filteredObject]);
     } else {
-      setData([...searchData]);
+      setData([...customerData]);
     }
-  }, [onSearchText, setData]);
-
-  // function to set the action to be taken in table header
-  const onActionText = (e) => {
-    setActionText(e.value);
-  };
+  }, [onSearchText]);
 
   // onChange function for searching name
   const onFilterChange = (e) => {
     setSearchText(e.target.value);
   };
 
-  // function to change the selected property of an item
-  const onSelectChange = (e, id) => {
-    let newData = data;
-    let index = newData.findIndex((item) => item.id === id);
-    newData[index].checked = e.currentTarget.checked;
-    setData([...newData]);
+  // function to declare the state change
+  const onActionText = (e) => {
+    setActionText(e.value);
   };
 
-  // function to reset the form
-  const resetForm = () => {
-    setFormData({
-      name: "",
-      email: "",
-      balance: "",
-      phone: "",
-      status: "Active",
-    });
-  };
-
-  // function to close the form modal
-  const onFormCancel = () => {
-    setModal({ edit: false, add: false });
-    resetForm();
-  };
-
-  // submit function to add a new item
-  const onFormSubmit = (submitData) => {
-    const { name, email, balance, phone } = submitData;
-    let submittedData = {
-      id: data.length + 1,
-      avatarBg: "red",
-      name: name,
-      role: "Customer",
-      email: email,
-      balance: balance,
-      phone: phone,
-      emailStatus: "success",
-      kycStatus: "alert",
-      lastLogin: "10 Feb 2020",
-      status: formData.status,
-      country: "Bangladesh",
-    };
-    setData([submittedData, ...data]);
-    resetForm();
-    setModal({ edit: false }, { add: false });
-  };
-
-  // submit function to update a new item
-  const onEditSubmit = (submitData) => {
-    const { name, email, phone } = submitData;
-    let submittedData;
-    let newitems = data;
-    newitems.forEach((item) => {
-      if (item.id === editId) {
-        submittedData = {
-          id: item.id,
-          avatarBg: item.avatarBg,
-          name: name,
-          image: item.image,
-          role: item.role,
-          email: email,
-          balance: formData.balance,
-          phone: "+" + phone,
-          emailStatus: item.emailStatus,
-          kycStatus: item.kycStatus,
-          lastLogin: item.lastLogin,
-          status: formData.status,
-          country: item.country,
-        };
-      }
-    });
-    let index = newitems.findIndex((item) => item.id === editId);
-    newitems[index] = submittedData;
-    setModal({ edit: false });
-    resetForm();
-  };
-
-  // function that loads the want to editted data
-  const onEditClick = (id) => {
-    data.forEach((item) => {
-      if (item.id === id) {
-        setFormData({
-          name: item.name,
-          email: item.email,
-          status: item.status,
-          phone: item.phone,
-          balance: item.balance,
-        });
-        setModal({ edit: true }, { add: false });
-        setEditedId(id);
-      }
-    });
-  };
-
-  // function to change to suspend property for an item
-  const suspendUser = (id) => {
-    let newData = data;
-    let index = newData.findIndex((item) => item.id === id);
-    newData[index].status = "Suspend";
-    setData([...newData]);
-  };
-
-  // function to change the check property of an item
+  // function to select all the items of the table
   const selectorCheck = (e) => {
     let newData;
     newData = data.map((item) => {
-      item.checked = e.currentTarget.checked;
+      item.check = e.currentTarget.checked;
       return item;
     });
     setData([...newData]);
   };
 
-  // function which fires on applying selected action
+  // function to change the property of an item of the table
+  const onSelectChange = (e, id) => {
+    let newData = data;
+    let index = newData.findIndex((item) => item.id === id);
+    newData[index].check = e.currentTarget.checked;
+    setData([...newData]);
+  };
+
+  // function to fire actions after dropdowm select
   const onActionClick = (e) => {
-    if (actionText === "suspend") {
+    if (actionText === "Reject") {
       let newData = data.map((item) => {
-        if (item.checked === true) item.status = "Suspend";
+        if (item.check === true) item.status = "Rejected";
         return item;
       });
       setData([...newData]);
-    } else if (actionText === "delete") {
+    } else if (actionText === "Delete") {
       let newData;
-      newData = data.filter((item) => item.checked !== true);
+      newData = data.filter((item) => item.check !== true);
       setData([...newData]);
     }
+  };
+
+  // function to change to approve property for an item
+  const onApproveClick = (id) => {
+    let newData = data;
+    let index = newData.findIndex((item) => item.id === id);
+    newData[index].status = "Approved";
+    setData([...newData]);
+  };
+
+  // function to change to reject property for an item
+  const onRejectClick = (id) => {
+    let newData = data;
+    let index = newData.findIndex((item) => item.id === id);
+    newData[index].status = "Rejected";
+    setData([...newData]);
+  };
+
+  // function to load detail data
+  const loadDetail = (id) => {
+    let index = data.findIndex((item) => item.id === id);
+    setDetail(data[index]);
   };
 
   // function to toggle the search option
@@ -273,47 +148,17 @@ const CustomerManagement = () => {
   // Change Page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  const { errors, register, handleSubmit } = useForm();
-
   return (
     <React.Fragment>
-      <Head title="User List - Regular"></Head>
+      <Head title="KYC Lists - Regular"></Head>
       <Content>
         <BlockHead size="sm">
           <BlockBetween>
             <BlockHeadContent>
-              <BlockTitle tag="h3" page>
-                Customer List
-              </BlockTitle>
-              <BlockDes className="text-soft">
-                <p>You have total {data.customers} Customers</p>
-              </BlockDes>
+              <BlockTitle page>Customer Management</BlockTitle>
+
             </BlockHeadContent>
-            <BlockHeadContent>
-              <div className="toggle-wrap nk-block-tools-toggle">
-                <Button
-                  className={`btn-icon btn-trigger toggle-expand mr-n1 ${sm ? "active" : ""}`}
-                  onClick={() => updateSm(!sm)}
-                >
-                  <Icon name="menu-alt-r"></Icon>
-                </Button>
-                <div className="toggle-expand-content" style={{ display: sm ? "block" : "none" }}>
-                  <ul className="nk-block-tools g-3">
-                    <li>
-                      <Button color="light" outline className="btn-white">
-                        <Icon name="download-cloud"></Icon>
-                        <span>Export</span>
-                      </Button>
-                    </li>
-                    {/* <li className="nk-block-tools-opt">
-                      <Button color="primary" className="btn-icon" onClick={() => setModal({ add: true })}>
-                        <Icon name="plus"></Icon>
-                      </Button>
-                    </li> */}
-                  </ul>
-                </div>
-              </div>
-            </BlockHeadContent>
+
           </BlockBetween>
         </BlockHead>
 
@@ -322,43 +167,21 @@ const CustomerManagement = () => {
             <div className="card-inner position-relative card-tools-toggle">
               <div className="card-title-group">
                 <div className="card-tools">
-                  <div className="form-inline flex-nowrap gx-3">
-                    <div className="form-wrap">
-                      <RSelect
-                        options={bulkActionOptions}
-                        className="w-130px"
-                        placeholder="Bulk Action"
-                        onChange={(e) => onActionText(e)}
-                      />
-                    </div>
-                    <div className="btn-wrap">
-                      <span className="d-md-none">
-                        <Button
-                          color="light"
-                          outline
-                          disabled={actionText !== "" ? false : true}
-                          className="btn-dim btn-icon"
-                          onClick={(e) => onActionClick(e)}
-                        >
-                          <Icon name="arrow-right"></Icon>
-                        </Button>
-                      </span>
-                    </div>
-                  </div>
+
+
                 </div>
                 <div className="card-tools mr-n1">
                   <ul className="btn-toolbar gx-1">
                     <li>
-                      <a
-                        href="#search"
+                      <Button
                         onClick={(ev) => {
                           ev.preventDefault();
                           toggle();
                         }}
-                        className="btn btn-icon search-toggle toggle-search"
+                        className="btn-icon search-toggle toggle-search"
                       >
                         <Icon name="search"></Icon>
-                      </a>
+                      </Button>
                     </li>
                     <li className="btn-toolbar-sep"></li>
                     <li>
@@ -388,51 +211,14 @@ const CustomerManagement = () => {
                                   style={{ overflow: "visible" }}
                                 >
                                   <div className="dropdown-head">
-                                    <span className="sub-title dropdown-title">Filter Users</span>
-                                    <div className="dropdown">
-                                      <a
-                                        href="#more"
-                                        onClick={(ev) => {
-                                          ev.preventDefault();
-                                        }}
-                                        className="btn btn-sm btn-icon"
-                                      >
-                                        <Icon name="more-h"></Icon>
-                                      </a>
-                                    </div>
+                                    <span className="sub-title dropdown-title">Advanced Filter</span>
                                   </div>
                                   <div className="dropdown-body dropdown-body-rg">
                                     <Row className="gx-6 gy-3">
                                       <Col size="6">
-                                        <div className="custom-control custom-control-sm custom-checkbox">
-                                          <input
-                                            type="checkbox"
-                                            className="custom-control-input form-control"
-                                            id="hasBalance"
-                                          />
-                                          <label className="custom-control-label" htmlFor="hasBalance">
-                                            {" "}
-                                            Have Balance
-                                          </label>
-                                        </div>
-                                      </Col>
-                                      <Col size="6">
-                                        <div className="custom-control custom-control-sm custom-checkbox">
-                                          <input
-                                            type="checkbox"
-                                            className="custom-control-input form-control"
-                                            id="hasKYC"
-                                          />
-                                          <label className="custom-control-label" htmlFor="hasKYC">
-                                            {" "}
-                                            KYC Verified
-                                          </label>
-                                        </div>
-                                      </Col>
-                                      <Col size="6">
                                         <FormGroup>
-                                          <label className="overline-title overline-title-alt">Role</label>
-                                          <RSelect options={filterRole} placeholder="Any Role" />
+                                          <label className="overline-title overline-title-alt">Doc Type</label>
+                                          <RSelect options={filterDoc} placeholder="Any Type" />
                                         </FormGroup>
                                       </Col>
                                       <Col size="6">
@@ -442,21 +228,21 @@ const CustomerManagement = () => {
                                         </FormGroup>
                                       </Col>
                                       <Col size="12">
-                                        <FormGroup className="form-group">
-                                          <button type="button" className="btn btn-secondary">
+                                        <FormGroup>
+                                          <Button type="button" color="secondary">
                                             Filter
-                                          </button>
+                                          </Button>
                                         </FormGroup>
                                       </Col>
                                     </Row>
                                   </div>
                                   <div className="dropdown-foot between">
                                     <a
+                                      className="clickable"
                                       href="#reset"
                                       onClick={(ev) => {
                                         ev.preventDefault();
                                       }}
-                                      className="clickable"
                                     >
                                       Reset Filter
                                     </a>
@@ -474,7 +260,7 @@ const CustomerManagement = () => {
                             </li>
                             <li>
                               <UncontrolledDropdown>
-                                <DropdownToggle color="tranparent" className="btn btn-trigger btn-icon dropdown-toggle">
+                                <DropdownToggle tag="a" className="btn btn-trigger btn-icon dropdown-toggle">
                                   <Icon name="setting"></Icon>
                                 </DropdownToggle>
                                 <DropdownMenu right className="dropdown-menu-xs">
@@ -552,11 +338,11 @@ const CustomerManagement = () => {
                 <div className="card-body">
                   <div className="search-content">
                     <Button
-                      className="search-back btn-icon toggle-search active"
                       onClick={() => {
                         setSearchText("");
                         toggle();
                       }}
+                      className="search-back btn-icon toggle-search"
                     >
                       <Icon name="arrow-left"></Icon>
                     </Button>
@@ -581,220 +367,216 @@ const CustomerManagement = () => {
                     <input
                       type="checkbox"
                       className="custom-control-input form-control"
+                      id="uid_1"
                       onChange={(e) => selectorCheck(e)}
-                      id="uid"
                     />
-                    <label className="custom-control-label" htmlFor="uid"></label>
+                    <label className="custom-control-label" htmlFor="uid_1"></label>
                   </div>
                 </DataTableRow>
                 <DataTableRow>
-                  <span className="sub-text">User</span>
+                  <span>Firstname</span>
                 </DataTableRow>
-                <DataTableRow size="mb">
-                  <span className="sub-text">Balance</span>
+                <DataTableRow size="">
+                  <span>Lastname</span>
                 </DataTableRow>
-                <DataTableRow size="md">
-                  <span className="sub-text">Phone</span>
+                <DataTableRow size="">
+                  <span>BVN</span>
                 </DataTableRow>
-                <DataTableRow size="lg">
-                  <span className="sub-text">Email</span>
+                <DataTableRow size="">
+                  <span>Account Number</span>
                 </DataTableRow>
-                <DataTableRow size="lg">
-                  <span className="sub-text">Location</span>
+                <DataTableRow size="">
+                  <span>Date Created</span>
                 </DataTableRow>
-                <DataTableRow size="lg">
-                  <span className="sub-text">Last Login</span>
+                <DataTableRow size="">
+                  <span>Account Level</span>
                 </DataTableRow>
-                <DataTableRow size="md">
-                  <span className="sub-text">Status</span>
-                </DataTableRow>
-                <DataTableRow className="nk-tb-col-tools text-right">
-                  <UncontrolledDropdown>
-                    <DropdownToggle
-                      color="tranparent"
-                      className="btn btn-xs btn-outline-light btn-icon dropdown-toggle"
-                    >
-                      <Icon name="plus"></Icon>
-                    </DropdownToggle>
-                    <DropdownMenu right className="dropdown-menu-xs">
-                      <ul className="link-tidy sm no-bdr">
-                        <li>
-                          <div className="custom-control custom-control-sm custom-checkbox">
-                            <input type="checkbox" className="custom-control-input form-control" id="bl" />
-                            <label className="custom-control-label" htmlFor="bl">
-                              Balance
-                            </label>
-                          </div>
-                        </li>
-                        <li>
-                          <div className="custom-control custom-control-sm custom-checkbox">
-                            <input type="checkbox" className="custom-control-input form-control" id="ph" />
-                            <label className="custom-control-label" htmlFor="ph">
-                              Phone
-                            </label>
-                          </div>
-                        </li>
-                        <li>
-                          <div className="custom-control custom-control-sm custom-checkbox">
-                            <input type="checkbox" className="custom-control-input form-control" id="vri" />
-                            <label className="custom-control-label" htmlFor="vri">
-                              Verified
-                            </label>
-                          </div>
-                        </li>
-                        <li>
-                          <div className="custom-control custom-control-sm custom-checkbox">
-                            <input type="checkbox" className="custom-control-input form-control" id="st" />
-                            <label className="custom-control-label" htmlFor="st">
-                              Status
-                            </label>
-                          </div>
-                        </li>
-                      </ul>
-                    </DropdownMenu>
-                  </UncontrolledDropdown>
-                </DataTableRow>
+
+                {/* <DataTableRow className="nk-tb-col-tools">&nbsp;</DataTableRow> */}
               </DataTableHead>
-              {/*Head*/}
-              {currentItems.map((item) => {
-                return (
-                  <DataTableItem key={item.id}>
-                    <DataTableRow className="nk-tb-col-check">
-                      <div className="custom-control custom-control-sm custom-checkbox notext">
-                        <input
-                          type="checkbox"
-                          className="custom-control-input form-control"
-                          defaultChecked={item.checked}
-                          id={item.id + "uid1"}
-                          key={Math.random()}
-                          onChange={(e) => onSelectChange(e, item.id)}
-                        />
-                        <label className="custom-control-label" htmlFor={item.id + "uid1"}></label>
-                      </div>
-                    </DataTableRow>
-                    <DataTableRow>
-                      <Link to={`${process.env.PUBLIC_URL}/user-details-regular/${item.FirstName}`}>
-                        <div className="user-card">
-                          <UserAvatar theme={item.avatar_url} text={item.login} image={item.avatar_url}></UserAvatar>
-                          <div className="user-info">
-                            <span className="tb-lead">
-                              {item.login}{" "}
-                              <span
-                                className={`dot dot-${
-                                  item.status === "Active"
-                                    ? "success"
-                                    : item.status === "Pending"
-                                    ? "warning"
-                                    : "danger"
-                                } d-md-none ml-1`}
-                              ></span>
-                            </span>
-                            <span>{item.FirstName}</span>
-                          </div>
-                        </div>
-                      </Link>
-                    </DataTableRow>
-                    <DataTableRow size="mb">
-                      <span className="tb-amount">
-                        {item.AccountNumbers} <span className="currency"></span>
-                      </span>
-                    </DataTableRow>
-                    <DataTableRow size="md">
-                      <span>{item.PhoneNumber1 || "0809867456"}</span>
-                    </DataTableRow>
-                    <DataTableRow size="lg">
-                      <ul className="list-status">{item.Email}</ul>
-                    </DataTableRow>
-                    <DataTableRow size="lg">
-                      <ul className="list-status">{item.AddressLine1 || " Oshineye Gbagada"}</ul>
-                    </DataTableRow>
-                    <DataTableRow size="lg">
-                      <span>{item.LastLoginTime}</span>
-                    </DataTableRow>
-                    <DataTableRow size="md">
-                      <span
-                        className={`tb-status text-${
-                          item.status === "Active" ? "success" : item.status === "Pending" ? "warning" : "danger"
-                        }`}
-                      >
-                        {item.status}
-                      </span>
-                    </DataTableRow>
-                    <DataTableRow className="nk-tb-col-tools">
-                      <ul className="nk-tb-actions gx-1">
-                        <li className="nk-tb-action-hidden" onClick={() => onEditClick(item.id)}>
-                          <TooltipComponent
-                            tag="a"
-                            containerClassName="btn btn-trigger btn-icon"
-                            id={"edit" + item.id}
-                            icon="edit-alt-fill"
-                            direction="top"
-                            text="Edit"
+
+              {currentItems.length > 0
+                ? currentItems.map((item) => {
+                  return (
+                    <DataTableItem key={item.id}>
+                      <DataTableRow className="nk-tb-col-check">
+                        <div className="custom-control custom-control-sm custom-checkbox notext">
+                          <input
+                            type="checkbox"
+                            className="custom-control-input form-control"
+                            defaultChecked={item.check}
+                            id={item.id + "uid1"}
+                            key={Math.random()}
+                            onChange={(e) => onSelectChange(e, item.id)}
                           />
-                        </li>
-                        {item.status !== "Suspend" && (
-                          <React.Fragment>
-                            <li className="nk-tb-action-hidden" onClick={() => suspendUser(item.id)}>
+                          <label className="custom-control-label" htmlFor={item.id + "uid1"}></label>
+                        </div>
+                      </DataTableRow>
+                      <DataTableRow>
+
+                                <span className="tb-lead">
+                                  {item.Firstname}
+
+                                </span>
+
+
+                      </DataTableRow>
+                      <DataTableRow size="">
+                        <span className="tb-lead-sub">{item.Lastname}</span>
+                      </DataTableRow>
+                      <DataTableRow size="">
+                        <span>{item.BVN}</span>
+                      </DataTableRow>
+                      <DataTableRow size="">
+                        <span className="tb-date">{item.account}</span>
+                      </DataTableRow>
+                      <DataTableRow size="">
+                        <span className="tb-date">{item.date}</span>
+                      </DataTableRow>
+
+                      <DataTableRow className="nk-tb-col-tools">
+                        <ul className="nk-tb-actions gx-1">
+                          <li
+                            className="nk-tb-action-hidden"
+                            onClick={() => {
+                              loadDetail(item.level);
+                              setViewModal(true);
+                            }}
+                          >
+                            <TooltipComponent
+                              tag="a"
+                              containerClassName="btn btn-trigger btn-icon"
+                              id={"view" + item.id}
+                              icon="eye-fill"
+                              direction="top"
+                              text="Quick View"
+                            />
+                          </li>
+                          {item.status === "Rejected" ? null : item.status === "Approved" ? (
+                            <li className="nk-tb-action-hidden" onClick={() => onRejectClick(item.id)}>
                               <TooltipComponent
                                 tag="a"
                                 containerClassName="btn btn-trigger btn-icon"
-                                id={"suspend" + item.id}
-                                icon="user-cross-fill"
+                                id={"reject" + item.id}
+                                icon="cross-fill-c"
                                 direction="top"
-                                text="Suspend"
+                                text="Reject"
                               />
                             </li>
-                          </React.Fragment>
-                        )}
-                        <li>
-                          <UncontrolledDropdown>
-                            <DropdownToggle tag="a" className="dropdown-toggle btn btn-icon btn-trigger">
-                              <Icon name="more-h"></Icon>
-                            </DropdownToggle>
-                            <DropdownMenu right>
-                              <ul className="link-list-opt no-bdr">
-                                <li onClick={() => onEditClick(item.id)}>
-                                  <DropdownItem
-                                    tag="a"
-                                    href="#edit"
-                                    onClick={(ev) => {
-                                      ev.preventDefault();
-                                    }}
-                                  >
-                                    <Icon name="edit"></Icon>
-                                    <span>Edit</span>
-                                  </DropdownItem>
-                                </li>
-                                {item.status !== "Suspend" && (
-                                  <React.Fragment>
-                                    <li className="divider"></li>
-                                    <li onClick={() => suspendUser(item.id)}>
+                          ) : (
+                            <React.Fragment>
+                              <li className="nk-tb-action-hidden" onClick={() => onApproveClick(item.id)}>
+                                <TooltipComponent
+                                  tag="a"
+                                  containerClassName="btn btn-trigger btn-icon"
+                                  id={"approve" + item.id}
+                                  icon="check-fill-c"
+                                  direction="top"
+                                  text="Approve"
+                                />
+                              </li>
+                              <li className="nk-tb-action-hidden" onClick={() => onRejectClick(item.id)}>
+                                <TooltipComponent
+                                  tag="a"
+                                  containerClassName="btn btn-trigger btn-icon"
+                                  id={"reject" + item.id}
+                                  icon="cross-fill-c"
+                                  direction="top"
+                                  text="Reject"
+                                />
+                              </li>
+                            </React.Fragment>
+                          )}
+                          <li>
+                            <UncontrolledDropdown>
+                              <DropdownToggle tag="a" className="dropdown-toggle btn btn-icon btn-trigger">
+                                <Icon name="more-h"></Icon>
+                              </DropdownToggle>
+                              <DropdownMenu right>
+                                <ul className="link-list-opt no-bdr">
+                                  <li>
+                                    <DropdownItem
+                                      tag="a"
+                                      href="#view"
+                                      onClick={(ev) => {
+                                        ev.preventDefault();
+                                        loadDetail(item.id);
+                                        setViewModal(true);
+                                      }}
+                                    >
+                                      <Icon name="eye"></Icon>
+                                      <span>Quick View</span>
+                                    </DropdownItem>
+                                  </li>
+                                  <li>
+                                    <DropdownItem
+                                      tag="a"
+                                      href="#details"
+                                      onClick={(ev) => {
+                                        ev.preventDefault();
+                                        history.push(`${process.env.PUBLIC_URL}/kyc-details-regular/${item.id}`);
+                                      }}
+                                    >
+                                      <Icon name="focus"></Icon>
+                                      <span>View Details</span>
+                                    </DropdownItem>
+                                  </li>
+                                  {item.status === "Rejected" ? null : item.status === "Approved" ? (
+                                    <li onClick={() => onRejectClick(item.id)}>
                                       <DropdownItem
                                         tag="a"
-                                        href="#suspend"
+                                        href="#reject"
                                         onClick={(ev) => {
                                           ev.preventDefault();
                                         }}
                                       >
                                         <Icon name="na"></Icon>
-                                        <span>Suspend User</span>
+                                        <span>Reject User</span>
                                       </DropdownItem>
                                     </li>
-                                  </React.Fragment>
-                                )}
-                              </ul>
-                            </DropdownMenu>
-                          </UncontrolledDropdown>
-                        </li>
-                      </ul>
-                    </DataTableRow>
-                  </DataTableItem>
-                );
-              })}
+                                  ) : (
+                                    <React.Fragment>
+                                      <li onClick={() => onApproveClick(item.id)}>
+                                        <DropdownItem
+                                          tag="a"
+                                          href="#approve"
+                                          onClick={(ev) => {
+                                            ev.preventDefault();
+                                          }}
+                                        >
+                                          <Icon name="check-thick"></Icon>
+                                          <span>Approve</span>
+                                        </DropdownItem>
+                                      </li>
+                                      <li onClick={() => onRejectClick(item.id)}>
+                                        <DropdownItem
+                                          tag="a"
+                                          href="#suspend"
+                                          onClick={(ev) => {
+                                            ev.preventDefault();
+                                          }}
+                                        >
+                                          <Icon name="na"></Icon>
+                                          <span>Suspend User</span>
+                                        </DropdownItem>
+                                      </li>
+                                    </React.Fragment>
+                                  )}
+                                </ul>
+                              </DropdownMenu>
+                            </UncontrolledDropdown>
+                          </li>
+                        </ul>
+                      </DataTableRow>
+                    </DataTableItem>
+                  );
+                })
+                : null}
             </DataTableBody>
             <div className="card-inner">
-              {(currentItems ? currentItems.length > 0 : false) ? (
+              {currentItems.length > 0 ? (
                 <PaginationComponent
+                  noDown
                   itemPerPage={itemPerPage}
                   totalItems={data.length}
                   paginate={paginate}
@@ -808,242 +590,56 @@ const CustomerManagement = () => {
             </div>
           </DataTable>
         </Block>
-        <Modal isOpen={modal.add} toggle={() => setModal({ add: false })} className="modal-dialog-centered" size="lg">
-          <ModalBody>
-            <a
-              href="#close"
-              onClick={(ev) => {
-                ev.preventDefault();
-                onFormCancel();
-              }}
-              className="close"
-            >
-              <Icon name="cross-sm"></Icon>
-            </a>
-            <div className="p-2">
-              <h5 className="title">Add User</h5>
-              <div className="mt-4">
-                <Form className="row gy-4" noValidate onSubmit={handleSubmit(onFormSubmit)}>
-                  <Col md="6">
-                    <FormGroup>
-                      <label className="form-label">Name</label>
-                      <input
-                        className="form-control"
-                        type="text"
-                        name="name"
-                        defaultValue={formData.name}
-                        placeholder="Enter name"
-                        ref={register({ required: "This field is required" })}
-                      />
-                      {errors.name && <span className="invalid">{errors.name.message}</span>}
-                    </FormGroup>
-                  </Col>
-                  <Col md="6">
-                    <FormGroup>
-                      <label className="form-label">Email </label>
-                      <input
-                        className="form-control"
-                        type="text"
-                        name="email"
-                        defaultValue={formData.email}
-                        placeholder="Enter email"
-                        ref={register({
-                          required: "This field is required",
-                          pattern: {
-                            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                            message: "invalid email address",
-                          },
-                        })}
-                      />
-                      {errors.email && <span className="invalid">{errors.email.message}</span>}
-                    </FormGroup>
-                  </Col>
-                  <Col md="6">
-                    <FormGroup>
-                      <label className="form-label">Balance</label>
-                      <input
-                        className="form-control"
-                        type="number"
-                        name="balance"
-                        defaultValue={formData.balance}
-                        placeholder="Balance"
-                        ref={register({ required: "This field is required" })}
-                      />
-                      {errors.balance && <span className="invalid">{errors.balance.message}</span>}
-                    </FormGroup>
-                  </Col>
-                  <Col md="6">
-                    <FormGroup>
-                      <label className="form-label">Phone</label>
-                      <input
-                        className="form-control"
-                        type="number"
-                        name="phone"
-                        defaultValue={formData.phone}
-                        ref={register({ required: "This field is required" })}
-                      />
-                      {errors.phone && <span className="invalid">{errors.phone.message}</span>}
-                    </FormGroup>
-                  </Col>
-                  <Col md="12">
-                    <FormGroup>
-                      <label className="form-label">Status</label>
-                      <div className="form-control-wrap">
-                        <RSelect
-                          options={filterStatus}
-                          defaultValue={{ value: "Active", label: "Active" }}
-                          onChange={(e) => setFormData({ ...formData, status: e.value })}
-                        />
-                      </div>
-                    </FormGroup>
-                  </Col>
-                  <Col size="12">
-                    <ul className="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
-                      <li>
-                        <Button color="primary" size="md" type="submit">
-                          Add User
-                        </Button>
-                      </li>
-                      <li>
-                        <a
-                          href="#cancel"
-                          onClick={(ev) => {
-                            ev.preventDefault();
-                            onFormCancel();
-                          }}
-                          className="link link-light"
-                        >
-                          Cancel
-                        </a>
-                      </li>
-                    </ul>
-                  </Col>
-                </Form>
-              </div>
-            </div>
-          </ModalBody>
-        </Modal>
-
-        <Modal isOpen={modal.edit} toggle={() => setModal({ edit: false })} className="modal-dialog-centered" size="lg">
-          <ModalBody>
-            <a
-              href="#cancel"
-              onClick={(ev) => {
-                ev.preventDefault();
-                onFormCancel();
-              }}
-              className="close"
-            >
-              <Icon name="cross-sm"></Icon>
-            </a>
-            <div className="p-2">
-              <h5 className="title">Update User</h5>
-              <div className="mt-4">
-                <Form className="row gy-4" onSubmit={handleSubmit(onEditSubmit)}>
-                  <Col md="6">
-                    <FormGroup>
-                      <label className="form-label">Name</label>
-                      <input
-                        className="form-control"
-                        type="text"
-                        name="name"
-                        defaultValue={formData.name}
-                        placeholder="Enter name"
-                        ref={register({ required: "This field is required" })}
-                      />
-                      {errors.name && <span className="invalid">{errors.name.message}</span>}
-                    </FormGroup>
-                  </Col>
-                  <Col md="6">
-                    <FormGroup>
-                      <label className="form-label">Email</label>
-                      <input
-                        className="form-control"
-                        type="text"
-                        name="email"
-                        defaultValue={formData.email}
-                        placeholder="Enter email"
-                        ref={register({
-                          required: "This field is required",
-                          pattern: {
-                            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                            message: "invalid email address",
-                          },
-                        })}
-                      />
-                      {errors.email && <span className="invalid">{errors.email.message}</span>}
-                    </FormGroup>
-                  </Col>
-                  <Col md="6">
-                    <FormGroup>
-                      <label className="form-label">Balance</label>
-                      <input
-                        className="form-control"
-                        type="number"
-                        name="balance"
-                        disabled
-                        defaultValue={parseFloat(formData.balance.replace(/,/g, ""))}
-                        placeholder="Balance"
-                        ref={register({ required: "This field is required" })}
-                      />
-                      {errors.balance && <span className="invalid">{errors.balance.message}</span>}
-                    </FormGroup>
-                  </Col>
-                  <Col md="6">
-                    <FormGroup>
-                      <label className="form-label">Phone</label>
-                      <input
-                        className="form-control"
-                        type="number"
-                        name="phone"
-                        defaultValue={Number(formData.phone)}
-                        ref={register({ required: "This field is required" })}
-                      />
-                      {errors.phone && <span className="invalid">{errors.phone.message}</span>}
-                    </FormGroup>
-                  </Col>
-                  <Col md="12">
-                    <FormGroup>
-                      <label className="form-label">Status</label>
-                      <div className="form-control-wrap">
-                        <RSelect
-                          options={filterStatus}
-                          defaultValue={{
-                            value: formData.status,
-                            label: formData.status,
-                          }}
-                          onChange={(e) => setFormData({ ...formData, status: e.value })}
-                        />
-                      </div>
-                    </FormGroup>
-                  </Col>
-                  <Col size="12">
-                    <ul className="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
-                      <li>
-                        <Button color="primary" size="md" type="submit">
-                          Update User
-                        </Button>
-                      </li>
-                      <li>
-                        <a
-                          href="#cancel"
-                          onClick={(ev) => {
-                            ev.preventDefault();
-                            onFormCancel();
-                          }}
-                          className="link link-light"
-                        >
-                          Cancel
-                        </a>
-                      </li>
-                    </ul>
-                  </Col>
-                </Form>
-              </div>
-            </div>
-          </ModalBody>
-        </Modal>
       </Content>
+
+      <Modal isOpen={viewModal} toggle={() => setViewModal(false)} className="modal-dialog-centered" size="lg">
+        <ModalBody>
+          <a
+            href="#cancel"
+            onClick={(ev) => {
+              ev.preventDefault();
+              setViewModal(false);
+            }}
+            className="close"
+          >
+            <Icon name="cross-sm"></Icon>
+          </a>
+          <div className="nk-modal-head">
+            <h4 className="nk-modal-title title">
+              Case Management
+            </h4>
+          </div>
+          <div className="nk-tnx-details mt-sm-3">
+            <Row className="gy-3">
+              <Col lg={6}>
+                <span className="sub-text">Firstname</span>
+                <span className="caption-text">{detail.Firstname}</span>
+              </Col>
+              <Col lg={6}>
+                <span className="sub-text">Lastname</span>
+                <span className="caption-text">{detail.Lastname}</span>
+              </Col>
+              <Col lg={6}>
+                <span className="sub-text">BVN</span>
+                <span className="caption-text">{detail.BVN}</span>
+              </Col>
+              <Col lg={6}>
+                <span className="sub-text">Account Number</span>
+                <span className="caption-text">{detail.doc}</span>
+              </Col>
+              <Col lg={6}>
+                <span className="sub-text">Date Created</span>
+                <span className="caption-text">{detail.date}</span>
+              </Col>
+              <Col lg={6}>
+                <span className="sub-text">Account Level</span>
+                <span className="caption-text">{detail.Level}</span>
+              </Col>
+
+            </Row>
+          </div>
+        </ModalBody>
+      </Modal>
     </React.Fragment>
   );
 };

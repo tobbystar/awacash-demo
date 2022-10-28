@@ -22,15 +22,19 @@ import {
   BlockHead,
   BlockHeadContent,
   BlockTitle,
+  UserAvatar,
   Icon,
   Col,
   PaginationComponent,
   Row,
   RSelect,
 } from "../../../components/Component";
-import { statusOptions, transData } from "./TransData";
+import { statusOptions } from "./TransData";
 import { dateFormatterAlt } from "../../../utils/Utils";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
+
+var smsSearchData = ""
 
 const TransListBasic = () => {
   const [onSearch, setonSearch] = useState(true);
@@ -40,7 +44,7 @@ const TransListBasic = () => {
   });
   const [viewModal, setViewModal] = useState(false);
   const [detail, setDetail] = useState({});
-  const [data, setData] = useState(transData);
+  const [data, setData] = useState([{}]);
   const [formData, setFormData] = useState({
     bill: "",
     issue: new Date(),
@@ -52,6 +56,16 @@ const TransListBasic = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemPerPage, setItemPerPage] = useState(10);
   const [sort, setSortState] = useState("");
+
+  const handleUserFetch = async () => {
+    fetch("https://api.github.com/users")
+    .then( response => response.json())
+    .then( data => {setData(data); smsSearchData = data})
+  }
+
+  useEffect(() => {
+    handleUserFetch()
+  },[])
 
   const sortingFunc = (params) => {
     let defaultData = data;
@@ -67,12 +81,12 @@ const TransListBasic = () => {
   // Changing state value when searching name
   useEffect(() => {
     if (onSearchText !== "") {
-      const filteredObject = transData.filter((item) => {
-        return item.bill.toLowerCase().includes(onSearchText.toLowerCase());
+      const filteredObject = smsSearchData.filter((item) => {
+        return item.login.toLowerCase().includes(onSearchText.toLowerCase());
       });
       setData([...filteredObject]);
     } else {
-      setData([...transData]);
+      setData([...smsSearchData]);
     }
   }, [onSearchText]);
 
@@ -142,10 +156,10 @@ const TransListBasic = () => {
         <BlockHead size="sm">
           <BlockBetween>
             <BlockHeadContent>
-              <BlockTitle page>Recent Transactions</BlockTitle>
-              {/* <BlockDes className="text-soft">
-                <p>You have total 560 transactions </p>
-              </BlockDes> */}
+              <BlockTitle page>SMS List</BlockTitle>
+              <BlockDes className="text-soft">
+                <p>You have total {data.length} sms messages.</p>
+              </BlockDes>
             </BlockHeadContent>
             {/* <BlockHeadContent>
               <ul className="nk-block-tools g-3">
@@ -165,7 +179,7 @@ const TransListBasic = () => {
               <div className="card-inner">
                 <div className="card-title-group">
                   <div className="card-title">
-                    <h5 className="title">Recent Transactions</h5>
+                    <h5 className="title">All Messages</h5>
                   </div>
                   <div className="card-tools mr-n1">
                     <ul className="btn-toolbar">
@@ -276,24 +290,23 @@ const TransListBasic = () => {
                   <thead>
                     <tr className="tb-tnx-head">
                       <th className="tb-tnx-id">
-                        <span className="">S/N</span>
+                        <span className="">SN</span>
                       </th>
                       <th className="tb-tnx-info">
-                        <span className="tb-tnx-desc d-none d-md-inline-block">
-                          <span>Transaction Date</span>
+                        <span className="tb-tnx-desc d-none d-sm-inline-block">
+                          <span>Customer</span>
                         </span>
                         <span className="tb-tnx-date d-md-inline-block d-none">
-                          <span className="d-md-none">Date</span>
+                          <span className="d-md-none">Email</span>
                           <span className="d-none d-md-block">
-
-                            <span>Transaction type</span>
-                            <span>Account No</span>
+                            <span>Phone</span>
+                            <span>Date Sent</span>
                           </span>
                         </span>
                       </th>
                       <th className="tb-tnx-amount is-alt">
-                        <span className="tb-tnx-total">Registration Amount</span>
-                        <span className="tb-tnx-status d-none d-md-inline-block">Amount Status</span>
+                        <span className="tb-tnx-status d-none d-md-inline-block">Status</span>
+                        <span className="tb-tnx-total"></span>
                       </th>
                       <th className="tb-tnx-action">
                         <span>&nbsp;</span>
@@ -312,30 +325,27 @@ const TransListBasic = () => {
                                     ev.preventDefault();
                                   }}
                                 >
-                                  <span>{item.ref}</span>
+                                  <span>{item.id}</span>
                                 </a>
                               </td>
                               <td className="tb-tnx-info">
                                 <div className="tb-tnx-desc">
-                                  <span className="title">{item.issue}</span>
+                                  <span className="title">{item.login}</span>
                                 </div>
                                 <div className="tb-tnx-date">
-                                  <span className="date">{item.type}</span>
-                                  <span className="date">{item.due}</span>
+                                  <span className="date">{"08012953853"}</span>
+                                  <span className="date">{"12 Apr 2022"}</span>
                                 </div>
-                                <div></div>
                               </td>
                               <td className="tb-tnx-amount is-alt">
                                 <div className="tb-tnx-total">
-                                  <span className="amount">${item.total}</span>
+                                  <span className="amount">{"Active"}</span>
                                 </div>
                                 <div className="tb-tnx-status">
-                                  <span
-                                    className={`badge badge-dot badge-${
-                                      item.status === "Paid" ? "success" : item.status === "Due" ? "warning" : "danger"
-                                    }`}
-                                  >
-                                    {item.status}
+                                  <span>
+                                    <Link to = {`${process.env.PUBLIC_URL}/sms-details/${item.id}`}>
+                                      <Button color="secondary">view</Button>
+                                </Link>
                                   </span>
                                 </div>
                               </td>
@@ -406,7 +416,109 @@ const TransListBasic = () => {
           </Card>
         </Block>
 
-        
+        <Modal isOpen={modal.add} toggle={() => setModal({ add: false })} className="modal-dialog-centered" size="lg">
+          <ModalBody>
+            <a
+              href="#cancel"
+              onClick={(ev) => {
+                ev.preventDefault();
+                onFormCancel();
+              }}
+              className="close"
+            >
+              <Icon name="cross-sm"></Icon>
+            </a>
+            <div className="p-2">
+              <h5 className="title">Add Bill</h5>
+              <div className="mt-4">
+                <Form className="row gy-4 mt-4" onSubmit={handleSubmit(onFormSubmit)}>
+                  <Col md="6">
+                    <FormGroup>
+                      <label className="form-label">Bill</label>
+                      <input
+                        className="form-control"
+                        ref={register({ required: "This field is required" })}
+                        type="text"
+                        name="bill"
+                        defaultValue={formData.bill}
+                        placeholder="Enter bill"
+                      />
+                      {errors.bill && <span className="invalid">{errors.bill.message}</span>}
+                    </FormGroup>
+                  </Col>
+                  <Col md="6">
+                    <FormGroup>
+                      <label className="form-label">Total</label>
+                      <input
+                        className="form-control"
+                        ref={register({ required: "This field is required" })}
+                        type="number"
+                        name="total"
+                        defaultValue={formData.total}
+                      />
+                      {errors.total && <span className="invalid">{errors.total.message}</span>}
+                    </FormGroup>
+                  </Col>
+                  <Col md="6">
+                    <FormGroup>
+                      <label className="form-label">Issue Date</label>
+                      <DatePicker
+                        selected={formData.issue}
+                        className="form-control"
+                        onChange={(date) => setFormData({ ...formData, issue: date })}
+                        minDate={new Date()}
+                      />
+                    </FormGroup>
+                  </Col>
+                  <Col md="6">
+                    <FormGroup>
+                      <label className="form-label">Due Date</label>
+                      <DatePicker
+                        selected={formData.due}
+                        className="form-control"
+                        onChange={(date) => setFormData({ ...formData, due: date })}
+                        minDate={new Date()}
+                      />
+                    </FormGroup>
+                  </Col>
+                  <Col md="12">
+                    <FormGroup>
+                      <label className="form-label">Status</label>
+                      <div className="form-control-wrap">
+                        <RSelect
+                          options={statusOptions}
+                          defaultValue={{ value: "Paid", label: "Paid" }}
+                          onChange={(e) => setFormData({ ...formData, status: e.value })}
+                        />
+                      </div>
+                    </FormGroup>
+                  </Col>
+                  <Col size="12">
+                    <ul className="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
+                      <li>
+                        <Button color="primary" size="md" type="submit">
+                          Add Bill
+                        </Button>
+                      </li>
+                      <li>
+                        <a
+                          href="#cancel"
+                          onClick={(ev) => {
+                            ev.preventDefault();
+                            onFormCancel();
+                          }}
+                          className="link link-light"
+                        >
+                          Cancel
+                        </a>
+                      </li>
+                    </ul>
+                  </Col>
+                </Form>
+              </div>
+            </div>
+          </ModalBody>
+        </Modal>
 
         <Modal isOpen={viewModal} toggle={() => setViewModal(false)} className="modal-dialog-centered" size="lg">
           <ModalBody>
@@ -422,45 +534,11 @@ const TransListBasic = () => {
             </a>
             <div className="nk-modal-head">
               <h4 className="nk-modal-title title">
-                Transaction <small className="text-primary">#{detail.ref}</small>
+                Message
               </h4>
             </div>
             <div className="nk-tnx-details mt-sm-3">
-              <Row className="gy-3">
-                <Col lg={6}>
-                  <span className="sub-text">Order ID</span>
-                  <span className="caption-text">{detail.ref}</span>
-                </Col>
-                <Col lg={6}>
-                  <span className="sub-text">Account Number </span>
-                  <span className="caption-text text-break">{detail.due}</span>
-                </Col>
-                <Col lg={6}>
-                  <span className="sub-text">Registration Amount</span>
-                  <span className="caption-text">$ {detail.total}</span>
-                </Col>
-                <Col lg={6}>
-                  <span className="sub-text">Recipient Name</span>
-                  <span className="caption-text"> {detail.recipient}</span>
-                </Col>
-                <Col lg={6}>
-                  <span className="sub-text">Status</span>
-                  <Badge
-                    color={detail.status === "Paid" ? "success" : detail.status === "Due" ? "warning" : "danger"}
-                    size="md"
-                  >
-                    {detail.status}
-                  </Badge>
-                </Col>
-                <Col lg={6}>
-                  <span className="sub-text">Transaction Date</span>
-                  <span className="caption-text"> {detail.issue}</span>
-                </Col>
-                <Col lg={6}>
-                  <span className="sub-text">Transaction Type</span>
-                  <span className="caption-text"> {detail.type}</span>
-                </Col>
-              </Row>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iusto eveniet blanditiis velit vero iure provident ipsa corrupti atque incidunt amet.
             </div>
           </ModalBody>
         </Modal>

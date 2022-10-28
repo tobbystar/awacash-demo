@@ -6,7 +6,7 @@ import ActiveSubscription from "../components/partials/default/active-subscripti
 import AvgSubscription from "../components/partials/default/avg-subscription/AvgSubscription";
 import SalesOverview from "../components/partials/default/sales-overview/SalesOverview";
 import TransactionTable from "../components/partials/default/transaction/transaction";
-import TransListBasic from "../components/partials/default/trans-list/TransListBasic";
+
 
 import RecentActivity from "../components/partials/default/recent-activity/Activity";
 import NewsUsers from "../components/partials/default/new-users/User";
