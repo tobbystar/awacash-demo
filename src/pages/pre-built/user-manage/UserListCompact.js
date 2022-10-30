@@ -120,15 +120,15 @@ const UserListCompact = () => {
   };
 
   // function to reset the form
-  const resetForm = () => {
-    setFormData({
-      name: "",
-      email: "",
-      balance: "",
-      phone: "",
-      status: "Active",
-    });
-  };
+  // const resetForm = () => {
+  //   setFormData({
+  //     name: "",
+  //     email: "",
+  //     balance: "",
+  //     phone: "",
+  //     status: "Active",
+  //   });
+  // };
 
   // function to close the form modal
   const onFormCancel = () => {
@@ -143,7 +143,7 @@ const UserListCompact = () => {
       id: data.length + 1,
       avatarBg: "purple",
       name: name,
-      role: "Customer",
+      role: "role",
       email: email,
       balance: balance,
       phone: phone,
@@ -258,10 +258,10 @@ const UserListCompact = () => {
           <BlockBetween>
             <BlockHeadContent>
               <BlockTitle tag="h3" page>
-                Users Lists
+                Sub-Admin Lists
               </BlockTitle>
               <BlockDes className="text-soft">
-                <p>You have total 2,595 users.</p>
+                <p>---</p>
               </BlockDes>
             </BlockHeadContent>
             <BlockHeadContent>
@@ -313,17 +313,17 @@ const UserListCompact = () => {
                       />
                     </div>
                     <div className="btn-wrap">
-                      <span className="d-none d-md-block">
-                        <Button
-                          disabled={actionText !== "" ? false : true}
-                          color="light"
-                          outline
-                          className="btn-dim"
-                          onClick={(e) => onActionClick(e)}
-                        >
-                          Apply
-                        </Button>
-                      </span>
+                      {/*<span className="d-none d-md-block">*/}
+                      {/*  <Button*/}
+                      {/*    disabled={actionText !== "" ? false : true}*/}
+                      {/*    color="light"*/}
+                      {/*    outline*/}
+                      {/*    className="btn-dim"*/}
+                      {/*    onClick={(e) => onActionClick(e)}*/}
+                      {/*  >*/}
+                      {/*    Apply*/}
+                      {/*  </Button>*/}
+                      {/*</span>*/}
                       <span className="d-md-none">
                         <Button
                           color="light"
@@ -578,72 +578,76 @@ const UserListCompact = () => {
                   </div>
                 </DataTableRow>
                 <DataTableRow>
-                  <span className="sub-text">User</span>
+                  <span className="sub-text">Firstname</span>
                 </DataTableRow>
+                <DataTableRow size="lg">
+                  <span className="sub-text">Lastname</span>
+                </DataTableRow>
+
                 <DataTableRow size="md">
                   <span className="sub-text">Role</span>
                 </DataTableRow>
-                <DataTableRow size="sm">
-                  <span className="sub-text">Email</span>
-                </DataTableRow>
+
                 <DataTableRow size="md">
                   <span className="sub-text">Phone</span>
                 </DataTableRow>
+
+                <DataTableRow size="sm">
+                  <span className="sub-text">Email</span>
+                </DataTableRow>
+
+                {/*<DataTableRow size="lg">*/}
+                {/*  <span className="sub-text">Verified</span>*/}
+                {/*</DataTableRow>*/}
                 <DataTableRow size="lg">
-                  <span className="sub-text">Company</span>
+                  <span className="sub-text">Address</span>
                 </DataTableRow>
-                <DataTableRow size="lg">
-                  <span className="sub-text">Verified</span>
-                </DataTableRow>
-                <DataTableRow size="lg">
-                  <span className="sub-text">Last Login</span>
-                </DataTableRow>
-                <DataTableRow>
-                  <span className="sub-text">Status</span>
-                </DataTableRow>
-                <DataTableRow className="nk-tb-col-tools text-right">
-                  <UncontrolledDropdown>
-                    <DropdownToggle tag="a" className="btn btn-xs btn-outline-light btn-icon dropdown-toggle">
-                      <Icon name="plus"></Icon>
-                    </DropdownToggle>
-                    <DropdownMenu right className="dropdown-menu-xs">
-                      <ul className="link-tidy sm no-bdr">
-                        <li>
-                          <div className="custom-control custom-control-sm custom-checkbox">
-                            <input type="checkbox" className="custom-control-input form-control" id="bl" />
-                            <label className="custom-control-label" htmlFor="bl">
-                              Balance
-                            </label>
-                          </div>
-                        </li>
-                        <li>
-                          <div className="custom-control custom-control-sm custom-checkbox">
-                            <input type="checkbox" className="custom-control-input form-control" id="ph" />
-                            <label className="custom-control-label" htmlFor="ph">
-                              Phone
-                            </label>
-                          </div>
-                        </li>
-                        <li>
-                          <div className="custom-control custom-control-sm custom-checkbox">
-                            <input type="checkbox" className="custom-control-input form-control" id="vri" />
-                            <label className="custom-control-label" htmlFor="vri">
-                              Verified
-                            </label>
-                          </div>
-                        </li>
-                        <li>
-                          <div className="custom-control custom-control-sm custom-checkbox">
-                            <input type="checkbox" className="custom-control-input form-control" id="st" />
-                            <label className="custom-control-label" htmlFor="st">
-                              Status
-                            </label>
-                          </div>
-                        </li>
-                      </ul>
-                    </DropdownMenu>
-                  </UncontrolledDropdown>
-                </DataTableRow>
+                {/*<DataTableRow>*/}
+                {/*  <span className="sub-text">Status</span>*/}
+                {/*</DataTableRow>*/}
+                {/*<DataTableRow className="nk-tb-col-tools text-right">*/}
+                {/*  <UncontrolledDropdown>*/}
+                {/*    <DropdownToggle tag="a" className="btn btn-xs btn-outline-light btn-icon dropdown-toggle">*/}
+                {/*      <Icon name="plus"></Icon>*/}
+                {/*    </DropdownToggle>*/}
+                {/*    <DropdownMenu right className="dropdown-menu-xs">*/}
+                {/*      <ul className="link-tidy sm no-bdr">*/}
+                {/*        <li>*/}
+                {/*          <div className="custom-control custom-control-sm custom-checkbox">*/}
+                {/*            <input type="checkbox" className="custom-control-input form-control" id="bl" />*/}
+                {/*            <label className="custom-control-label" htmlFor="bl">*/}
+                {/*              Balance*/}
+                {/*            </label>*/}
+                {/*          </div>*/}
+                {/*        </li>*/}
+                {/*        <li>*/}
+                {/*          <div className="custom-control custom-control-sm custom-checkbox">*/}
+                {/*            <input type="checkbox" className="custom-control-input form-control" id="ph" />*/}
+                {/*            <label className="custom-control-label" htmlFor="ph">*/}
+                {/*              Phone*/}
+                {/*            </label>*/}
+                {/*          </div>*/}
+                {/*        </li>*/}
+                {/*        <li>*/}
+                {/*          <div className="custom-control custom-control-sm custom-checkbox">*/}
+                {/*            <input type="checkbox" className="custom-control-input form-control" id="vri" />*/}
+                {/*            <label className="custom-control-label" htmlFor="vri">*/}
+                {/*              Verified*/}
+                {/*            </label>*/}
+                {/*          </div>*/}
+                {/*        </li>*/}
+                {/*        <li>*/}
+                {/*          <div className="custom-control custom-control-sm custom-checkbox">*/}
+                {/*            <input type="checkbox" className="custom-control-input form-control" id="st" />*/}
+                {/*            <label className="custom-control-label" htmlFor="st">*/}
+                {/*              Status*/}
+                {/*            </label>*/}
+                {/*          </div>*/}
+                {/*        </li>*/}
+                {/*      </ul>*/}
+                {/*    </DropdownMenu>*/}
+                {/*  </UncontrolledDropdown>*/}
+                {/*</DataTableRow>*/}
               </DataTableHead>
               {/*Head*/}
               {currentItems.length > 0
@@ -678,52 +682,56 @@ const UserListCompact = () => {
                             </div>
                           </Link>
                         </DataTableRow>
+
+                        <DataTableRow size="lg">
+                          <span className="tb-lead">{item.lastname}</span>
+                        </DataTableRow>
+
                         <DataTableRow size="md">
                           <span>{item.role}</span>
+                        </DataTableRow>
+
+                        <DataTableRow size="md">
+                          <span>{item.phone}</span>
                         </DataTableRow>
                         <DataTableRow size="sm">
                           <span>{item.email}</span>
                         </DataTableRow>
-                        <DataTableRow size="md">
-                          <span>{item.phone}</span>
-                        </DataTableRow>
+
+                        {/*<DataTableRow size="lg">*/}
+                        {/*  <ul className="list-status">*/}
+                        {/*    <li>*/}
+                        {/*      <Icon*/}
+                        {/*        className={`text-${*/}
+                        {/*          item.emailStatus === "success"*/}
+                        {/*            ? "success"*/}
+                        {/*            : item.emailStatus === "pending"*/}
+                        {/*            ? "info"*/}
+                        {/*            : "secondary"*/}
+                        {/*        }`}*/}
+                        {/*        name={`${*/}
+                        {/*          item.emailStatus === "success"*/}
+                        {/*            ? "check-circle"*/}
+                        {/*            : item.emailStatus === "alert"*/}
+                        {/*            ? "alert-circle"*/}
+                        {/*            : "alarm-alt"*/}
+                        {/*        }`}*/}
+                        {/*      ></Icon>{" "}*/}
+                        {/*      <span>Email</span>*/}
+                        {/*    </li>*/}
+                        {/*  </ul>*/}
+                        {/*</DataTableRow>*/}
                         <DataTableRow size="lg">
-                          <span>{item.country}</span>
-                        </DataTableRow>
-                        <DataTableRow size="lg">
-                          <ul className="list-status">
-                            <li>
-                              <Icon
-                                className={`text-${
-                                  item.emailStatus === "success"
-                                    ? "success"
-                                    : item.emailStatus === "pending"
-                                    ? "info"
-                                    : "secondary"
-                                }`}
-                                name={`${
-                                  item.emailStatus === "success"
-                                    ? "check-circle"
-                                    : item.emailStatus === "alert"
-                                    ? "alert-circle"
-                                    : "alarm-alt"
-                                }`}
-                              ></Icon>{" "}
-                              <span>Email</span>
-                            </li>
-                          </ul>
-                        </DataTableRow>
-                        <DataTableRow size="lg">
-                          <span>{item.lastLogin}</span>
+                          <span>{item.address}</span>
                         </DataTableRow>
                         <DataTableRow>
-                          <span
-                            className={`tb-status text-${
-                              item.status === "Active" ? "success" : item.status === "Pending" ? "warning" : "danger"
-                            }`}
-                          >
-                            {item.status}
-                          </span>
+                          {/*<span*/}
+                          {/*  className={`tb-status text-${*/}
+                          {/*    item.status === "Active" ? "success" : item.status === "Pending" ? "warning" : "danger"*/}
+                          {/*  }`}*/}
+                          {/*>*/}
+                          {/*  {item.status}*/}
+                          {/*</span>*/}
                         </DataTableRow>
                         <DataTableRow className="nk-tb-col-tools">
                           <ul className="nk-tb-actions gx-1">
@@ -866,16 +874,16 @@ const UserListCompact = () => {
                   </Col>
                   <Col md="6">
                     <FormGroup>
-                      <label className="form-label">Balance</label>
+                      <label className="form-label">Role</label>
                       <input
                         className="form-control"
-                        type="number"
-                        name="balance"
-                        defaultValue={formData.balance}
-                        placeholder="Balance"
+                        type="text"
+                        name="role"
+                        defaultValue={formData.role}
+                        placeholder="Role"
                         ref={register({ required: "This field is required" })}
                       />
-                      {errors.balance && <span className="invalid">{errors.balance.message}</span>}
+                      {errors.role && <span className="invalid">{errors.role.message}</span>}
                     </FormGroup>
                   </Col>
                   <Col md="6">
@@ -981,21 +989,39 @@ const UserListCompact = () => {
                       {errors.email && <span className="invalid">{errors.email.message}</span>}
                     </FormGroup>
                   </Col>
+
+
                   <Col md="6">
                     <FormGroup>
-                      <label className="form-label">Balance</label>
+                      <label className="form-label">Role</label>
                       <input
                         className="form-control"
-                        type="number"
-                        name="balance"
-                        disabled
-                        defaultValue={parseFloat(formData.balance.replace(/,/g, ""))}
-                        placeholder="Balance"
+                        type="text"
+                        name="role"
+                        defaultValue={String(formData.role)}
                         ref={register({ required: "This field is required" })}
                       />
-                      {errors.balance && <span className="invalid">{errors.balance.message}</span>}
+                      {errors.role && <span className="invalid">{errors.role.message}</span>}
                     </FormGroup>
                   </Col>
+
+
+
+                  {/*<Col md="6">*/}
+                  {/*  <FormGroup>*/}
+                  {/*    <label className="form-label">Balance</label>*/}
+                  {/*    <input*/}
+                  {/*      className="form-control"*/}
+                  {/*      type="number"*/}
+                  {/*      name="balance"*/}
+                  {/*      disabled*/}
+                  {/*      defaultValue={parseFloat(formData.balance.replace(/,/g, ""))}*/}
+                  {/*      placeholder="Balance"*/}
+                  {/*      ref={register({ required: "This field is required" })}*/}
+                  {/*    />*/}
+                  {/*    {errors.balance && <span className="invalid">{errors.balance.message}</span>}*/}
+                  {/*  </FormGroup>*/}
+                  {/*</Col>*/}
                   <Col md="6">
                     <FormGroup>
                       <label className="form-label">Phone</label>
