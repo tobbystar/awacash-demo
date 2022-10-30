@@ -1,18 +1,18 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
 import { Col } from "../../../components/grid/Grid";
 import { BlockHead, BlockHeadContent, BlockTitle } from "../../../components/block/Block";
 import { Card } from "reactstrap";
 import { Icon } from "../../../components/Component";
 import { customerData } from "./CustomerData";
 
-function levelOneData() {
+function LevelOneData() {
   return (
     <div>
       <Col lg="6">
         <BlockHead>
           <BlockHeadContent>
             <BlockTitle tag="h5">Applicant Information</BlockTitle>
-            <p>Basic info, like name, phone, address, country etc.</p>
+            <p>Tier One</p>
           </BlockHeadContent>
         </BlockHead>
         <Card className="card-bordered">
@@ -20,21 +20,21 @@ function levelOneData() {
             <li className="data-item">
               <div className="data-col">
                 <div className="data-label">First Name</div>
-                <div className="data-value">{user.name.split(" ")[0]}</div>
+                <div className="data-value">Tolu</div>
               </div>
             </li>
             <li className="data-item">
               <div className="data-col">
                 <div className="data-label">Last Name</div>
-                <div className="data-value">{user.name.split(" ").pop()}</div>
+                <div className="data-value">Adeagbo</div>
               </div>
             </li>
-            <li className="data-item">
+            {/* <li className="data-item">
               <div className="data-col">
                 <div className="data-label">Middle Name</div>
                 <div className="data-value">{user.name.split(" ").pop()}</div>
               </div>
-            </li>
+            </li> */}
             <li className="data-item">
               <div className="data-col">
                 <div className="data-label">Email Address</div>
@@ -97,4 +97,4 @@ function levelOneData() {
   );
 }
 
-export default levelOneData;
+export default LevelOneData;
