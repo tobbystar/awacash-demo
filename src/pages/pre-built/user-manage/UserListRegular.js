@@ -261,7 +261,7 @@ const UserListRegularPage = () => {
                 Users Lists
               </BlockTitle>
               <BlockDes className="text-soft">
-                <p>You have total 2,595 users.</p>
+                <p>---</p>
               </BlockDes>
             </BlockHeadContent>
             <BlockHeadContent>
