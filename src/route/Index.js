@@ -188,14 +188,13 @@ const Pages = () => {
         <Route exact path={`${process.env.PUBLIC_URL}/transaction-crypto`} component={TransListCrypto}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/product-list`} component={ProductList}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/customer-details/:id`} component={CustomerDetails}></Route>
-<<<<<<< HEAD
+
         <Route exact path={`${process.env.PUBLIC_URL}/customer-details/`} component={SubAdminOne}></Route>
-=======
+
         <Route exact path={`${process.env.PUBLIC_URL}/customer-details/level-one`} component={LevelOneData}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/customer-details/level-two`} component={LevelTwoData}></Route>
 
         <Route exact path={`${process.env.PUBLIC_URL}/customer-details/level-three`} component={LevelThreeData}></Route>
->>>>>>> 3d60d83fdcbe2283564a30226013680168a4534b
 
         <Route // context api added
           exact
