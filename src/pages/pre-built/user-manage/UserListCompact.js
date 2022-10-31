@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import Content from "../../../layout/content/Content";
 import Head from "../../../layout/head/Head";
 import { findUpper } from "../../../utils/Utils";
-import { userData, filterRole, filterStatus } from "./UserData";
+import { userData, filterRole, filterStatus, roleOptions } from "./UserData";
 import {
   DropdownMenu,
   DropdownToggle,
@@ -55,7 +55,7 @@ const UserListCompact = () => {
   const [formData, setFormData] = useState({
     name: "",
     lastname: "",
-    role: "",
+    role: "Manager",
     email: "",
     //balance: "",
     phone: "",
@@ -176,7 +176,7 @@ const UserListCompact = () => {
           name: name,
           lastname: lastname,
           image: image,
-          role: role,
+          role: formData.role,
           email: email,
           balance: formData.balance,
           phone: "+" + phone,
@@ -201,7 +201,7 @@ const UserListCompact = () => {
         setFormData({
           name: item.name,
           lastname: item.lastname,
-          role: item.name,
+          role: item.role,
           email: item.email,
           status: item.status,
           phone: item.phone,
@@ -441,6 +441,13 @@ const UserListCompact = () => {
                                         <FormGroup>
                                           <label className="overline-title overline-title-alt">Status</label>
                                           <RSelect options={filterStatus} placeholder="Any Status" />
+                                        </FormGroup>
+                                      </Col>
+
+                                      <Col size="6">
+                                        <FormGroup>
+                                          <label className="overline-title overline-title-alt">Role</label>
+                                          <RSelect options={roleOptions} placeholder="Any Role" />
                                         </FormGroup>
                                       </Col>
                                       <Col size="12">
@@ -697,7 +704,7 @@ const UserListCompact = () => {
                           <span className="tb-lead">{item.lastname}</span>
                         </DataTableRow>
 
-                        <DataTableRow size="md">
+                        <DataTableRow size="lg">
                           <span>{item.role}</span>
                         </DataTableRow>
 
@@ -881,15 +888,12 @@ const UserListCompact = () => {
                   <Col md="6">
                     <FormGroup>
                       <label className="form-label">Role</label>
-                      <input
-                        className="form-control"
-                        type="text"
-                        name="role"
-                        placeholder="Enter role"
-                        defaultValue={formData.role}
-                        ref={register({ required: "This field is required" })}
-                      />
-                      {errors.role && <span className="invalid">{errors.role.message}</span>}
+                      <RSelect
+                          options={roleOptions}
+                          defaultValue={{ value: "Manager", label: "Manager" }}
+                          onChange={(e) => setFormData({ ...formData, role: e.value })}
+                        />
+                    
                     </FormGroup>
                   </Col>
 
@@ -945,7 +949,7 @@ const UserListCompact = () => {
                     </FormGroup>
                   </Col>
 
-                  <Col md="12">
+                 <Col md="12">
                     <FormGroup>
                       <label className="form-label">Status</label>
                       <div className="form-control-wrap">
@@ -955,7 +959,7 @@ const UserListCompact = () => {
                           onChange={(e) => setFormData({ ...formData, status: e.value })}
                         />
                       </div>
-                    </FormGroup>
+                    </FormGroup >
                   </Col>
                   <Col size="12">
                     <ul className="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
@@ -1032,15 +1036,15 @@ const UserListCompact = () => {
                   <Col md="6">
                     <FormGroup>
                       <label className="form-label">Role</label>
-                      <input
-                        className="form-control"
-                        type="text"
-                        name="role"
-                        placeholder="Enter role"
-                        defaultValue={formData.role}
-                        ref={register({ required: "This field is required" })}
-                      />
-                      {errors.role && <span className="invalid">{errors.role.message}</span>}
+                      <RSelect
+                          options={roleOptions}
+                          defaultValue={{
+                            value: formData.role,
+                            label: formData.role,
+                          }}
+                          onChange={(e) => setFormData({ ...formData, role: e.value })}
+                        />
+        
                     </FormGroup>
                   </Col>
 
