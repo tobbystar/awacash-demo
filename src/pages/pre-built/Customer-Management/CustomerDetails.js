@@ -49,7 +49,7 @@ const CustomerDetails = ({ match }) => {
 
 
           {id === "1" ? <LevelOneData /> : id === "2" ? <LevelTwoData /> : <LevelThreeData />}
->>>>>>> 3d60d83fdcbe2283564a30226013680168a4534b
+
         </BlockTitle>
       </Content>
     </React.Fragment>

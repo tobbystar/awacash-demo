@@ -54,9 +54,12 @@ const UserListCompact = () => {
   const [editId, setEditedId] = useState();
   const [formData, setFormData] = useState({
     name: "",
+    lastname: "",
+    role: "",
     email: "",
-    balance: "",
+    //balance: "",
     phone: "",
+    address: "",
     status: "Active",
   });
   const [actionText, setActionText] = useState("");
@@ -138,20 +141,22 @@ const UserListCompact = () => {
 
   // submit function to add a new item
   const onFormSubmit = (submitData) => {
-    const { name, email, balance, phone } = submitData;
+    const { name, lastname, role, email, phone, address } = submitData;
     let submittedData = {
       id: data.length + 1,
       avatarBg: "purple",
       name: name,
-      role: "role",
+      lastname: lastname,
+      role: role,
       email: email,
-      balance: balance,
+      //balance: balance,
       phone: phone,
-      emailStatus: "success",
-      kycStatus: "alert",
-      lastLogin: "10 Feb 2020",
-      status: formData.status,
-      country: "Bangladesh",
+      address: address,
+      //emailStatus: "success",
+      //kycStatus: "alert",
+      //lastLogin: "10 Feb 2020",
+      //status: formData.status,
+      //country: "Bangladesh",
     };
     setData([submittedData, ...data]);
     resetForm();
@@ -169,11 +174,13 @@ const UserListCompact = () => {
           id: item.id,
           avatarBg: item.avatarBg,
           name: name,
+          lastname: lastname,
           image: item.image,
-          role: item.role,
+          role: role,
           email: email,
           balance: formData.balance,
           phone: "+" + phone,
+          address: address,
           emailStatus: item.emailStatus,
           kycStatus: item.kycStatus,
           lastLogin: item.lastLogin,
@@ -840,7 +847,7 @@ const UserListCompact = () => {
                 <Form className="row gy-4" onSubmit={handleSubmit(onFormSubmit)}>
                   <Col md="6">
                     <FormGroup>
-                      <label className="form-label">Name</label>
+                      <label className="form-label">First Name</label>
                       <input
                         className="form-control"
                         type="text"
@@ -852,6 +859,38 @@ const UserListCompact = () => {
                       {errors.name && <span className="invalid">{errors.name.message}</span>}
                     </FormGroup>
                   </Col>
+                  
+                  <Col md="6">
+                    <FormGroup>
+                      <label className="form-label"> Last Name</label>
+                      <input
+                        className="form-control"
+                        type="text"
+                        name="lastname"
+                        defaultValue={formData.lastname}
+                        placeholder="Enter lastname"
+                        ref={register({ required: "This field is required" })}
+                      />
+                      {errors.lastname && <span className="invalid">{errors.lastname.message}</span>}
+                    </FormGroup>
+                  </Col>
+
+                  <Col md="6">
+                    <FormGroup>
+                      <label className="form-label">Role</label>
+                      <input
+                        className="form-control"
+                        type="text"
+                        name="role"
+                        placeholder="Enter role"
+                        defaultValue={formData.role}
+                        ref={register({ required: "This field is required" })}
+                      />
+                      {errors.role && <span className="invalid">{errors.role.message}</span>}
+                    </FormGroup>
+                  </Col>
+
+
                   <Col md="6">
                     <FormGroup>
                       <label className="form-label">Email </label>
@@ -874,20 +913,6 @@ const UserListCompact = () => {
                   </Col>
                   <Col md="6">
                     <FormGroup>
-                      <label className="form-label">Role</label>
-                      <input
-                        className="form-control"
-                        type="text"
-                        name="role"
-                        defaultValue={formData.role}
-                        placeholder="Role"
-                        ref={register({ required: "This field is required" })}
-                      />
-                      {errors.role && <span className="invalid">{errors.role.message}</span>}
-                    </FormGroup>
-                  </Col>
-                  <Col md="6">
-                    <FormGroup>
                       <label className="form-label">Phone</label>
                       <input
                         className="form-control"
@@ -901,6 +926,22 @@ const UserListCompact = () => {
                       {errors.phone && <span className="invalid">{errors.phone.message}</span>}
                     </FormGroup>
                   </Col>
+
+                  <Col md="6">
+                    <FormGroup>
+                      <label className="form-label">Address</label>
+                      <input
+                        className="form-control"
+                        type="text"
+                        name="address"
+                        defaultValue={formData.address}
+                        placeholder="Enter address"
+                        ref={register({ required: "This field is required" })}
+                      />
+                      {errors.address && <span className="invalid">{errors.address.message}</span>}
+                    </FormGroup>
+                  </Col>
+
                   <Col md="12">
                     <FormGroup>
                       <label className="form-label">Status</label>
@@ -957,7 +998,7 @@ const UserListCompact = () => {
                 <Form className="row gy-4" onSubmit={handleSubmit(onEditSubmit)}>
                   <Col md="6">
                     <FormGroup>
-                      <label className="form-label">Name</label>
+                      <label className="form-label"> first Name</label>
                       <input
                         className="form-control"
                         type="text"
@@ -969,6 +1010,37 @@ const UserListCompact = () => {
                       {errors.name && <span className="invalid">{errors.name.message}</span>}
                     </FormGroup>
                   </Col>
+
+                  <Col md="6">
+                    <FormGroup>
+                      <label className="form-label"> Last Name</label>
+                      <input
+                        className="form-control"
+                        type="text"
+                        name="lastname"
+                        defaultValue={formData.lastname}
+                        placeholder="Enter lastname"
+                        ref={register({ required: "This field is required" })}
+                      />
+                      {errors.lastname && <span className="invalid">{errors.lastname.message}</span>}
+                    </FormGroup>
+                  </Col>
+
+                  <Col md="6">
+                    <FormGroup>
+                      <label className="form-label">Role</label>
+                      <input
+                        className="form-control"
+                        type="text"
+                        name="role"
+                        placeholder="Enter role"
+                        defaultValue={formData.role}
+                        ref={register({ required: "This field is required" })}
+                      />
+                      {errors.role && <span className="invalid">{errors.role.message}</span>}
+                    </FormGroup>
+                  </Col>
+
                   <Col md="6">
                     <FormGroup>
                       <label className="form-label">Email </label>
@@ -989,22 +1061,6 @@ const UserListCompact = () => {
                       {errors.email && <span className="invalid">{errors.email.message}</span>}
                     </FormGroup>
                   </Col>
-
-
-                  <Col md="6">
-                    <FormGroup>
-                      <label className="form-label">Role</label>
-                      <input
-                        className="form-control"
-                        type="text"
-                        name="role"
-                        defaultValue={String(formData.role)}
-                        ref={register({ required: "This field is required" })}
-                      />
-                      {errors.role && <span className="invalid">{errors.role.message}</span>}
-                    </FormGroup>
-                  </Col>
-
 
 
                   {/*<Col md="6">*/}
@@ -1029,12 +1085,30 @@ const UserListCompact = () => {
                         className="form-control"
                         type="number"
                         name="phone"
+                        placeholder="Enter phone number"
                         defaultValue={Number(formData.phone)}
                         ref={register({ required: "This field is required" })}
                       />
                       {errors.phone && <span className="invalid">{errors.phone.message}</span>}
                     </FormGroup>
                   </Col>
+
+                  <Col md="6">
+                    <FormGroup>
+                      <label className="form-label">Address</label>
+                      <input
+                        className="form-control"
+                        type="text"
+                        name="address"
+                        defaultValue={formData.address}
+                        placeholder="Enter address"
+                        ref={register({ required: "This field is required" })}
+                      />
+                      {errors.address && <span className="invalid">{errors.address.message}</span>}
+                    </FormGroup>
+                  </Col>
+
+
                   <Col md="12">
                     <FormGroup>
                       <label className="form-label">Status</label>
