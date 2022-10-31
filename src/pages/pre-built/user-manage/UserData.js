@@ -471,3 +471,12 @@ export const countryOptions = [
   { value: "France", label: "France" },
   { value: "England", label: "England" },
 ];
+
+
+
+export const roleOptions = [
+  { value: "Manager", label: "Manager" },
+  { value: "Marketer", label: "Marketer" },
+  { value: "Designer", label: "Designer" },
+  { value: "Admin", label: "Admin" }
+];

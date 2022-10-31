@@ -198,10 +198,10 @@ const menu = [
         text: "User Management - Role",
         link: "/user-list-compact",
       },
-      {
-        text: "User Details - Regular",
-        link: "/user-details-regular/1",
-      },
+      // {
+      //   text: "User Details - Regular",
+      //   link: "/user-details-regular/1",
+      // },
       // {
       //   text: "User Profile - Regular",
       //   link: "/user-profile-regular",

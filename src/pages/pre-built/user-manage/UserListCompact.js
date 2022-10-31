@@ -141,7 +141,7 @@ const UserListCompact = () => {
 
   // submit function to add a new item
   const onFormSubmit = (submitData) => {
-    const { name, lastname, role, email, phone, address } = submitData;
+    const { name, lastname, role, email, phone, address,status } = submitData;
     let submittedData = {
       id: data.length + 1,
       avatarBg: "purple",
@@ -155,7 +155,7 @@ const UserListCompact = () => {
       //emailStatus: "success",
       //kycStatus: "alert",
       //lastLogin: "10 Feb 2020",
-      //status: formData.status,
+      status: status,
       //country: "Bangladesh",
     };
     setData([submittedData, ...data]);
@@ -165,7 +165,7 @@ const UserListCompact = () => {
 
   // submit function to update a new item
   const onEditSubmit = (submitData) => {
-    const { name, email, phone } = submitData;
+    const { name, lastname, role, email, phone, address, image } = submitData;
     let submittedData;
     let newitems = data;
     newitems.forEach((item) => {
@@ -175,7 +175,7 @@ const UserListCompact = () => {
           avatarBg: item.avatarBg,
           name: name,
           lastname: lastname,
-          image: item.image,
+          image: image,
           role: role,
           email: email,
           balance: formData.balance,
@@ -200,9 +200,12 @@ const UserListCompact = () => {
       if (item.id === id) {
         setFormData({
           name: item.name,
+          lastname: item.lastname,
+          role: item.name,
           email: item.email,
           status: item.status,
           phone: item.phone,
+          address: item.address,
           balance: item.balance,
         });
         setModal({ edit: true }, { add: false });
