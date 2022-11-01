@@ -80,32 +80,7 @@ const menu = [
   //   ],
   // },
   // {
-  //   icon: "users",
-  //   text: "User Manage",
-  //   active: false,
-  //   subMenu: [
-  //     {
-  //       text: "User List - Regular",
-  //       link: "/user-list-regular",
-  //     },
-  //     {
-  //       text: "User List - Compact",
-  //       link: "/user-list-compact",
-  //     },
-  //     {
-  //       text: "User Details - Regular",
-  //       link: "/user-details-regular/1",
-  //     },
-  //     {
-  //       text: "User Profile - Regular",
-  //       link: "/user-profile-regular",
-  //     },
-  //     {
-  //       text: "User Contact - Card",
-  //       link: "/user-contact-card",
-  //     },
-  //   ],
-  // },
+
   // {
   //   icon: "file-docs",
   //   text: "AML / KYCs",
@@ -210,6 +185,34 @@ const menu = [
     ],
   },
 
+  {
+    icon: "users",
+    text: "User Management",
+    active: false,
+    subMenu: [
+      // {
+      //   text: "User List - Regular",
+      //   link: "/user-list-regular",
+      // },
+      {
+        text: "User Management - Role",
+        link: "/user-list-compact",
+      },
+      // {
+      //   text: "User Details - Regular",
+      //   link: "/user-details-regular/1",
+      // },
+      // {
+      //   text: "User Profile - Regular",
+      //   link: "/user-profile-regular",
+      // },
+      // {
+      //   text: "User Contact - Card",
+      //   link: "/user-contact-card",
+      // },
+    ],
+  },
+
 
   // {
   //   icon: "card-view",
@@ -258,33 +261,33 @@ const menu = [
   // {
   //   heading: "Misc Pages",
   // },
-  // {
-  //   icon: "signin",
-  //   text: "Auth Pages",
-  //   active: false,
-  //   subMenu: [
-  //     {
-  //       text: "Login / Signin",
-  //       link: "/auth-login",
-  //       newTab: true,
-  //     },
-  //     {
-  //       text: "Register / Signup",
-  //       link: "/auth-register",
-  //       newTab: true,
-  //     },
-  //     {
-  //       text: "Forgot Password",
-  //       link: "/auth-reset",
-  //       newTab: true,
-  //     },
-  //     {
-  //       text: "Success / Confirm",
-  //       link: "/auth-success",
-  //       newTab: true,
-  //     },
-  //   ],
-  // },
+  {
+    icon: "signin",
+    text: "Auth Pages",
+    active: false,
+    subMenu: [
+      {
+        text: "Login / Signin",
+        link: "/auth-login",
+        newTab: true,
+      },
+      {
+        text: "Register / Signup",
+        link: "/auth-register",
+        newTab: true,
+      },
+      {
+        text: "Forgot Password",
+        link: "/auth-reset",
+        newTab: true,
+      },
+      {
+        text: "Success / Confirm",
+        link: "/auth-success",
+        newTab: true,
+      },
+    ],
+  },
   // {
   //   icon: "files",
   //   text: "Error Pages",

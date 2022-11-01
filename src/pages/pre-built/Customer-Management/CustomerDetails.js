@@ -16,8 +16,12 @@ import {
   UserAvatar,
 } from "../../../components/Component";
 import { findUpper } from "../../../utils/Utils";
+
+
+
 import { customerData } from "./CustomerData";
 import LevelOneData from "./LevelOneData";
+
 import { Link } from "react-router-dom";
 import LevelTwoData from "./LevelTwoData";
 import LevelThreeData from "./LevelThreeData";
@@ -42,7 +46,10 @@ const CustomerDetails = ({ match }) => {
       <Head title="Customer Details "></Head>
       <Content>
         <BlockTitle page>
+
+
           {id === "1" ? <LevelOneData /> : id === "2" ? <LevelTwoData /> : <LevelThreeData />}
+
         </BlockTitle>
       </Content>
     </React.Fragment>
