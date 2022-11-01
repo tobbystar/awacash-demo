@@ -12,7 +12,7 @@ function LevelTwoData() {
         <BlockHead>
           <BlockHeadContent>
             <BlockTitle tag="h5">Applicant Information</BlockTitle>
-            <p>Tier One</p>
+            {/* <p>Tier One</p> */}
           </BlockHeadContent>
         </BlockHead>
         <Card className="card-bordered">
