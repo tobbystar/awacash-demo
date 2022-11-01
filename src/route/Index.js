@@ -9,9 +9,6 @@ import Crypto from "../pages/Crypto";
 import Analytics from "../pages/Analytics";
 import Invest from "../pages/Invest";
 import CustomerDetails from "../pages/pre-built/Customer-Management/CustomerDetails";
-import LevelOneData from "../pages/pre-built/Customer-Management/LevelOneData";
-import LevelTwoData from "../pages/pre-built/Customer-Management/LevelTwoData";
-import LevelThreeData from "../pages/pre-built/Customer-Management/LevelThreeData";
 import Component from "../pages/components/Index";
 import Accordian from "../pages/components/Accordions";
 import Alerts from "../pages/components/Alerts";
@@ -190,11 +187,6 @@ const Pages = () => {
         <Route exact path={`${process.env.PUBLIC_URL}/customer-details/:id`} component={CustomerDetails}></Route>
 
         <Route exact path={`${process.env.PUBLIC_URL}/customer-details/`} component={SubAdminOne}></Route>
-
-        <Route exact path={`${process.env.PUBLIC_URL}/customer-details/level-one`} component={LevelOneData}></Route>
-        <Route exact path={`${process.env.PUBLIC_URL}/customer-details/level-two`} component={LevelTwoData}></Route>
-
-        <Route exact path={`${process.env.PUBLIC_URL}/customer-details/level-three`} component={LevelThreeData}></Route>
 
         <Route // context api added
           exact

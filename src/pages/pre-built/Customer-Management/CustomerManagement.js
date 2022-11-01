@@ -32,10 +32,9 @@ import {
   PaginationComponent,
   RSelect,
 } from "../../../components/Component";
-import { customerData, filterStatus, filterDoc, bulkActionKycOptions, leveloneData } from "./CustomerData";
+import { customerData, filterStatus, filterDoc, bulkActionKycOptions } from "./CustomerData";
 import { findUpper } from "../../../utils/Utils";
 import { Link } from "react-router-dom";
-
 
 const CustomerManagement = ({ history }) => {
   const [onSearch, setonSearch] = useState(true);

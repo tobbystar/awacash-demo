@@ -17,14 +17,9 @@ import {
 } from "../../../components/Component";
 import { findUpper } from "../../../utils/Utils";
 
-
-
 import { customerData } from "./CustomerData";
-import LevelOneData from "./LevelOneData";
 
 import { Link } from "react-router-dom";
-import LevelTwoData from "./LevelTwoData";
-import LevelThreeData from "./LevelThreeData";
 
 const CustomerDetails = ({ match }) => {
   const [user, setUser] = useState();
@@ -45,12 +40,7 @@ const CustomerDetails = ({ match }) => {
     <React.Fragment>
       <Head title="Customer Details "></Head>
       <Content>
-        <BlockTitle page>
-
-
-          {id === "1" ? <LevelOneData /> : id === "2" ? <LevelTwoData /> : <LevelThreeData />}
-
-        </BlockTitle>
+        <BlockTitle page></BlockTitle>
       </Content>
     </React.Fragment>
   );
