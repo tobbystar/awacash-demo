@@ -3,33 +3,32 @@ import { CardTitle } from "reactstrap";
 import { Icon, TooltipComponent } from "../../../Component";
 import { BarChart } from "../../charts/default/Charts";
 
-const AvgSubscription = () => {
+const CustomerNumber = () => {
   return (
     <React.Fragment>
-      {" "}
       <div className="card-title-group align-start mb-2">
         <CardTitle>
-          <h6 className="title">Total Numbers of Card Request</h6>
+          <h6 className="title">Total Number of Customers</h6>
         </CardTitle>
         <div className="card-tools">
           <TooltipComponent
             icon="help-fill"
             iconClass="card-hint"
             direction="left"
-            id="Tooltip-3"
-            text="Daily Avg. subscription"
+            id="Tooltip-2"
+            text="Total number of customer"
           />
         </div>
       </div>
       <div className="align-end flex-sm-wrap g-4 flex-md-nowrap">
         <div className="nk-sale-data">
-          <span className="amount">650</span>
+          <span className="amount">1,937</span>
           <span className="sub-title">
             <span className="change up text-success">
               <Icon name="arrow-long-up" />
-              2.45%
+              1.93%
             </span>
-            since last week
+            since last month
           </span>
         </div>
         <div className="nk-sales-ck">
@@ -39,4 +38,4 @@ const AvgSubscription = () => {
     </React.Fragment>
   );
 };
-export default AvgSubscription;
+export default CustomerNumber;
