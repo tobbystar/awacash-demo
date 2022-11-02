@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Bar, HorizontalBar, Line } from "react-chartjs-2";
 import {
-  saleRevenue,
-  activeSubscription,
+  totalTransaction,
+  customerNumber,
   salesOverview,
   coinOverview,
   coinOverviewSet1,
@@ -21,7 +21,7 @@ export const BarChart = ({ sales }) => {
   return (
     <Bar
       className="sales-bar-chart chartjs-render-monitor"
-      data={sales ? saleRevenue : activeSubscription}
+      data={sales ? totalTransaction : customerNumber}
       options={{
         legend: {
           display: false,

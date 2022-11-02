@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import Content from "../../../layout/content/Content";
 import Head from "../../../layout/head/Head";
 import { findUpper } from "../../../utils/Utils";
-import { userData, filterRole, filterStatus } from "./UserData";
+import { userData, filterRole, filterStatus, roleOptions } from "./UserData";
 import {
   DropdownMenu,
   DropdownToggle,
@@ -54,9 +54,12 @@ const UserListCompact = () => {
   const [editId, setEditedId] = useState();
   const [formData, setFormData] = useState({
     name: "",
+    lastname: "",
+    role: "Manager",
     email: "",
-    balance: "",
+    //balance: "",
     phone: "",
+    address: "",
     status: "Active",
   });
   const [actionText, setActionText] = useState("");
@@ -120,15 +123,15 @@ const UserListCompact = () => {
   };
 
   // function to reset the form
-  const resetForm = () => {
-    setFormData({
-      name: "",
-      email: "",
-      balance: "",
-      phone: "",
-      status: "Active",
-    });
-  };
+  // const resetForm = () => {
+  //   setFormData({
+  //     name: "",
+  //     email: "",
+  //     balance: "",
+  //     phone: "",
+  //     status: "Active",
+  //   });
+  // };
 
   // function to close the form modal
   const onFormCancel = () => {
@@ -138,20 +141,22 @@ const UserListCompact = () => {
 
   // submit function to add a new item
   const onFormSubmit = (submitData) => {
-    const { name, email, balance, phone } = submitData;
+    const { name, lastname, role, email, phone, address,status } = submitData;
     let submittedData = {
       id: data.length + 1,
       avatarBg: "purple",
       name: name,
-      role: "Customer",
+      lastname: lastname,
+      role: role,
       email: email,
-      balance: balance,
+      //balance: balance,
       phone: phone,
-      emailStatus: "success",
-      kycStatus: "alert",
-      lastLogin: "10 Feb 2020",
-      status: formData.status,
-      country: "Bangladesh",
+      address: address,
+      //emailStatus: "success",
+      //kycStatus: "alert",
+      //lastLogin: "10 Feb 2020",
+      status: status,
+      //country: "Bangladesh",
     };
     setData([submittedData, ...data]);
     resetForm();
@@ -160,7 +165,7 @@ const UserListCompact = () => {
 
   // submit function to update a new item
   const onEditSubmit = (submitData) => {
-    const { name, email, phone } = submitData;
+    const { name, lastname, role, email, phone, address, image } = submitData;
     let submittedData;
     let newitems = data;
     newitems.forEach((item) => {
@@ -169,11 +174,13 @@ const UserListCompact = () => {
           id: item.id,
           avatarBg: item.avatarBg,
           name: name,
-          image: item.image,
-          role: item.role,
+          lastname: lastname,
+          image: image,
+          role: formData.role,
           email: email,
           balance: formData.balance,
           phone: "+" + phone,
+          address: address,
           emailStatus: item.emailStatus,
           kycStatus: item.kycStatus,
           lastLogin: item.lastLogin,
@@ -193,9 +200,12 @@ const UserListCompact = () => {
       if (item.id === id) {
         setFormData({
           name: item.name,
+          lastname: item.lastname,
+          role: item.role,
           email: item.email,
           status: item.status,
           phone: item.phone,
+          address: item.address,
           balance: item.balance,
         });
         setModal({ edit: true }, { add: false });
@@ -258,10 +268,10 @@ const UserListCompact = () => {
           <BlockBetween>
             <BlockHeadContent>
               <BlockTitle tag="h3" page>
-                Users Lists
+                Sub-Admin Lists
               </BlockTitle>
               <BlockDes className="text-soft">
-                <p>You have total 2,595 users.</p>
+                <p>---</p>
               </BlockDes>
             </BlockHeadContent>
             <BlockHeadContent>
@@ -274,7 +284,7 @@ const UserListCompact = () => {
                 </Button>
                 <div className="toggle-expand-content" style={{ display: sm ? "block" : "none" }}>
                   <ul className="nk-block-tools g-3">
-                    <li>
+                    {/* <li>
                       <a
                         href="#export"
                         onClick={(ev) => {
@@ -285,7 +295,7 @@ const UserListCompact = () => {
                         <Icon name="download-cloud"></Icon>
                         <span>Export</span>
                       </a>
-                    </li>
+                    </li> */}
                     <li className="nk-block-tools-opt">
                       <Button color="primary" className="btn-icon" onClick={() => setModal({ add: true })}>
                         <Icon name="plus"></Icon>
@@ -313,17 +323,17 @@ const UserListCompact = () => {
                       />
                     </div>
                     <div className="btn-wrap">
-                      <span className="d-none d-md-block">
-                        <Button
-                          disabled={actionText !== "" ? false : true}
-                          color="light"
-                          outline
-                          className="btn-dim"
-                          onClick={(e) => onActionClick(e)}
-                        >
-                          Apply
-                        </Button>
-                      </span>
+                      {/*<span className="d-none d-md-block">*/}
+                      {/*  <Button*/}
+                      {/*    disabled={actionText !== "" ? false : true}*/}
+                      {/*    color="light"*/}
+                      {/*    outline*/}
+                      {/*    className="btn-dim"*/}
+                      {/*    onClick={(e) => onActionClick(e)}*/}
+                      {/*  >*/}
+                      {/*    Apply*/}
+                      {/*  </Button>*/}
+                      {/*</span>*/}
                       <span className="d-md-none">
                         <Button
                           color="light"
@@ -424,7 +434,7 @@ const UserListCompact = () => {
                                       <Col size="6">
                                         <FormGroup>
                                           <label className="overline-title overline-title-alt">Role</label>
-                                          <RSelect options={filterRole} placeholder="Any Role" />
+                                          <RSelect options={roleOptions} placeholder="Any Role" />
                                         </FormGroup>
                                       </Col>
                                       <Col size="6">
@@ -433,6 +443,13 @@ const UserListCompact = () => {
                                           <RSelect options={filterStatus} placeholder="Any Status" />
                                         </FormGroup>
                                       </Col>
+
+                                      {/* <Col size="6">
+                                        <FormGroup>
+                                          <label className="overline-title overline-title-alt">Role</label>
+                                          <RSelect options={roleOptions} placeholder="Any Role" />
+                                        </FormGroup>
+                                      </Col> */}
                                       <Col size="12">
                                         <FormGroup className="form-group">
                                           <Button color="secondary">Filter</Button>
@@ -578,72 +595,76 @@ const UserListCompact = () => {
                   </div>
                 </DataTableRow>
                 <DataTableRow>
-                  <span className="sub-text">User</span>
+                  <span className="sub-text">Firstname</span>
                 </DataTableRow>
+                <DataTableRow size="lg">
+                  <span className="sub-text">Lastname</span>
+                </DataTableRow>
+
                 <DataTableRow size="md">
                   <span className="sub-text">Role</span>
                 </DataTableRow>
-                <DataTableRow size="sm">
-                  <span className="sub-text">Email</span>
-                </DataTableRow>
+
                 <DataTableRow size="md">
                   <span className="sub-text">Phone</span>
                 </DataTableRow>
+
+                <DataTableRow size="sm">
+                  <span className="sub-text">Email</span>
+                </DataTableRow>
+
+                {/*<DataTableRow size="lg">*/}
+                {/*  <span className="sub-text">Verified</span>*/}
+                {/*</DataTableRow>*/}
                 <DataTableRow size="lg">
-                  <span className="sub-text">Company</span>
+                  <span className="sub-text">Address</span>
                 </DataTableRow>
-                <DataTableRow size="lg">
-                  <span className="sub-text">Verified</span>
-                </DataTableRow>
-                <DataTableRow size="lg">
-                  <span className="sub-text">Last Login</span>
-                </DataTableRow>
-                <DataTableRow>
-                  <span className="sub-text">Status</span>
-                </DataTableRow>
-                <DataTableRow className="nk-tb-col-tools text-right">
-                  <UncontrolledDropdown>
-                    <DropdownToggle tag="a" className="btn btn-xs btn-outline-light btn-icon dropdown-toggle">
-                      <Icon name="plus"></Icon>
-                    </DropdownToggle>
-                    <DropdownMenu right className="dropdown-menu-xs">
-                      <ul className="link-tidy sm no-bdr">
-                        <li>
-                          <div className="custom-control custom-control-sm custom-checkbox">
-                            <input type="checkbox" className="custom-control-input form-control" id="bl" />
-                            <label className="custom-control-label" htmlFor="bl">
-                              Balance
-                            </label>
-                          </div>
-                        </li>
-                        <li>
-                          <div className="custom-control custom-control-sm custom-checkbox">
-                            <input type="checkbox" className="custom-control-input form-control" id="ph" />
-                            <label className="custom-control-label" htmlFor="ph">
-                              Phone
-                            </label>
-                          </div>
-                        </li>
-                        <li>
-                          <div className="custom-control custom-control-sm custom-checkbox">
-                            <input type="checkbox" className="custom-control-input form-control" id="vri" />
-                            <label className="custom-control-label" htmlFor="vri">
-                              Verified
-                            </label>
-                          </div>
-                        </li>
-                        <li>
-                          <div className="custom-control custom-control-sm custom-checkbox">
-                            <input type="checkbox" className="custom-control-input form-control" id="st" />
-                            <label className="custom-control-label" htmlFor="st">
-                              Status
-                            </label>
-                          </div>
-                        </li>
-                      </ul>
-                    </DropdownMenu>
-                  </UncontrolledDropdown>
-                </DataTableRow>
+                {/*<DataTableRow>*/}
+                {/*  <span className="sub-text">Status</span>*/}
+                {/*</DataTableRow>*/}
+                {/*<DataTableRow className="nk-tb-col-tools text-right">*/}
+                {/*  <UncontrolledDropdown>*/}
+                {/*    <DropdownToggle tag="a" className="btn btn-xs btn-outline-light btn-icon dropdown-toggle">*/}
+                {/*      <Icon name="plus"></Icon>*/}
+                {/*    </DropdownToggle>*/}
+                {/*    <DropdownMenu right className="dropdown-menu-xs">*/}
+                {/*      <ul className="link-tidy sm no-bdr">*/}
+                {/*        <li>*/}
+                {/*          <div className="custom-control custom-control-sm custom-checkbox">*/}
+                {/*            <input type="checkbox" className="custom-control-input form-control" id="bl" />*/}
+                {/*            <label className="custom-control-label" htmlFor="bl">*/}
+                {/*              Balance*/}
+                {/*            </label>*/}
+                {/*          </div>*/}
+                {/*        </li>*/}
+                {/*        <li>*/}
+                {/*          <div className="custom-control custom-control-sm custom-checkbox">*/}
+                {/*            <input type="checkbox" className="custom-control-input form-control" id="ph" />*/}
+                {/*            <label className="custom-control-label" htmlFor="ph">*/}
+                {/*              Phone*/}
+                {/*            </label>*/}
+                {/*          </div>*/}
+                {/*        </li>*/}
+                {/*        <li>*/}
+                {/*          <div className="custom-control custom-control-sm custom-checkbox">*/}
+                {/*            <input type="checkbox" className="custom-control-input form-control" id="vri" />*/}
+                {/*            <label className="custom-control-label" htmlFor="vri">*/}
+                {/*              Verified*/}
+                {/*            </label>*/}
+                {/*          </div>*/}
+                {/*        </li>*/}
+                {/*        <li>*/}
+                {/*          <div className="custom-control custom-control-sm custom-checkbox">*/}
+                {/*            <input type="checkbox" className="custom-control-input form-control" id="st" />*/}
+                {/*            <label className="custom-control-label" htmlFor="st">*/}
+                {/*              Status*/}
+                {/*            </label>*/}
+                {/*          </div>*/}
+                {/*        </li>*/}
+                {/*      </ul>*/}
+                {/*    </DropdownMenu>*/}
+                {/*  </UncontrolledDropdown>*/}
+                {/*</DataTableRow>*/}
               </DataTableHead>
               {/*Head*/}
               {currentItems.length > 0
@@ -678,52 +699,56 @@ const UserListCompact = () => {
                             </div>
                           </Link>
                         </DataTableRow>
-                        <DataTableRow size="md">
+
+                        <DataTableRow size="lg">
+                          <span className="tb-lead">{item.lastname}</span>
+                        </DataTableRow>
+
+                        <DataTableRow size="lg">
                           <span>{item.role}</span>
+                        </DataTableRow>
+
+                        <DataTableRow size="md">
+                          <span>{item.phone}</span>
                         </DataTableRow>
                         <DataTableRow size="sm">
                           <span>{item.email}</span>
                         </DataTableRow>
-                        <DataTableRow size="md">
-                          <span>{item.phone}</span>
-                        </DataTableRow>
+
+                        {/*<DataTableRow size="lg">*/}
+                        {/*  <ul className="list-status">*/}
+                        {/*    <li>*/}
+                        {/*      <Icon*/}
+                        {/*        className={`text-${*/}
+                        {/*          item.emailStatus === "success"*/}
+                        {/*            ? "success"*/}
+                        {/*            : item.emailStatus === "pending"*/}
+                        {/*            ? "info"*/}
+                        {/*            : "secondary"*/}
+                        {/*        }`}*/}
+                        {/*        name={`${*/}
+                        {/*          item.emailStatus === "success"*/}
+                        {/*            ? "check-circle"*/}
+                        {/*            : item.emailStatus === "alert"*/}
+                        {/*            ? "alert-circle"*/}
+                        {/*            : "alarm-alt"*/}
+                        {/*        }`}*/}
+                        {/*      ></Icon>{" "}*/}
+                        {/*      <span>Email</span>*/}
+                        {/*    </li>*/}
+                        {/*  </ul>*/}
+                        {/*</DataTableRow>*/}
                         <DataTableRow size="lg">
-                          <span>{item.country}</span>
-                        </DataTableRow>
-                        <DataTableRow size="lg">
-                          <ul className="list-status">
-                            <li>
-                              <Icon
-                                className={`text-${
-                                  item.emailStatus === "success"
-                                    ? "success"
-                                    : item.emailStatus === "pending"
-                                    ? "info"
-                                    : "secondary"
-                                }`}
-                                name={`${
-                                  item.emailStatus === "success"
-                                    ? "check-circle"
-                                    : item.emailStatus === "alert"
-                                    ? "alert-circle"
-                                    : "alarm-alt"
-                                }`}
-                              ></Icon>{" "}
-                              <span>Email</span>
-                            </li>
-                          </ul>
-                        </DataTableRow>
-                        <DataTableRow size="lg">
-                          <span>{item.lastLogin}</span>
+                          <span>{item.address}</span>
                         </DataTableRow>
                         <DataTableRow>
-                          <span
-                            className={`tb-status text-${
-                              item.status === "Active" ? "success" : item.status === "Pending" ? "warning" : "danger"
-                            }`}
-                          >
-                            {item.status}
-                          </span>
+                          {/*<span*/}
+                          {/*  className={`tb-status text-${*/}
+                          {/*    item.status === "Active" ? "success" : item.status === "Pending" ? "warning" : "danger"*/}
+                          {/*  }`}*/}
+                          {/*>*/}
+                          {/*  {item.status}*/}
+                          {/*</span>*/}
                         </DataTableRow>
                         <DataTableRow className="nk-tb-col-tools">
                           <ul className="nk-tb-actions gx-1">
@@ -832,7 +857,7 @@ const UserListCompact = () => {
                 <Form className="row gy-4" onSubmit={handleSubmit(onFormSubmit)}>
                   <Col md="6">
                     <FormGroup>
-                      <label className="form-label">Name</label>
+                      <label className="form-label">First Name</label>
                       <input
                         className="form-control"
                         type="text"
@@ -844,6 +869,43 @@ const UserListCompact = () => {
                       {errors.name && <span className="invalid">{errors.name.message}</span>}
                     </FormGroup>
                   </Col>
+                  
+                  <Col md="6">
+                    <FormGroup>
+                      <label className="form-label"> Last Name</label>
+                      <input
+                        className="form-control"
+                        type="text"
+                        name="lastname"
+                        defaultValue={formData.lastname}
+                        placeholder="Enter lastname"
+                        ref={register({ required: "This field is required" })}
+                      />
+                      {errors.lastname && <span className="invalid">{errors.lastname.message}</span>}
+                    </FormGroup>
+                  </Col>
+
+                  <Col md="6">
+                    <FormGroup>
+                      <label className="form-label">Role</label>
+                      {/* <RSelect
+                          options={roleOptions}
+                          defaultValue={{ value: "Manager", label: "Manager" }}
+                          onChange={(e) => setFormData({ ...formData, role: e.value })}
+                        /> */}
+                        <RSelect
+                          options={roleOptions}
+                          defaultValue={{
+                            value: formData.role,
+                            label: formData.role,
+                          }}
+                          onChange={(e) => setFormData({ ...formData, role: e.value })}
+                        />
+                    
+                    </FormGroup>
+                  </Col>
+
+
                   <Col md="6">
                     <FormGroup>
                       <label className="form-label">Email </label>
@@ -866,20 +928,6 @@ const UserListCompact = () => {
                   </Col>
                   <Col md="6">
                     <FormGroup>
-                      <label className="form-label">Balance</label>
-                      <input
-                        className="form-control"
-                        type="number"
-                        name="balance"
-                        defaultValue={formData.balance}
-                        placeholder="Balance"
-                        ref={register({ required: "This field is required" })}
-                      />
-                      {errors.balance && <span className="invalid">{errors.balance.message}</span>}
-                    </FormGroup>
-                  </Col>
-                  <Col md="6">
-                    <FormGroup>
                       <label className="form-label">Phone</label>
                       <input
                         className="form-control"
@@ -893,7 +941,23 @@ const UserListCompact = () => {
                       {errors.phone && <span className="invalid">{errors.phone.message}</span>}
                     </FormGroup>
                   </Col>
-                  <Col md="12">
+
+                  <Col md="6">
+                    <FormGroup>
+                      <label className="form-label">Address</label>
+                      <input
+                        className="form-control"
+                        type="text"
+                        name="address"
+                        defaultValue={formData.address}
+                        placeholder="Enter address"
+                        ref={register({ required: "This field is required" })}
+                      />
+                      {errors.address && <span className="invalid">{errors.address.message}</span>}
+                    </FormGroup>
+                  </Col>
+
+                 <Col md="12">
                     <FormGroup>
                       <label className="form-label">Status</label>
                       <div className="form-control-wrap">
@@ -903,7 +967,7 @@ const UserListCompact = () => {
                           onChange={(e) => setFormData({ ...formData, status: e.value })}
                         />
                       </div>
-                    </FormGroup>
+                    </FormGroup >
                   </Col>
                   <Col size="12">
                     <ul className="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
@@ -949,7 +1013,7 @@ const UserListCompact = () => {
                 <Form className="row gy-4" onSubmit={handleSubmit(onEditSubmit)}>
                   <Col md="6">
                     <FormGroup>
-                      <label className="form-label">Name</label>
+                      <label className="form-label"> first Name</label>
                       <input
                         className="form-control"
                         type="text"
@@ -961,6 +1025,37 @@ const UserListCompact = () => {
                       {errors.name && <span className="invalid">{errors.name.message}</span>}
                     </FormGroup>
                   </Col>
+
+                  <Col md="6">
+                    <FormGroup>
+                      <label className="form-label"> Last Name</label>
+                      <input
+                        className="form-control"
+                        type="text"
+                        name="lastname"
+                        defaultValue={formData.lastname}
+                        placeholder="Enter lastname"
+                        ref={register({ required: "This field is required" })}
+                      />
+                      {errors.lastname && <span className="invalid">{errors.lastname.message}</span>}
+                    </FormGroup>
+                  </Col>
+
+                  <Col md="6">
+                    <FormGroup>
+                      <label className="form-label">Role</label>
+                      <RSelect
+                          options={roleOptions}
+                          defaultValue={{
+                            value: formData.role,
+                            label: formData.role,
+                          }}
+                          onChange={(e) => setFormData({ ...formData, role: e.value })}
+                        />
+        
+                    </FormGroup>
+                  </Col>
+
                   <Col md="6">
                     <FormGroup>
                       <label className="form-label">Email </label>
@@ -981,21 +1076,23 @@ const UserListCompact = () => {
                       {errors.email && <span className="invalid">{errors.email.message}</span>}
                     </FormGroup>
                   </Col>
-                  <Col md="6">
-                    <FormGroup>
-                      <label className="form-label">Balance</label>
-                      <input
-                        className="form-control"
-                        type="number"
-                        name="balance"
-                        disabled
-                        defaultValue={parseFloat(formData.balance.replace(/,/g, ""))}
-                        placeholder="Balance"
-                        ref={register({ required: "This field is required" })}
-                      />
-                      {errors.balance && <span className="invalid">{errors.balance.message}</span>}
-                    </FormGroup>
-                  </Col>
+
+
+                  {/*<Col md="6">*/}
+                  {/*  <FormGroup>*/}
+                  {/*    <label className="form-label">Balance</label>*/}
+                  {/*    <input*/}
+                  {/*      className="form-control"*/}
+                  {/*      type="number"*/}
+                  {/*      name="balance"*/}
+                  {/*      disabled*/}
+                  {/*      defaultValue={parseFloat(formData.balance.replace(/,/g, ""))}*/}
+                  {/*      placeholder="Balance"*/}
+                  {/*      ref={register({ required: "This field is required" })}*/}
+                  {/*    />*/}
+                  {/*    {errors.balance && <span className="invalid">{errors.balance.message}</span>}*/}
+                  {/*  </FormGroup>*/}
+                  {/*</Col>*/}
                   <Col md="6">
                     <FormGroup>
                       <label className="form-label">Phone</label>
@@ -1003,12 +1100,30 @@ const UserListCompact = () => {
                         className="form-control"
                         type="number"
                         name="phone"
+                        placeholder="Enter phone number"
                         defaultValue={Number(formData.phone)}
                         ref={register({ required: "This field is required" })}
                       />
                       {errors.phone && <span className="invalid">{errors.phone.message}</span>}
                     </FormGroup>
                   </Col>
+
+                  <Col md="6">
+                    <FormGroup>
+                      <label className="form-label">Address</label>
+                      <input
+                        className="form-control"
+                        type="text"
+                        name="address"
+                        defaultValue={formData.address}
+                        placeholder="Enter address"
+                        ref={register({ required: "This field is required" })}
+                      />
+                      {errors.address && <span className="invalid">{errors.address.message}</span>}
+                    </FormGroup>
+                  </Col>
+
+
                   <Col md="12">
                     <FormGroup>
                       <label className="form-label">Status</label>

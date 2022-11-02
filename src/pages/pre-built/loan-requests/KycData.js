@@ -3,10 +3,10 @@ import User2 from "../../../images/avatar/c-sm.jpg";
 import User3 from "../../../images/avatar/a-sm.jpg";
 import User4 from "../../../images/avatar/d-sm.jpg";
 
-export const caseManagementData = [
+export const kycData = [
   {
     id: "UD01544",
-    name: "Adeagbo Oluwatobi",
+    name: "Abu Bin Ishtiyak",
     avatarBg: "primary",
     doc: "Passport",
     check: false,

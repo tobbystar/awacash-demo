@@ -32,15 +32,31 @@ import {
   TooltipComponent,
   RSelect,
 } from "../../../components/Component";
-import { filterRole, filterStatus, userData } from "./UserData";
+import { filterRole, filterStatus , userData} from "./UserData";
 import { bulkActionOptions, findUpper } from "../../../utils/Utils";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { UserContext } from "./UserContext";
+import {kycData as searchData} from "./KycData";
+// import userEvent from "@testing-library/user-event";
+
+// var searchData = ""
 
 const UserListRegularPage = () => {
-  const { contextData } = useContext(UserContext);
-  const [data, setData] = contextData;
+  // const { contextData } = useContext(UserContext);
+  const [data, setData] = useState(userData);
+
+  // const [searchData] = contextData
+
+  // const handleUserFetch = async () => {
+  //   fetch("https://api.github.com/users")
+  //   .then( response => response.json())
+  //   .then( data => {setData(data); searchData = data})
+  // }
+
+  // useEffect(() => {
+  //   handleUserFetch()
+  // },[])
+  // console.log(contextData)
 
   const [sm, updateSm] = useState(false);
   const [tablesm, updateTableSm] = useState(false);
@@ -53,9 +69,9 @@ const UserListRegularPage = () => {
   const [editId, setEditedId] = useState();
   const [formData, setFormData] = useState({
     name: "",
-    email: "",
-    balance: "",
-    phone: "",
+    description: "",
+    duration: "",
+    rate: "",
     status: "Active",
   });
   const [actionText, setActionText] = useState("");
@@ -78,7 +94,7 @@ const UserListRegularPage = () => {
   // unselects the data on mount
   useEffect(() => {
     let newData;
-    newData = userData.map((item) => {
+    newData = data.map((item) => {
       item.checked = false;
       return item;
     });
@@ -88,15 +104,15 @@ const UserListRegularPage = () => {
   // Changing state value when searching name
   useEffect(() => {
     if (onSearchText !== "") {
-      const filteredObject = userData.filter((item) => {
+      const filteredObject = searchData.filter((item) => {
         return (
           item.name.toLowerCase().includes(onSearchText.toLowerCase()) ||
-          item.email.toLowerCase().includes(onSearchText.toLowerCase())
+          item.name.toLowerCase().includes(onSearchText.toLowerCase())
         );
       });
       setData([...filteredObject]);
     } else {
-      setData([...userData]);
+      setData([...searchData]);
     }
   }, [onSearchText, setData]);
 
@@ -193,10 +209,10 @@ const UserListRegularPage = () => {
       if (item.id === id) {
         setFormData({
           name: item.name,
-          email: item.email,
+          description: item.description,
+          duration: item.duration,
+          rate: item.rate,
           status: item.status,
-          phone: item.phone,
-          balance: item.balance,
         });
         setModal({ edit: true }, { add: false });
         setEditedId(id);
@@ -258,10 +274,10 @@ const UserListRegularPage = () => {
           <BlockBetween>
             <BlockHeadContent>
               <BlockTitle tag="h3" page>
-                Users Lists
+                Savings Configuration
               </BlockTitle>
               <BlockDes className="text-soft">
-                <p>---</p>
+                <p>You have a total of {data?data.length:0} Savings Plans.</p>
               </BlockDes>
             </BlockHeadContent>
             <BlockHeadContent>
@@ -274,12 +290,7 @@ const UserListRegularPage = () => {
                 </Button>
                 <div className="toggle-expand-content" style={{ display: sm ? "block" : "none" }}>
                   <ul className="nk-block-tools g-3">
-                    <li>
-                      <Button color="light" outline className="btn-white">
-                        <Icon name="download-cloud"></Icon>
-                        <span>Export</span>
-                      </Button>
-                    </li>
+                    
                     <li className="nk-block-tools-opt">
                       <Button color="primary" className="btn-icon" onClick={() => setModal({ add: true })}>
                         <Icon name="plus"></Icon>
@@ -549,7 +560,7 @@ const UserListRegularPage = () => {
                     <input
                       type="text"
                       className="border-transparent form-focus-none form-control"
-                      placeholder="Search by user or email"
+                      placeholder="Search by Plan name"
                       value={onSearchText}
                       onChange={(e) => onFilterChange(e)}
                     />
@@ -574,73 +585,34 @@ const UserListRegularPage = () => {
                   </div>
                 </DataTableRow>
                 <DataTableRow>
-                  <span className="sub-text">User</span>
+                  <span className="sub-text">SN</span>
                 </DataTableRow>
                 <DataTableRow size="mb">
-                  <span className="sub-text">Balance</span>
+                  <span className="sub-text">Plan name</span>
                 </DataTableRow>
                 <DataTableRow size="md">
-                  <span className="sub-text">Phone</span>
+                  <span className="sub-text">Description</span>
                 </DataTableRow>
                 <DataTableRow size="lg">
-                  <span className="sub-text">Verified</span>
+                  <span className="sub-text">Interest Rate</span>
                 </DataTableRow>
                 <DataTableRow size="lg">
-                  <span className="sub-text">Last Login</span>
+                  <span className="sub-text">Duration</span>
+                </DataTableRow>
+                <DataTableRow size="lg">
+                  <span className="sub-text">Date Created</span>
                 </DataTableRow>
                 <DataTableRow size="md">
-                  <span className="sub-text">Status</span>
+                  <span className="sub-text">Action</span>
                 </DataTableRow>
                 <DataTableRow className="nk-tb-col-tools text-right">
-                  <UncontrolledDropdown>
-                    <DropdownToggle
-                      color="tranparent"
-                      className="btn btn-xs btn-outline-light btn-icon dropdown-toggle"
-                    >
-                      <Icon name="plus"></Icon>
-                    </DropdownToggle>
-                    <DropdownMenu right className="dropdown-menu-xs">
-                      <ul className="link-tidy sm no-bdr">
-                        <li>
-                          <div className="custom-control custom-control-sm custom-checkbox">
-                            <input type="checkbox" className="custom-control-input form-control" id="bl" />
-                            <label className="custom-control-label" htmlFor="bl">
-                              Balance
-                            </label>
-                          </div>
-                        </li>
-                        <li>
-                          <div className="custom-control custom-control-sm custom-checkbox">
-                            <input type="checkbox" className="custom-control-input form-control" id="ph" />
-                            <label className="custom-control-label" htmlFor="ph">
-                              Phone
-                            </label>
-                          </div>
-                        </li>
-                        <li>
-                          <div className="custom-control custom-control-sm custom-checkbox">
-                            <input type="checkbox" className="custom-control-input form-control" id="vri" />
-                            <label className="custom-control-label" htmlFor="vri">
-                              Verified
-                            </label>
-                          </div>
-                        </li>
-                        <li>
-                          <div className="custom-control custom-control-sm custom-checkbox">
-                            <input type="checkbox" className="custom-control-input form-control" id="st" />
-                            <label className="custom-control-label" htmlFor="st">
-                              Status
-                            </label>
-                          </div>
-                        </li>
-                      </ul>
-                    </DropdownMenu>
-                  </UncontrolledDropdown>
+                  
                 </DataTableRow>
               </DataTableHead>
               {/*Head*/}
-              {currentItems.length > 0
-                ? currentItems.map((item) => {
+              {
+                
+                 currentItems.map((item,index) => {
                     return (
                       <DataTableItem key={item.id}>
                         <DataTableRow className="nk-tb-col-check">
@@ -657,121 +629,48 @@ const UserListRegularPage = () => {
                           </div>
                         </DataTableRow>
                         <DataTableRow>
-                          <Link to={`${process.env.PUBLIC_URL}/user-details-regular/${item.id}`}>
-                            <div className="user-card">
-                              <UserAvatar
-                                theme={item.avatarBg}
-                                text={findUpper(item.name)}
-                                image={item.image}
-                              ></UserAvatar>
-                              <div className="user-info">
-                                <span className="tb-lead">
-                                  {item.name}{" "}
-                                  <span
-                                    className={`dot dot-${
-                                      item.status === "Active"
-                                        ? "success"
-                                        : item.status === "Pending"
-                                        ? "warning"
-                                        : "danger"
-                                    } d-md-none ml-1`}
-                                  ></span>
-                                </span>
-                                <span>{item.email}</span>
-                              </div>
-                            </div>
-                          </Link>
+                          {index + 1}
                         </DataTableRow>
                         <DataTableRow size="mb">
                           <span className="tb-amount">
-                            {item.balance} <span className="currency">USD</span>
+                            {item.name}
                           </span>
                         </DataTableRow>
                         <DataTableRow size="md">
-                          <span>{item.phone}</span>
+                          <span>{item.description?item.description.slice(0,39):""}....</span>
                         </DataTableRow>
                         <DataTableRow size="lg">
-                          <ul className="list-status">
-                            <li>
-                              <Icon
-                                className={`text-${
-                                  item.emailStatus === "success"
-                                    ? "success"
-                                    : item.emailStatus === "pending"
-                                    ? "info"
-                                    : "secondary"
-                                }`}
-                                name={`${
-                                  item.emailStatus === "success"
-                                    ? "check-circle"
-                                    : item.emailStatus === "alert"
-                                    ? "alert-circle"
-                                    : "alarm-alt"
-                                }`}
-                              ></Icon>{" "}
-                              <span>Email</span>
-                            </li>
-                            <li>
-                              <Icon
-                                className={`text-${
-                                  item.kycStatus === "success"
-                                    ? "success"
-                                    : item.kycStatus === "pending"
-                                    ? "info"
-                                    : item.kycStatus === "warning"
-                                    ? "warning"
-                                    : "secondary"
-                                }`}
-                                name={`${
-                                  item.kycStatus === "success"
-                                    ? "check-circle"
-                                    : item.kycStatus === "pending"
-                                    ? "alarm-alt"
-                                    : "alert-circle"
-                                }`}
-                              ></Icon>{" "}
-                              <span>KYC</span>
-                            </li>
+                          <ul className="list-status" style={{color:"green"}}>
+                            {item.rate}
                           </ul>
                         </DataTableRow>
                         <DataTableRow size="lg">
-                          <span>{item.lastLogin}</span>
+                          <ul className="list-status">
+                            {item.duration || "1yr"}
+                          </ul>
+                        </DataTableRow>
+                        <DataTableRow size="lg">
+                          <span>{item.lastLogin || "07 Apr 2022"}</span>
                         </DataTableRow>
                         <DataTableRow size="md">
-                          <span
+                          {/* <span
                             className={`tb-status text-${
                               item.status === "Active" ? "success" : item.status === "Pending" ? "warning" : "danger"
                             }`}
                           >
                             {item.status}
-                          </span>
+                          </span> */}
+
+                          <Button color="secondary" type="cancel">
+                          Block
+                        </Button>
+                        
+
+
                         </DataTableRow>
                         <DataTableRow className="nk-tb-col-tools">
                           <ul className="nk-tb-actions gx-1">
-                            <li className="nk-tb-action-hidden" onClick={() => onEditClick(item.id)}>
-                              <TooltipComponent
-                                tag="a"
-                                containerClassName="btn btn-trigger btn-icon"
-                                id={"edit" + item.id}
-                                icon="edit-alt-fill"
-                                direction="top"
-                                text="Edit"
-                              />
-                            </li>
-                            {item.status !== "Suspend" && (
-                              <React.Fragment>
-                                <li className="nk-tb-action-hidden" onClick={() => suspendUser(item.id)}>
-                                  <TooltipComponent
-                                    tag="a"
-                                    containerClassName="btn btn-trigger btn-icon"
-                                    id={"suspend" + item.id}
-                                    icon="user-cross-fill"
-                                    direction="top"
-                                    text="Suspend"
-                                  />
-                                </li>
-                              </React.Fragment>
-                            )}
+                            
                             <li>
                               <UncontrolledDropdown>
                                 <DropdownToggle tag="a" className="dropdown-toggle btn btn-icon btn-trigger">
@@ -788,26 +687,10 @@ const UserListRegularPage = () => {
                                         }}
                                       >
                                         <Icon name="edit"></Icon>
-                                        <span>Edit</span>
+                                        <span>View</span>
                                       </DropdownItem>
                                     </li>
-                                    {item.status !== "Suspend" && (
-                                      <React.Fragment>
-                                        <li className="divider"></li>
-                                        <li onClick={() => suspendUser(item.id)}>
-                                          <DropdownItem
-                                            tag="a"
-                                            href="#suspend"
-                                            onClick={(ev) => {
-                                              ev.preventDefault();
-                                            }}
-                                          >
-                                            <Icon name="na"></Icon>
-                                            <span>Suspend User</span>
-                                          </DropdownItem>
-                                        </li>
-                                      </React.Fragment>
-                                    )}
+                                    
                                   </ul>
                                 </DropdownMenu>
                               </UncontrolledDropdown>
@@ -817,10 +700,10 @@ const UserListRegularPage = () => {
                       </DataTableItem>
                     );
                   })
-                : null}
+                }
             </DataTableBody>
             <div className="card-inner">
-              {currentItems.length > 0 ? (
+              {(currentItems?currentItems.length > 0:false) ? (
                 <PaginationComponent
                   itemPerPage={itemPerPage}
                   totalItems={data.length}
@@ -848,18 +731,18 @@ const UserListRegularPage = () => {
               <Icon name="cross-sm"></Icon>
             </a>
             <div className="p-2">
-              <h5 className="title">Add User</h5>
+              <h5 className="title">Add Savings Plan</h5>
               <div className="mt-4">
                 <Form className="row gy-4" noValidate onSubmit={handleSubmit(onFormSubmit)}>
                   <Col md="6">
                     <FormGroup>
-                      <label className="form-label">Name</label>
+                      <label className="form-label">Plan name</label>
                       <input
                         className="form-control"
                         type="text"
                         name="name"
                         defaultValue={formData.name}
-                        placeholder="Enter name"
+                        placeholder="Enter Plan name"
                         ref={register({ required: "This field is required" })}
                       />
                       {errors.name && <span className="invalid">{errors.name.message}</span>}
@@ -867,13 +750,13 @@ const UserListRegularPage = () => {
                   </Col>
                   <Col md="6">
                     <FormGroup>
-                      <label className="form-label">Email </label>
+                      <label className="form-label">Description </label>
                       <input
                         className="form-control"
                         type="text"
                         name="email"
-                        defaultValue={formData.email}
-                        placeholder="Enter email"
+                        defaultValue={formData.description}
+                        placeholder="Enter Description"
                         ref={register({
                           required: "This field is required",
                           pattern: {
@@ -887,13 +770,13 @@ const UserListRegularPage = () => {
                   </Col>
                   <Col md="6">
                     <FormGroup>
-                      <label className="form-label">Balance</label>
+                      <label className="form-label">Interest rate</label>
                       <input
                         className="form-control"
-                        type="number"
+                        type="text"
                         name="balance"
-                        defaultValue={formData.balance}
-                        placeholder="Balance"
+                        defaultValue={formData.rate}
+                        placeholder="Interest Rate"
                         ref={register({ required: "This field is required" })}
                       />
                       {errors.balance && <span className="invalid">{errors.balance.message}</span>}
@@ -901,12 +784,12 @@ const UserListRegularPage = () => {
                   </Col>
                   <Col md="6">
                     <FormGroup>
-                      <label className="form-label">Phone</label>
+                      <label className="form-label">Duration</label>
                       <input
                         className="form-control"
                         type="number"
                         name="phone"
-                        defaultValue={formData.phone}
+                        defaultValue={formData.duration}
                         ref={register({ required: "This field is required" })}
                       />
                       {errors.phone && <span className="invalid">{errors.phone.message}</span>}
@@ -928,7 +811,7 @@ const UserListRegularPage = () => {
                     <ul className="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
                       <li>
                         <Button color="primary" size="md" type="submit">
-                          Add User
+                          Create Plan
                         </Button>
                       </li>
                       <li>
@@ -964,12 +847,12 @@ const UserListRegularPage = () => {
               <Icon name="cross-sm"></Icon>
             </a>
             <div className="p-2">
-              <h5 className="title">Update User</h5>
+              <h5 className="title">Edit Plan</h5>
               <div className="mt-4">
                 <Form className="row gy-4" onSubmit={handleSubmit(onEditSubmit)}>
                   <Col md="6">
                     <FormGroup>
-                      <label className="form-label">Name</label>
+                      <label className="form-label">Plan name</label>
                       <input
                         className="form-control"
                         type="text"
@@ -983,12 +866,12 @@ const UserListRegularPage = () => {
                   </Col>
                   <Col md="6">
                     <FormGroup>
-                      <label className="form-label">Email</label>
+                      <label className="form-label">description</label>
                       <input
                         className="form-control"
                         type="text"
                         name="email"
-                        defaultValue={formData.email}
+                        defaultValue={formData.description}
                         placeholder="Enter email"
                         ref={register({
                           required: "This field is required",
@@ -1003,14 +886,13 @@ const UserListRegularPage = () => {
                   </Col>
                   <Col md="6">
                     <FormGroup>
-                      <label className="form-label">Balance</label>
+                      <label className="form-label">Interest Rate</label>
                       <input
                         className="form-control"
                         type="number"
                         name="balance"
-                        disabled
-                        defaultValue={parseFloat(formData.balance.replace(/,/g, ""))}
-                        placeholder="Balance"
+                        defaultValue={FormData.rate}
+                        placeholder="interest Rate"
                         ref={register({ required: "This field is required" })}
                       />
                       {errors.balance && <span className="invalid">{errors.balance.message}</span>}
@@ -1018,12 +900,12 @@ const UserListRegularPage = () => {
                   </Col>
                   <Col md="6">
                     <FormGroup>
-                      <label className="form-label">Phone</label>
+                      <label className="form-label">Duration</label>
                       <input
                         className="form-control"
                         type="number"
                         name="phone"
-                        defaultValue={Number(formData.phone)}
+                        defaultValue={formData.duration}
                         ref={register({ required: "This field is required" })}
                       />
                       {errors.phone && <span className="invalid">{errors.phone.message}</span>}
@@ -1048,7 +930,7 @@ const UserListRegularPage = () => {
                     <ul className="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
                       <li>
                         <Button color="primary" size="md" type="submit">
-                          Update User
+                          Update Plan
                         </Button>
                       </li>
                       <li>

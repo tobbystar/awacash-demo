@@ -8,7 +8,10 @@ import Homepage from "../pages/Homepage";
 import Crypto from "../pages/Crypto";
 import Analytics from "../pages/Analytics";
 import Invest from "../pages/Invest";
-
+import CustomerDetails from "../pages/pre-built/Customer-Management/CustomerDetails";
+import LevelOneData from "../pages/pre-built/Customer-Management/LevelOneData";
+import LevelTwoData from "../pages/pre-built/Customer-Management/LevelTwoData";
+import LevelThreeData from "../pages/pre-built/Customer-Management/LevelThreeData";
 import Component from "../pages/components/Index";
 import Accordian from "../pages/components/Accordions";
 import Alerts from "../pages/components/Alerts";
@@ -86,6 +89,16 @@ import CaseManagement from "../pages/pre-built/case-management/CaseManagement";
 import CustomerManagement from "../pages/pre-built/Customer-Management/CustomerManagement";
 import CardManagement from "../pages/pre-built/cardManagement/ProjectList";
 import userCards from "../pages/pre-built/cardManagement/UserCards";
+import LoanRequests from "../pages/pre-built/loan-requests/loanRequests";
+import LoanRequestDetails from "../pages/pre-built/loan-requests/loanRequestDetails";
+import SMSList from "../pages/pre-built/sms-email-list/smsList";
+import EmailList from "../pages/pre-built/sms-email-list/emailList";
+import SmsDetails from "../pages/pre-built/sms-email-list/sms-details";
+import EmailDetails from "../pages/pre-built/sms-email-list/email-details";
+import SavingManagement from "../pages/pre-built/savings-list/savingManagement";
+import SavingDetails from "../pages/pre-built/savings-list/savingDetails";
+import SavingConfiguration from "../pages/pre-built/savings-list/savingConfiguration";
+import SubAdminOne from "../pages/pre-built/Customer-Management/SubAdminOne";
 
 import AppMessages from "../pages/app/messages/Messages";
 import Chat from "../pages/app/chat/ChatContainer";
@@ -122,6 +135,7 @@ const Pages = () => {
 
         {/*Pre-built Pages*/}
         <Route exact path={`${process.env.PUBLIC_URL}/project-card`} component={ProjectCardPage}></Route>
+
         <Route exact path={`${process.env.PUBLIC_URL}/project-list`} component={ProjectListPage}></Route>
         <Route //Context Api added
           exact
@@ -169,9 +183,18 @@ const Pages = () => {
         ></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/kyc-list-regular`} component={KycListRegular}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/kyc-details-regular/:id`} component={KycDetailsRegular}></Route>
+
         <Route exact path={`${process.env.PUBLIC_URL}/transaction-basic`} component={TransListBasic}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/transaction-crypto`} component={TransListCrypto}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/product-list`} component={ProductList}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/customer-details/:id`} component={CustomerDetails}></Route>
+
+        <Route exact path={`${process.env.PUBLIC_URL}/customer-details/`} component={SubAdminOne}></Route>
+
+        <Route exact path={`${process.env.PUBLIC_URL}/customer-details/level-one`} component={LevelOneData}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/customer-details/level-two`} component={LevelTwoData}></Route>
+
+        <Route exact path={`${process.env.PUBLIC_URL}/customer-details/level-three`} component={LevelThreeData}></Route>
 
         <Route // context api added
           exact
@@ -191,6 +214,26 @@ const Pages = () => {
             </ProductContextProvider>
           )}
         ></Route>
+
+        <Route //Context Api added
+          exact
+          path={`${process.env.PUBLIC_URL}/sms-details/:id`}
+          render={(props) => (
+            <UserContextProvider>
+              <SmsDetails {...props} />
+            </UserContextProvider>
+          )}
+        ></Route>
+        <Route //Context Api added
+          exact
+          path={`${process.env.PUBLIC_URL}/email-details/:id`}
+          render={(props) => (
+            <UserContextProvider>
+              <EmailDetails {...props} />
+            </UserContextProvider>
+          )}
+        ></Route>
+
         <Route exact path={`${process.env.PUBLIC_URL}/invoice-list`} component={InvoiceList}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/invoice-details/:id`} component={InvoiceDetails}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/pricing-table`} component={PricingTable}></Route>
@@ -200,7 +243,12 @@ const Pages = () => {
         <Route exact path={`${process.env.PUBLIC_URL}/customer-management`} component={CustomerManagement}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/card-management`} component={CardManagement}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/user-cards`} component={userCards}></Route>
-
+        <Route exact path={`${process.env.PUBLIC_URL}/loan-requests`} component={LoanRequests}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/loan-request/:id`} component={LoanRequestDetails}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/sms-list`} component={SMSList}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/email-list`} component={EmailList}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/savings-management`} component={SavingManagement}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/savings-configuration`} component={SavingConfiguration}></Route>
 
         {/*Demo Pages*/}
         <Route exact path={`${process.env.PUBLIC_URL}/pages/terms-policy`} component={Terms}></Route>
@@ -230,7 +278,11 @@ const Pages = () => {
         <Route exact path={`${process.env.PUBLIC_URL}/components/form-elements`} component={FormElements}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/components/form-layouts`} component={FormLayouts}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/components/checkbox-radio`} component={CheckboxRadio}></Route>
-        <Route exact path={`${process.env.PUBLIC_URL}/components/advanced-control`} component={AdvancedControls}></Route>
+        <Route
+          exact
+          path={`${process.env.PUBLIC_URL}/components/advanced-control`}
+          component={AdvancedControls}
+        ></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/components/input-group`} component={InputGroup}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/components/form-upload`} component={FormUpload}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/components/number-spinner`} component={NumberSpinner}></Route>

@@ -32,21 +32,42 @@ import {
   PaginationComponent,
   RSelect,
 } from "../../../components/Component";
-import { caseManagementData, filterStatus, filterDoc, bulkActionKycOptions } from "./CaseManagementData";
+import { kycData, filterStatus, filterDoc, bulkActionKycOptions } from "./KycData";
 import { findUpper } from "../../../utils/Utils";
 import { Link } from "react-router-dom";
 
-const CaseManagement = ({ history }) => {
+var token = window.localStorage.getItem("accessToken");
+
+const KycListRegular = ({ history }) => {
+  const [data, setData] = useState([]);
   const [onSearch, setonSearch] = useState(true);
   const [onSearchText, setSearchText] = useState("");
   const [tablesm, updateTableSm] = useState(false);
-  const [data, setData] = useState(caseManagementData);
+
   const [viewModal, setViewModal] = useState(false);
   const [detail, setDetail] = useState({});
   const [actionText, setActionText] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [itemPerPage, setItemPerPage] = useState(10);
   const [sort, setSortState] = useState("");
+
+  const handleLoanFetch = async () => {
+    fetch("https://35.222.28.53/AwacashAdminApi/api/admin/loan_requests", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setData(data);
+      });
+  };
+
+  useEffect(() => {
+    handleLoanFetch();
+  }, []);
 
   // Sorting data
   const sortFunc = (params) => {
@@ -63,12 +84,12 @@ const CaseManagement = ({ history }) => {
   // Changing state value when searching name
   useEffect(() => {
     if (onSearchText !== "") {
-      const filteredObject = caseManagementData.filter((item) => {
+      const filteredObject = kycData.filter((item) => {
         return item.name.toLowerCase().includes(onSearchText.toLowerCase());
       });
       setData([...filteredObject]);
     } else {
-      setData([...caseManagementData]);
+      setData([...kycData]);
     }
   }, [onSearchText]);
 
@@ -155,10 +176,20 @@ const CaseManagement = ({ history }) => {
         <BlockHead size="sm">
           <BlockBetween>
             <BlockHeadContent>
-              <BlockTitle page>Case Management</BlockTitle>
-             
+              <BlockTitle page>Loan Requests</BlockTitle>
+              <BlockDes className="text-soft">
+                <p>You have total {data.length} loan requests.</p>
+              </BlockDes>
             </BlockHeadContent>
-            
+            <BlockHeadContent>
+              <Button color="light" outline className="bg-white d-none d-sm-inline-flex">
+                <Icon name="download-cloud"></Icon>
+                <span>Export</span>
+              </Button>
+              <Button color="light" outline className="btn-icon bg-white d-inline-flex d-sm-none">
+                <Icon name="download-cloud"></Icon>
+              </Button>
+            </BlockHeadContent>
           </BlockBetween>
         </BlockHead>
 
@@ -167,8 +198,29 @@ const CaseManagement = ({ history }) => {
             <div className="card-inner position-relative card-tools-toggle">
               <div className="card-title-group">
                 <div className="card-tools">
-                 
-                  
+                  <div className="form-inline flex-nowrap gx-3">
+                    <div className="form-wrap">
+                      <RSelect
+                        options={bulkActionKycOptions}
+                        className="w-130px"
+                        placeholder="Bulk Action"
+                        onChange={(e) => onActionText(e)}
+                      />
+                    </div>
+                    <div className="btn-wrap">
+                      <span className="d-md-none">
+                        <Button
+                          color="light"
+                          outline
+                          disabled={actionText === "" ? true : false}
+                          className="btn-dim btn-icon"
+                          onClick={() => onActionClick()}
+                        >
+                          <Icon name="arrow-right"></Icon>
+                        </Button>
+                      </span>
+                    </div>
+                  </div>
                 </div>
                 <div className="card-tools mr-n1">
                   <ul className="btn-toolbar gx-1">
@@ -374,19 +426,29 @@ const CaseManagement = ({ history }) => {
                   </div>
                 </DataTableRow>
                 <DataTableRow>
-                  <span>SN</span>
+                  <span>Name</span>
                 </DataTableRow>
-                <DataTableRow size="">
-                  <span>Customer Name</span>
+                <DataTableRow size="mb">
+                  <span>Email</span>
                 </DataTableRow>
-                <DataTableRow size="">
-                  <span>Customer Complaints</span>
+                <DataTableRow size="md">
+                  <span>Phone Number</span>
                 </DataTableRow>
-                <DataTableRow size="">
-                  <span>Actions</span>
+                <DataTableRow size="lg">
+                  <span>Loan ID</span>
                 </DataTableRow>
-                
-                {/* <DataTableRow className="nk-tb-col-tools">&nbsp;</DataTableRow> */}
+                <DataTableRow size="md">
+                  <span>Date Requested</span>
+                </DataTableRow>
+                <DataTableRow size="md">
+                  <span>Date Disbursed</span>
+                </DataTableRow>
+                <DataTableRow size="lg">
+                  <span>Status</span>
+                </DataTableRow>
+                {/*<DataTableRow className="nk-tb-col-tools">*/}
+                {/*  <span>Action</span>*/}
+                {/*</DataTableRow>*/}
               </DataTableHead>
 
               {currentItems.length > 0
@@ -407,26 +469,84 @@ const CaseManagement = ({ history }) => {
                           </div>
                         </DataTableRow>
                         <DataTableRow>
-                         
+                          <Link to={`${process.env.PUBLIC_URL}/loan-request/${item.id}`}>
+                            <div className="user-card">
+                              {/*<UserAvatar*/}
+                              {/*  theme={item.avatarBg}*/}
+                              {/*  text={findUpper(item.name)}*/}
+                              {/*  image={item.image}*/}
+                              {/*></UserAvatar>*/}
+                              <div className="user-info">
                                 <span className="tb-lead">
-                                  {item.id}
-                                 
+                                  {item.name}{" "}
+                                  {/*<span*/}
+                                  {/*  className={`dot dot-${*/}
+                                  {/*    item.status === "Approved"*/}
+                                  {/*      ? "success"*/}
+                                  {/*      : item.status === "Pending"*/}
+                                  {/*      ? "info"*/}
+                                  {/*      : "danger"*/}
+                                  {/*  } d-md-none ml-1`}*/}
+                                  {/*></span>*/}
                                 </span>
-                                
-                              
+                                {/*<span>{item.id}</span>*/}
+                              </div>
+                            </div>
+                          </Link>
                         </DataTableRow>
-                        <DataTableRow size="">
-                          <span className="tb-lead-sub">{item.name}</span>
+                        <DataTableRow size="mb">
+                          <span className="tb-lead-sub">{item.email || item.name + "@gmail.com"}</span>
                         </DataTableRow>
-                        <DataTableRow size="">
-                          <span>{item.doc}</span>
+                        <DataTableRow size="md">
+                          <span className="tb-lead-sub">{item.phone || "08024788583"}</span>
                         </DataTableRow>
-                        <DataTableRow size="">
-                          <span className="tb-date">{item.date}</span>
+                        <DataTableRow size="lg">
+                          <span className="tb-date">{item.id}</span>
                         </DataTableRow>
-                        
-                        
-                       
+                        <DataTableRow size="lg">
+                          <span>
+                            {new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })}
+                          </span>
+                        </DataTableRow>
+
+                        {item.status === "Approved" ? (
+                          <DataTableRow size="lg">
+                            <span>
+                              {new Date().toLocaleDateString("en-US", {
+                                year: "numeric",
+                                month: "long",
+                                day: "numeric",
+                              })}
+                            </span>
+                          </DataTableRow>
+                        ) : (
+                          <DataTableRow size="lg">
+                            <span>N/A</span>
+                          </DataTableRow>
+                        )}
+                        <DataTableRow size="md">
+                          <span
+                            className={`tb-status text-${
+                              item.status === "Approved" ? "success" : item.status === "Pending" ? "info" : "danger"
+                            }`}
+                          >
+                            {item.status}
+                          </span>
+                          {item.status !== "Pending" && (
+                            <TooltipComponent
+                              icon="info"
+                              direction="top"
+                              id={item.id + "pendingless"}
+                              text={`${item.status} at Dec 18, 2019 01:02 am`}
+                            ></TooltipComponent>
+                          )}
+                          {!item.status === "Pending" && (
+                            <span>
+                              <TooltipComponent icon="info" direction="top" text={item.date} id={item.id} />
+                            </span>
+                          )}
+                        </DataTableRow>
+
                         <DataTableRow className="nk-tb-col-tools">
                           <ul className="nk-tb-actions gx-1">
                             <li
@@ -498,7 +618,7 @@ const CaseManagement = ({ history }) => {
                                         }}
                                       >
                                         <Icon name="eye"></Icon>
-                                        <span>Quick View</span>
+                                        <span style={{ color: "orange" }}>Approve</span>
                                       </DropdownItem>
                                     </li>
                                     <li>
@@ -511,7 +631,7 @@ const CaseManagement = ({ history }) => {
                                         }}
                                       >
                                         <Icon name="focus"></Icon>
-                                        <span>View Details</span>
+                                        <span style={{ color: "red" }}>Reject</span>
                                       </DropdownItem>
                                     </li>
                                     {item.status === "Rejected" ? null : item.status === "Approved" ? (
@@ -524,7 +644,7 @@ const CaseManagement = ({ history }) => {
                                           }}
                                         >
                                           <Icon name="na"></Icon>
-                                          <span>Reject User</span>
+                                          <span style={{ color: "green" }}>Disburse</span>
                                         </DropdownItem>
                                       </li>
                                     ) : (
@@ -599,28 +719,40 @@ const CaseManagement = ({ history }) => {
           </a>
           <div className="nk-modal-head">
             <h4 className="nk-modal-title title">
-              Case Management
+              KYC Details <small className="text-primary"> {detail.id}</small>
             </h4>
           </div>
           <div className="nk-tnx-details mt-sm-3">
             <Row className="gy-3">
               <Col lg={6}>
-                <span className="sub-text"> SN</span>
+                <span className="sub-text"> ID</span>
                 <span className="caption-text">{detail.id}</span>
               </Col>
               <Col lg={6}>
-                <span className="sub-text"> Customer</span>
-                <span className="caption-text">{detail.name}</span>
+                <span className="sub-text">Applicant Name </span>
+                <span className="caption-text text-break">{detail.name}</span>
               </Col>
               <Col lg={6}>
-                <span className="sub-text">Customer Complaints </span>
-                <span className="caption-text">{detail.check}</span>
-              </Col>
-              <Col lg={6}>
-                <span className="sub-text">Actions </span>
+                <span className="sub-text">Document Type </span>
                 <span className="caption-text">{detail.doc}</span>
               </Col>
-              
+              <Col lg={6}>
+                <span className="sub-text">Status</span>
+                <Badge
+                  color={detail.status === "Approved" ? "success" : detail.status === "Pending" ? "info" : "danger"}
+                  size="md"
+                >
+                  {detail.status}
+                </Badge>
+              </Col>
+              <Col lg={6}>
+                <span className="sub-text">Date</span>
+                <span className="caption-text"> {detail.date}</span>
+              </Col>
+              <Col lg={6}>
+                <span className="sub-text">Checked By</span>
+                <span className="caption-text"> {detail.checked}</span>
+              </Col>
             </Row>
           </div>
         </ModalBody>
@@ -628,4 +760,4 @@ const CaseManagement = ({ history }) => {
     </React.Fragment>
   );
 };
-export default CaseManagement;
+export default KycListRegular;

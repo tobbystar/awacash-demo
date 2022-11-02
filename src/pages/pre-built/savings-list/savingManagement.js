@@ -22,15 +22,22 @@ import {
   BlockHead,
   BlockHeadContent,
   BlockTitle,
+  UserAvatar,
   Icon,
   Col,
   PaginationComponent,
   Row,
   RSelect,
+  PreviewAltCard,
+  TooltipComponent,
 } from "../../../components/Component";
-import { statusOptions, transData } from "./TransData";
+import { statusOptions } from "./TransData";
 import { dateFormatterAlt } from "../../../utils/Utils";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
+import { BalanceBarChart, DepositBarChart, WithdrawBarChart } from "../../../components/partials/charts/invest/InvestChart";
+
+var smsSearchData = ""
 
 const TransListBasic = () => {
   const [onSearch, setonSearch] = useState(true);
@@ -40,7 +47,7 @@ const TransListBasic = () => {
   });
   const [viewModal, setViewModal] = useState(false);
   const [detail, setDetail] = useState({});
-  const [data, setData] = useState(transData);
+  const [data, setData] = useState([{}]);
   const [formData, setFormData] = useState({
     bill: "",
     issue: new Date(),
@@ -52,6 +59,16 @@ const TransListBasic = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemPerPage, setItemPerPage] = useState(10);
   const [sort, setSortState] = useState("");
+
+  const handleUserFetch = async () => {
+    fetch("https://api.github.com/users")
+    .then( response => response.json())
+    .then( data => {setData(data); smsSearchData = data})
+  }
+
+  useEffect(() => {
+    handleUserFetch()
+  },[])
 
   const sortingFunc = (params) => {
     let defaultData = data;
@@ -67,12 +84,12 @@ const TransListBasic = () => {
   // Changing state value when searching name
   useEffect(() => {
     if (onSearchText !== "") {
-      const filteredObject = transData.filter((item) => {
-        return item.bill.toLowerCase().includes(onSearchText.toLowerCase());
+      const filteredObject = smsSearchData.filter((item) => {
+        return item.login.toLowerCase().includes(onSearchText.toLowerCase());
       });
       setData([...filteredObject]);
     } else {
-      setData([...transData]);
+      setData([...smsSearchData]);
     }
   }, [onSearchText]);
 
@@ -142,10 +159,10 @@ const TransListBasic = () => {
         <BlockHead size="sm">
           <BlockBetween>
             <BlockHeadContent>
-              <BlockTitle page>Recent Transactions</BlockTitle>
-              {/* <BlockDes className="text-soft">
-                <p>You have total 560 transactions </p>
-              </BlockDes> */}
+              <BlockTitle page>Savings Management</BlockTitle>
+              <BlockDes className="text-soft">
+                <p>You have total {data.length} active Savings </p>
+              </BlockDes>
             </BlockHeadContent>
             {/* <BlockHeadContent>
               <ul className="nk-block-tools g-3">
@@ -160,12 +177,96 @@ const TransListBasic = () => {
         </BlockHead>
 
         <Block>
+          <Row className="g-gs">
+            <Col md="4">
+              <PreviewAltCard className="card-full">
+                <div className="card-title-group align-start mb-0">
+                  <div className="card-title">
+                    <h6 className="subtitle">Total Savings (Long Term)</h6>
+                  </div>
+                  <div className="card-tools">
+                    <TooltipComponent
+                      iconClass="card-hint"
+                      icon="help-fill"
+                      direction="left"
+                      id="invest-deposit"
+                      text="Long Term"
+                    ></TooltipComponent>
+                  </div>
+                </div>
+                <div className="card-amount">
+                  <span className="amount">
+                    49,595.34 <span className="currency currency-usd">USD</span>
+                  </span>
+                  <span className="change up text-success">
+                    <Icon name="arrow-long-up"></Icon>1.93%
+                  </span>
+                </div>
+               
+              </PreviewAltCard>
+            </Col>
+
+            <Col md="4">
+              <PreviewAltCard className="card-full">
+                <div className="card-title-group align-start mb-0">
+                  <div className="card-title">
+                    <h6 className="subtitle">Total Savings (Short Term)</h6>
+                  </div>
+                  <div className="card-tools">
+                    <TooltipComponent
+                      iconClass="card-hint"
+                      icon="help-fill"
+                      direction="left"
+                      id="invest-withdraw"
+                      text="Short Term"
+                    ></TooltipComponent>
+                  </div>
+                </div>
+                <div className="card-amount">
+                  <span className="amount">
+                    49,595.34 <span className="currency currency-usd">USD</span>
+                  </span>
+                  <span className="change down text-danger">
+                    <Icon name="arrow-long-down"></Icon>1.93%
+                  </span>
+                </div>
+              </PreviewAltCard>
+            </Col>
+
+            <Col md="4">
+              <PreviewAltCard className="card-full">
+                <div className="card-title-group align-start mb-0">
+                  <div className="card-title">
+                    <h6 className="subtitle">Total Withdrawals</h6>
+                  </div>
+                  <div className="card-tools">
+                    <TooltipComponent
+                      iconClass="card-hint"
+                      icon="help-fill"
+                      direction="left"
+                      id="invest-balance"
+                      text="Total withdrawals"
+                    ></TooltipComponent>
+                  </div>
+                </div>
+                <div className="card-amount">
+                  <span className="amount">
+                    79,358.50 <span className="currency currency-usd">USD</span>
+                  </span>
+                </div>
+                
+              </PreviewAltCard>
+            </Col>
+          </Row>
+        </Block>
+
+        <Block>
           <Card className="card-bordered card-stretch">
             <div className="card-inner-group">
               <div className="card-inner">
                 <div className="card-title-group">
                   <div className="card-title">
-                    <h5 className="title">Recent Transactions</h5>
+                    <h5 className="title">All Savings</h5>
                   </div>
                   <div className="card-tools mr-n1">
                     <ul className="btn-toolbar">
@@ -260,7 +361,7 @@ const TransListBasic = () => {
                       <input
                         type="text"
                         className="form-control border-transparent form-focus-none"
-                        placeholder="Search by bill name"
+                        placeholder="Search by customer name"
                         value={onSearchText}
                         onChange={(e) => onFilterChange(e)}
                       />
@@ -276,24 +377,23 @@ const TransListBasic = () => {
                   <thead>
                     <tr className="tb-tnx-head">
                       <th className="tb-tnx-id">
-                        <span className="">S/N</span>
+                        <span className="">SN</span>
                       </th>
                       <th className="tb-tnx-info">
-                        <span className="tb-tnx-desc d-none d-md-inline-block">
-                          <span>Transaction Date</span>
+                        <span className="tb-tnx-desc d-none d-sm-inline-block">
+                          <span>Account Number</span>
                         </span>
                         <span className="tb-tnx-date d-md-inline-block d-none">
-                          <span className="d-md-none">Date</span>
+                          <span className="d-md-none">Type</span>
                           <span className="d-none d-md-block">
-
-                            <span>Transaction type</span>
-                            <span>Account No</span>
+                            <span>Transaction Type</span>
+                            <span>Savings Tenure</span>
                           </span>
                         </span>
                       </th>
                       <th className="tb-tnx-amount is-alt">
-                        <span className="tb-tnx-total">Registration Amount</span>
-                        <span className="tb-tnx-status d-none d-md-inline-block">Amount Status</span>
+                        <span className="tb-tnx-total d-none d-md-inline-block">Amount</span>
+                        <span className="tb-tnx-status">Status</span>
                       </th>
                       <th className="tb-tnx-action">
                         <span>&nbsp;</span>
@@ -312,32 +412,27 @@ const TransListBasic = () => {
                                     ev.preventDefault();
                                   }}
                                 >
-                                  <span>{item.ref}</span>
+                                  <span>{item.id}</span>
                                 </a>
                               </td>
                               <td className="tb-tnx-info">
                                 <div className="tb-tnx-desc">
-                                  <span className="title">{item.issue}</span>
+                                  <span className="title">1224342927</span>
                                 </div>
                                 <div className="tb-tnx-date">
-                                  <span className="date">{item.type}</span>
-                                  <span className="date">{item.due}</span>
+                                  <span className="date">{"WithDrawal"}</span>
+                                  <span className="date">{"Long"}</span>
                                 </div>
-                                <div></div>
                               </td>
                               <td className="tb-tnx-amount is-alt">
                                 <div className="tb-tnx-total">
-                                  <span className="amount">${item.total}</span>
+                                  <span className="amount">{"57,098,74 USD"}</span>
                                 </div>
                                 <div className="tb-tnx-status">
-                                  <span
-                                    className={`badge badge-dot badge-${
-                                      item.status === "Paid" ? "success" : item.status === "Due" ? "warning" : "danger"
-                                    }`}
-                                  >
-                                    {item.status}
-                                  </span>
+                                  <span className="amount">{"Successful"}</span>
                                 </div>
+                                
+                              
                               </td>
                               <td className="tb-tnx-action">
                                 <UncontrolledDropdown>
@@ -406,8 +501,6 @@ const TransListBasic = () => {
           </Card>
         </Block>
 
-        
-
         <Modal isOpen={viewModal} toggle={() => setViewModal(false)} className="modal-dialog-centered" size="lg">
           <ModalBody>
             <a
@@ -422,26 +515,22 @@ const TransListBasic = () => {
             </a>
             <div className="nk-modal-head">
               <h4 className="nk-modal-title title">
-                Transaction <small className="text-primary">#{detail.ref}</small>
+                Savings <small className="text-primary">#{detail.ref}</small>
               </h4>
             </div>
             <div className="nk-tnx-details mt-sm-3">
               <Row className="gy-3">
                 <Col lg={6}>
-                  <span className="sub-text">Order ID</span>
-                  <span className="caption-text">{detail.ref}</span>
+                  <span className="sub-text">Account Number</span>
+                  <span className="caption-text">1234567890</span>
                 </Col>
                 <Col lg={6}>
-                  <span className="sub-text">Account Number </span>
-                  <span className="caption-text text-break">{detail.due}</span>
+                  <span className="sub-text">Transaction Type</span>
+                  <span className="caption-text text-break">{"Withdrawal"}</span>
                 </Col>
                 <Col lg={6}>
-                  <span className="sub-text">Registration Amount</span>
-                  <span className="caption-text">$ {detail.total}</span>
-                </Col>
-                <Col lg={6}>
-                  <span className="sub-text">Recipient Name</span>
-                  <span className="caption-text"> {detail.recipient}</span>
+                  <span className="sub-text">Amount</span>
+                  <span className="caption-text">$ {"67,3857.93"}</span>
                 </Col>
                 <Col lg={6}>
                   <span className="sub-text">Status</span>
@@ -449,16 +538,16 @@ const TransListBasic = () => {
                     color={detail.status === "Paid" ? "success" : detail.status === "Due" ? "warning" : "danger"}
                     size="md"
                   >
-                    {detail.status}
+                    {"Failed"}
                   </Badge>
                 </Col>
                 <Col lg={6}>
-                  <span className="sub-text">Transaction Date</span>
-                  <span className="caption-text"> {detail.issue}</span>
+                  <span className="sub-text">Savings Tenure</span>
+                  <span className="caption-text"> Long </span>
                 </Col>
                 <Col lg={6}>
-                  <span className="sub-text">Transaction Type</span>
-                  <span className="caption-text"> {detail.type}</span>
+                  <span className="sub-text">Due Date</span>
+                  <span className="caption-text"> {"12 Apr 2022"}</span>
                 </Col>
               </Row>
             </div>
