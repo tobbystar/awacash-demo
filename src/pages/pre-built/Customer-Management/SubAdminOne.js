@@ -1,10 +1,7 @@
-
-import levelone from "./Levelone";
-
-function SubAdminOne (props) {
-  return(
+function SubAdminOne(props) {
+  return (
     <div class="m-2 py-8 max-w-sm bg-white rounded-xl shadow-lg space-y-2 sm:py-4">
-      <img/>
+      <img />
       <div class="text-center space-y-2 sm:text-left">
         <div class="space-y-0.5">
           <p class="text-lg text-black font-semibold">{props.firstname}</p>

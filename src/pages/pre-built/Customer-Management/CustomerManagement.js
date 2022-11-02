@@ -32,10 +32,9 @@ import {
   PaginationComponent,
   RSelect,
 } from "../../../components/Component";
-import { customerData, filterStatus, filterDoc, bulkActionKycOptions, leveloneData } from "./CustomerData";
+import { customerData, filterStatus, filterDoc, bulkActionKycOptions } from "./CustomerData";
 import { findUpper } from "../../../utils/Utils";
 import { Link } from "react-router-dom";
-
 
 const CustomerManagement = ({ history }) => {
   const [onSearch, setonSearch] = useState(true);
@@ -508,8 +507,8 @@ const CustomerManagement = ({ history }) => {
                                         href="#details"
                                         onClick={(ev) => {
                                           ev.preventDefault();
-                                          console.log(item.Level);
-                                          history.push(`${process.env.PUBLIC_URL}/customer-details/${item.Level}`);
+                                          console.log(item.id);
+                                          history.push(`${process.env.PUBLIC_URL}/customer-details/${item.id}`);
                                         }}
                                       >
                                         <Icon name="focus"></Icon>
