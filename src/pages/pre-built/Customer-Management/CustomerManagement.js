@@ -507,8 +507,8 @@ const CustomerManagement = ({ history }) => {
                                         href="#details"
                                         onClick={(ev) => {
                                           ev.preventDefault();
-                                          console.log(item.Level);
-                                          history.push(`${process.env.PUBLIC_URL}/customer-details/${item.Level}`);
+                                          console.log(item.id);
+                                          history.push(`${process.env.PUBLIC_URL}/customer-details/${item.id}`);
                                         }}
                                       >
                                         <Icon name="focus"></Icon>
