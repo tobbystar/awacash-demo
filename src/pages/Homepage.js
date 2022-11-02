@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import Head from "../layout/head/Head";
 import Content from "../layout/content/Content";
-import SaleRevenue from "../components/partials/default/sale-revenue/SaleRevenue";
-import ActiveSubscription from "../components/partials/default/active-subscription/ActiveSubscription";
-import AvgSubscription from "../components/partials/default/avg-subscription/AvgSubscription";
-import SalesOverview from "../components/partials/default/sales-overview/SalesOverview";
+import SaleRevenue from "../components/partials/default/transaction-number/TransactionNumber";
+import CustomerNumber from "../components/partials/default/customer-number/CustomerNumber";
+import CardRequest from "../components/partials/default/card-request/CardRequest";
+import TransactionVolume from "../components/partials/default/transaction-volume/TransactionVolume";
 import TransactionTable from "../components/partials/default/transaction/transaction";
 
 import RecentActivity from "../components/partials/default/recent-activity/Activity";
@@ -126,12 +126,12 @@ const Homepage = () => {
                   <Row className="g-gs">
                     <Col sm="6" lg="12" xxl="6">
                       <PreviewAltCard>
-                        <ActiveSubscription />
+                        <CustomerNumber />
                       </PreviewAltCard>
                     </Col>
                     <Col sm="6" lg="12" xxl="6">
                       <PreviewAltCard>
-                        <AvgSubscription />
+                        <CardRequest />
                       </PreviewAltCard>
                     </Col>
                   </Row>
@@ -140,7 +140,7 @@ const Homepage = () => {
             </Col>
             <Col xxl="6">
               <PreviewAltCard className="h-100">
-                <SalesOverview />
+                <TransactionVolume />
               </PreviewAltCard>
             </Col>
 

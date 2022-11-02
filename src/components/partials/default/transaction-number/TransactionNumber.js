@@ -3,7 +3,7 @@ import { CardTitle } from "reactstrap";
 import { Icon, TooltipComponent } from "../../../Component";
 import { BarChart } from "../../charts/default/Charts";
 
-const SaleRevenue = () => {
+const TransactionNumber = () => {
   return (
     <React.Fragment>
       <div className="card-title-group align-start mb-2">
@@ -17,7 +17,7 @@ const SaleRevenue = () => {
             iconClass="card-hint"
             direction="left"
             id="tooltip-1"
-            text="Revenue from subscription"
+            text="Transaction from subscription"
           />
         </div>
       </div>
@@ -51,4 +51,4 @@ const SaleRevenue = () => {
     </React.Fragment>
   );
 };
-export default SaleRevenue;
+export default TransactionNumber;

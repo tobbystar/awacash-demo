@@ -1,10 +1,10 @@
-export const saleRevenue = {
+export const totalTransaction = {
   labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
   dataUnit: "USD",
   stacked: true,
   datasets: [
     {
-      label: "Sales Revenue",
+      label: "Total Transaction",
       width: "30",
       barPercentage: 0.7,
       categoryPercentage: 0.7,
@@ -27,13 +27,13 @@ export const saleRevenue = {
   ],
 };
 
-export const activeSubscription = {
+export const customerNumber = {
   labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
   dataUnit: "USD",
   stacked: true,
   datasets: [
     {
-      label: "Active User",
+      label: "Active customer",
       barPercentage: 0.7,
       categoryPercentage: 0.7,
       backgroundColor: [

@@ -284,7 +284,7 @@ const UserListCompact = () => {
                 </Button>
                 <div className="toggle-expand-content" style={{ display: sm ? "block" : "none" }}>
                   <ul className="nk-block-tools g-3">
-                    <li>
+                    {/* <li>
                       <a
                         href="#export"
                         onClick={(ev) => {
@@ -295,7 +295,7 @@ const UserListCompact = () => {
                         <Icon name="download-cloud"></Icon>
                         <span>Export</span>
                       </a>
-                    </li>
+                    </li> */}
                     <li className="nk-block-tools-opt">
                       <Button color="primary" className="btn-icon" onClick={() => setModal({ add: true })}>
                         <Icon name="plus"></Icon>
@@ -434,7 +434,7 @@ const UserListCompact = () => {
                                       <Col size="6">
                                         <FormGroup>
                                           <label className="overline-title overline-title-alt">Role</label>
-                                          <RSelect options={filterRole} placeholder="Any Role" />
+                                          <RSelect options={roleOptions} placeholder="Any Role" />
                                         </FormGroup>
                                       </Col>
                                       <Col size="6">
@@ -444,12 +444,12 @@ const UserListCompact = () => {
                                         </FormGroup>
                                       </Col>
 
-                                      <Col size="6">
+                                      {/* <Col size="6">
                                         <FormGroup>
                                           <label className="overline-title overline-title-alt">Role</label>
                                           <RSelect options={roleOptions} placeholder="Any Role" />
                                         </FormGroup>
-                                      </Col>
+                                      </Col> */}
                                       <Col size="12">
                                         <FormGroup className="form-group">
                                           <Button color="secondary">Filter</Button>
@@ -888,9 +888,17 @@ const UserListCompact = () => {
                   <Col md="6">
                     <FormGroup>
                       <label className="form-label">Role</label>
-                      <RSelect
+                      {/* <RSelect
                           options={roleOptions}
                           defaultValue={{ value: "Manager", label: "Manager" }}
+                          onChange={(e) => setFormData({ ...formData, role: e.value })}
+                        /> */}
+                        <RSelect
+                          options={roleOptions}
+                          defaultValue={{
+                            value: formData.role,
+                            label: formData.role,
+                          }}
                           onChange={(e) => setFormData({ ...formData, role: e.value })}
                         />
                     

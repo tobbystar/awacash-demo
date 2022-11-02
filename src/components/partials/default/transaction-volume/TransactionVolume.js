@@ -3,7 +3,7 @@ import { DropdownItem, DropdownToggle, DropdownMenu, UncontrolledDropdown } from
 import { Icon } from "../../../Component";
 import { LineChart } from "../../charts/default/Charts";
 
-const SalesOverview = () => {
+const TransactionVolume = () => {
   return (
     <React.Fragment>
       <div className="card-title-group align-start gx-3 mb-3">
@@ -92,4 +92,4 @@ const SalesOverview = () => {
     </React.Fragment>
   );
 };
-export default SalesOverview;
+export default TransactionVolume;

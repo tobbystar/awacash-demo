@@ -4,7 +4,7 @@ import Content from "../../../layout/content/Content";
 import ActiveUser from "../../../components/partials/analytics/active-user/ActiveUser";
 import OrderOverview from "../../../components/partials/crypto/order-overview/OrderOverview";
 import UserActivity from "../../../components/partials/crypto/user-activity/UserActivity";
-import SalesOverview from "../../../components/partials/default/sales-overview/SalesOverview";
+import TransactionVolume from "../../../components/partials/default/transaction-volume/TransactionVolume";
 import AudienceOverview from "../../../components/partials/analytics/audience-overview/AudienceOverview";
 import TrafficChannel from "../../../components/partials/analytics/traffic-channel/Traffic";
 import TrafficDougnut from "../../../components/partials/analytics/traffic-dougnut/TrafficDoughnut";
@@ -377,7 +377,7 @@ export default UserActivity;
             <Row>
               <Col lg="12">
                 <PreviewAltCard>
-                  <SalesOverview />
+                  <TransactionVolume />
                 </PreviewAltCard>
               </Col>
             </Row>
@@ -387,7 +387,7 @@ import { DropdownItem, DropdownToggle, DropdownMenu, UncontrolledDropdown } from
 import { Icon } from "../../../Component";
 import { LineChart } from "../../charts/default/Charts";
 
-const SalesOverview = () => {
+const TransactionVolume = () => {
   return (
     <React.Fragment>
       <div className="card-title-group align-start gx-3 mb-3">
@@ -484,7 +484,7 @@ const SalesOverview = () => {
     </React.Fragment>
   );
 };
-export default SalesOverview;
+export default TransactionVolume;
 `}</CodeBlock>
         </Block>
 
