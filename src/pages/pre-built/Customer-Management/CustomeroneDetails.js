@@ -21,7 +21,7 @@ import { customerData } from "./CustomerData";
 
 import { Link, useParams } from "react-router-dom";
 
-function CustomerOneDetails() {
+function  CustomerOneDetails() {
   const { id } = useParams();
 
   // const details = customerData.filter((e) => e.id === id);

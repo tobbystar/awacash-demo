@@ -18,14 +18,14 @@ import {
 import { findUpper } from "../../../utils/Utils";
 
 import { customerData } from "./CustomerData";
-import CustomerOneDetails from "./CustomerOneDetails";
-import CustomerTwoDetails from "./CustomerTwoDetails";
-import CustomerThreeDetails from "./CustomerThreeDetails";
+import   CustomerOneDetails  from "./CustomerOneDetails";
+import  CustomerTwoDetails  from "./CustomerTwoDetails";
+import  CustomerThreeDetails  from "./CustomerThreeDetails";
 
 import { Link, useParams } from "react-router-dom";
 
 const CustomerDetails = ({ match }) => {
-  // const [level, setLevel] = useState();
+   const [level, setLevel] = useState();
 
   const id = match.params.id;
 
@@ -41,11 +41,13 @@ const CustomerDetails = ({ match }) => {
   });
 
   return (
+    
     <React.Fragment>
       <Head title="Customer Details "></Head>
       <Content>
         <BlockTitle page>
-          {id === "1" ? <CustomerOneDetails /> : id === "2" ? <CustomerTwoDetails /> : <CustomerThreeDetails />}
+            {id === "1" ? <CustomerOneDetails /> : id === "2" ? <CustomerTwoDetails  />: <CustomerThreeDetails  />}
+
         </BlockTitle>
       </Content>
     </React.Fragment>

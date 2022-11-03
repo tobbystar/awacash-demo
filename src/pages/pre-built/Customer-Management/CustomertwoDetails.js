@@ -23,7 +23,10 @@ import { Link, useParams } from "react-router-dom";
 
 function CustomerTwoDetails() {
   const { id } = useParams();
-  const details = customerData.filter((e) => e.id === id);
+  //const details = CustomerData.filter((e) => e.id === id);
+
+  const details = customerData;
+  console.log(details);
   // console.log(id);
   console.log(details[0]);
 
@@ -103,6 +106,12 @@ function CustomerTwoDetails() {
                     <div className="data-col">
                       <div className="data-label">Full Address</div>
                       <div className="data-value">{details[0].Fulladdress}</div>
+                    </div>
+                  </li>
+                  <li className="data-item">
+                    <div className="data-col">
+                      <div className="data-label">Utility bill</div>
+                      <div className="data-value">{details[0].bill}</div>
                     </div>
                   </li>
                 </ul>

@@ -23,7 +23,11 @@ import { Link, useParams } from "react-router-dom";
 
 function CustomerThreeDetails() {
   const { id } = useParams();
-  const details = customerData.filter((e) => e.id === id);
+
+  // const details = customerData.filter((e) => e.id === id);
+  const details = customerData;
+  console.log(details);
+
   // console.log(id);
   console.log(details[0]);
 
@@ -101,6 +105,24 @@ function CustomerThreeDetails() {
                   </li>
                   <li className="data-item">
                     <div className="data-col">
+                      <div className="data-label">Resident Address</div>
+                      <div className="data-value">{details[0].residentAddress}</div>
+                    </div>
+                  </li>
+                  <li className="data-item">
+                    <div className="data-col">
+                      <div className="data-label">City</div>
+                      <div className="data-value">{details[0].city}</div>
+                    </div>
+                  </li>
+                  <li className="data-item">
+                    <div className="data-col">
+                      <div className="data-label">Country</div>
+                      <div className="data-value">{details[0].country}</div>
+                    </div>
+                  </li>
+                  <li className="data-item">
+                    <div className="data-col">
                       <div className="data-label">Full Address</div>
                       <div className="data-value">{details[0].Fulladdress}</div>
                     </div>
@@ -124,7 +146,7 @@ function CustomerThreeDetails() {
                   <li className="data-item">
                     <div className="data-col">
                       <div className="data-label">First Name</div>
-                      <div className="data-value">{details[0].Nokfirstname}</div>
+                      <div className="data-value">{details[0].nokFirstName}</div>
                     </div>
                   </li>
 
@@ -139,6 +161,13 @@ function CustomerThreeDetails() {
                     <div className="data-col">
                       <div className="data-label">last Name</div>
                       <div className="data-value">{details[0].Noklastname}</div>
+                    </div>
+                  </li>
+
+                  <li className="data-item">
+                    <div className="data-col">
+                      <div className="data-label">Relationship</div>
+                      <div className="data-value">{details[0].relationship}</div>
                     </div>
                   </li>
 

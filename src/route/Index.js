@@ -99,6 +99,7 @@ import SavingManagement from "../pages/pre-built/savings-list/savingManagement";
 import SavingDetails from "../pages/pre-built/savings-list/savingDetails";
 import SavingConfiguration from "../pages/pre-built/savings-list/savingConfiguration";
 
+
 import AppMessages from "../pages/app/messages/Messages";
 import Chat from "../pages/app/chat/ChatContainer";
 import Calender from "../pages/app/calender/Calender";
@@ -187,9 +188,11 @@ const Pages = () => {
         <Route exact path={`${process.env.PUBLIC_URL}/transaction-crypto`} component={TransListCrypto}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/product-list`} component={ProductList}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/customer-details/:id`} component={CustomerDetails}></Route>
-        <Route exact path={`${process.env.PUBLIC_URL}/details-one`} component={CustomerOneDetails}></Route>
-        <Route exact path={`${process.env.PUBLIC_URL}/details-two`} component={CustomerTwoDetails}></Route>
-        <Route exact path={`${process.env.PUBLIC_URL}/details-three`} component={CustomerThreeDetails}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/customer-details/:id`} component={CustomerOneDetails}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/customer-details/:id`} component={CustomerTwoDetails}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/customer-details/:id`} component={CustomerThreeDetails}></Route>
+
+        
 
         <Route // context api added
           exact

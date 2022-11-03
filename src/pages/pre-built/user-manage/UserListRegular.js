@@ -32,7 +32,7 @@ import {
   TooltipComponent,
   RSelect,
 } from "../../../components/Component";
-import { filterRole, filterStatus, userData } from "./UserData";
+import { filterRole, filterStatus, userData, roleOptions } from "./UserData";
 import { bulkActionOptions, findUpper } from "../../../utils/Utils";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -54,6 +54,7 @@ const UserListRegularPage = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    role: "",
     balance: "",
     phone: "",
     status: "Active",
@@ -418,7 +419,7 @@ const UserListRegularPage = () => {
                                       <Col size="6">
                                         <FormGroup>
                                           <label className="overline-title overline-title-alt">Role</label>
-                                          <RSelect options={filterRole} placeholder="Any Role" />
+                                          <RSelect options={roleOptions} placeholder="Any Role" />
                                         </FormGroup>
                                       </Col>
                                       <Col size="6">
@@ -853,7 +854,7 @@ const UserListRegularPage = () => {
                 <Form className="row gy-4" noValidate onSubmit={handleSubmit(onFormSubmit)}>
                   <Col md="6">
                     <FormGroup>
-                      <label className="form-label">Name</label>
+                      <label className="form-label">First Name</label>
                       <input
                         className="form-control"
                         type="text"
@@ -865,6 +866,39 @@ const UserListRegularPage = () => {
                       {errors.name && <span className="invalid">{errors.name.message}</span>}
                     </FormGroup>
                   </Col>
+                  
+              
+                  <Col md="6">
+                    <FormGroup>
+                      <label className="form-label">Last Name</label>
+                      <input
+                        className="form-control"
+                        type="text"
+                        name="name"
+                        defaultValue={formData.lastname}
+                        placeholder="Enter name"
+                        ref={register({ required: "This field is required" })}
+                      />
+                      {errors.name && <span className="invalid">{errors.lastname.message}</span>}
+                    </FormGroup>
+                  </Col>
+
+                  <Col md="6">
+                    <FormGroup>
+                      <label className="form-label">Role</label>
+                      <input
+                        className="form-control"
+                        type="text"
+                        name="name"
+                        defaultValue={formData.email}
+                        placeholder="Enter name"
+                        ref={register({ required: "This field is required" })}
+                      />
+                      {errors.name && <span className="invalid">{errors.role.message}</span>}
+                    </FormGroup>
+                  </Col>
+              
+
                   <Col md="6">
                     <FormGroup>
                       <label className="form-label">Email </label>
@@ -969,7 +1003,7 @@ const UserListRegularPage = () => {
                 <Form className="row gy-4" onSubmit={handleSubmit(onEditSubmit)}>
                   <Col md="6">
                     <FormGroup>
-                      <label className="form-label">Name</label>
+                      <label className="form-label">First Name</label>
                       <input
                         className="form-control"
                         type="text"
@@ -979,6 +1013,34 @@ const UserListRegularPage = () => {
                         ref={register({ required: "This field is required" })}
                       />
                       {errors.name && <span className="invalid">{errors.name.message}</span>}
+                    </FormGroup>
+                  </Col>
+                  <Col md="6">
+                    <FormGroup>
+                      <label className="form-label">Last Name</label>
+                      <input
+                        className="form-control"
+                        type="text"
+                        name="lastname"
+                        defaultValue={formData.lastname}
+                        placeholder="Enter name"
+                        ref={register({ required: "This field is required" })}
+                      />
+                      {errors.name && <span className="invalid">{errors.lastname.message}</span>}
+                    </FormGroup>
+                  </Col>
+                  <Col md="6">
+                    <FormGroup>
+                      <label className="form-label">Role</label>
+                      <input
+                        className="form-control"
+                        type="text"
+                        name="role"
+                        defaultValue={formData.role}
+                        placeholder="Enter name"
+                        ref={register({ required: "This field is required" })}
+                      />
+                      {errors.name && <span className="invalid">{errors.role.message}</span>}
                     </FormGroup>
                   </Col>
                   <Col md="6">

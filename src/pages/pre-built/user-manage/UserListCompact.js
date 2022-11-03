@@ -55,7 +55,7 @@ const UserListCompact = () => {
   const [formData, setFormData] = useState({
     name: "",
     lastname: "",
-    role: "Manager",
+    role: "",
     email: "",
     //balance: "",
     phone: "",
