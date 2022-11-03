@@ -6,11 +6,18 @@ import User4 from "../../../images/avatar/d-sm.jpg";
 export const customerData = [
   {
     id: "UD01544",
+    avatarBg: "purple",
+    image: "User1",
     Firstname: "Abu Bin",
     Lastname: "Ishtiyak",
+    Middlename: "Iyax",
     BVN: "22345664",
     account: "23243444",
     avatarBg: "primary",
+    email: "abubin@yahoo.com",
+    Phonenumber: "+34556644455",
+    dob: "23 Sep 1995",
+    Fulladdress:"4, bida close",
     doc: "Passport",
     check: false,
     front: true,
@@ -19,6 +26,11 @@ export const customerData = [
     status: "Approved",
     checked: "Janet Snyder",
     Level: "1",
+    Nokfirstname:"Abu Kur",
+    Noklastname: "Ishtiyak",
+    Nokmiddlename: "Kur",
+    Nokemail: "abubin@yahoo.com",
+    Residentaddress: "4, bida close"
   },
   {
     id: "UD01489",

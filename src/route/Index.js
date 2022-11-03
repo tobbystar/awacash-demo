@@ -9,6 +9,9 @@ import Crypto from "../pages/Crypto";
 import Analytics from "../pages/Analytics";
 import Invest from "../pages/Invest";
 import CustomerDetails from "../pages/pre-built/Customer-Management/CustomerDetails";
+import CustomeroneDetails from "../pages/pre-built/Customer-Management/CustomeroneDetails";
+import CustomertwoDetails from "../pages/pre-built/Customer-Management/CustomertwoDetails";
+import CustomerthreeDetails from "../pages/pre-built/Customer-Management/CustomerthreeDetails";
 import Component from "../pages/components/Index";
 import Accordian from "../pages/components/Accordions";
 import Alerts from "../pages/components/Alerts";
@@ -95,7 +98,7 @@ import EmailDetails from "../pages/pre-built/sms-email-list/email-details";
 import SavingManagement from "../pages/pre-built/savings-list/savingManagement";
 import SavingDetails from "../pages/pre-built/savings-list/savingDetails";
 import SavingConfiguration from "../pages/pre-built/savings-list/savingConfiguration";
-import SubAdminOne from "../pages/pre-built/Customer-Management/SubAdminOne";
+
 
 import AppMessages from "../pages/app/messages/Messages";
 import Chat from "../pages/app/chat/ChatContainer";
@@ -185,8 +188,11 @@ const Pages = () => {
         <Route exact path={`${process.env.PUBLIC_URL}/transaction-crypto`} component={TransListCrypto}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/product-list`} component={ProductList}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/customer-details/:id`} component={CustomerDetails}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/customer-details/:id`} component={CustomeroneDetails}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/customer-details/:id`} component={CustomertwoDetails}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/customer-details/:id`} component={CustomerthreeDetails}></Route>
 
-        <Route exact path={`${process.env.PUBLIC_URL}/customer-details/`} component={SubAdminOne}></Route>
+        
 
         <Route // context api added
           exact

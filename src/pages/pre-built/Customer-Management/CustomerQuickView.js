@@ -9,6 +9,7 @@ function CustomerQuickView() {
   const [user, setUser] = useState(customerData);
   return (
     <div>
+
       <Col lg="6">
         <BlockHead>
           <BlockHeadContent>
