@@ -17,7 +17,7 @@ export const customerData = [
     email: "abubin@yahoo.com",
     Phonenumber: "+34556644455",
     dob: "23 Sep 1995",
-    Fulladdress:"4, bida close",
+    Fulladdress: "4, bida close",
     doc: "Passport",
     check: false,
     front: true,
@@ -25,12 +25,12 @@ export const customerData = [
     date: "18 Dec, 2019 01:02 PM",
     status: "Approved",
     checked: "Janet Snyder",
-    Level: "1",
-    Nokfirstname:"Abu Kur",
+    level: "1",
+    nokFirstName: "Abu Kur",
     Noklastname: "Ishtiyak",
     Nokmiddlename: "Kur",
     Nokemail: "abubin@yahoo.com",
-    Residentaddress: "4, bida close"
+    Residentaddress: "4, bida close",
   },
   {
     id: "UD01489",
@@ -47,7 +47,7 @@ export const customerData = [
     date: "12 Jan, 2020 01:02 PM",
     status: "Approved",
     checked: "Ernesto Vargas",
-    Level: "2",
+    level: "2",
   },
   {
     id: "UD01434",
@@ -64,7 +64,7 @@ export const customerData = [
     date: "18 Dec, 2019 01:02 PM",
     status: "Approved",
     checked: "Ernesto Vargas",
-    Level: "3",
+    level: "3",
   },
   {
     id: "UD01286",
@@ -80,7 +80,7 @@ export const customerData = [
     date: "12 Jan, 2020 01:02 PM",
     status: "Pending",
     checked: "Ernesto Vargas",
-    Level: "2",
+    level: "2",
   },
   {
     id: "UD01235",
@@ -96,7 +96,7 @@ export const customerData = [
     date: "18 Dec, 2019 01:02 PM",
     status: "Approved",
     checked: "Janet Snyder",
-    Level: "3",
+    level: "3",
   },
   {
     id: "UD01223",
@@ -113,7 +113,7 @@ export const customerData = [
     date: "18 Dec, 2019 01:02 PM",
     status: "Rejected",
     checked: "Janet Snyder",
-    Level: "1",
+    level: "1",
   },
   {
     id: "UD01124",
@@ -129,7 +129,7 @@ export const customerData = [
     date: "10 Jan, 2020 01:02 PM",
     status: "Approved",
     checked: "Ernesto Vargas",
-    Level: "2",
+    level: "2",
   },
   {
     id: "UD01120",
@@ -146,7 +146,7 @@ export const customerData = [
     date: "03 Jan, 2020 12:45 AM",
     status: "Pending",
     checked: "Ernesto Vargas",
-    Level: "1",
+    level: "1",
   },
   {
     id: "UD00954",
@@ -162,7 +162,7 @@ export const customerData = [
     date: "18 Nov, 2019 01:02 PM",
     status: "Approved",
     checked: "Janet Snyder",
-    Level: "3",
+    level: "3",
   },
   {
     id: "UD00472",
@@ -178,7 +178,7 @@ export const customerData = [
     date: "12 Nov, 2019 01:02 AM",
     status: "Rejected",
     checked: "Janet Snyder",
-    Level: "2",
+    level: "2",
   },
   {
     id: "UD01734",
@@ -195,7 +195,7 @@ export const customerData = [
     date: "18 Dec, 2019 01:02 PM",
     status: "Approved",
     checked: "Ernesto Vargas",
-    Level: "1",
+    level: "1",
   },
   {
     id: "UD02020",
@@ -211,7 +211,7 @@ export const customerData = [
     date: "12 Nov, 2019 01:02 AM",
     status: "Rejected",
     checked: "Janet Snyder",
-    Level: "3",
+    level: "3",
   }, //new
   {
     id: "UD02021",
@@ -227,7 +227,7 @@ export const customerData = [
     date: "12 Nov, 2019 01:02 AM",
     status: "Approved",
     checked: "Janet Snyder",
-    Level: "2",
+    level: "2",
   },
   {
     id: "UD02022",
@@ -243,7 +243,7 @@ export const customerData = [
     date: "12 Nov, 2019 01:02 AM",
     status: "Approved",
     checked: "Ernesto Vargas",
-    Level: "3",
+    level: "3",
   },
   {
     id: "UD02023",
@@ -259,7 +259,7 @@ export const customerData = [
     date: "12 Nov, 2019 01:02 AM",
     status: "Pending",
     checked: "Ernesto Vargas",
-    Level: "2",
+    level: "2",
   },
   {
     id: "UD02024",
@@ -275,7 +275,7 @@ export const customerData = [
     date: "12 Nov, 2019 01:02 AM",
     status: "Pending",
     checked: "Ernesto Vargas",
-    Level: "2",
+    level: "2",
   },
   {
     id: "UD02025",
@@ -291,7 +291,7 @@ export const customerData = [
     date: "12 Nov, 2019 01:02 AM",
     status: "Approved",
     checked: "Ernesto Vargas",
-    Level: "1",
+    level: "1",
   },
   {
     id: "UD02026",
@@ -307,7 +307,7 @@ export const customerData = [
     date: "12 Nov, 2019 01:02 AM",
     status: "Rejected",
     checked: "Ernesto Vargas",
-    Level: "2",
+    level: "2",
   },
 ];
 

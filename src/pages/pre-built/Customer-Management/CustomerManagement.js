@@ -424,7 +424,7 @@ const CustomerManagement = ({ history }) => {
                           <span className="tb-date">{item.date}</span>
                         </DataTableRow>
                         <DataTableRow size="">
-                          <span className="tb-date">{item.Level}</span>
+                          <span className="tb-date">{item.level}</span>
                         </DataTableRow>
 
                         <DataTableRow className="nk-tb-col-tools">
@@ -507,8 +507,8 @@ const CustomerManagement = ({ history }) => {
                                         href="#details"
                                         onClick={(ev) => {
                                           ev.preventDefault();
-                                          console.log(item.id);
-                                          history.push(`${process.env.PUBLIC_URL}/customer-details/${item.id}`);
+                                          console.log(item.level);
+                                          history.push(`${process.env.PUBLIC_URL}/customer-details/${item.level}`);
                                         }}
                                       >
                                         <Icon name="focus"></Icon>
@@ -625,7 +625,7 @@ const CustomerManagement = ({ history }) => {
               </Col>
               <Col lg={6}>
                 <span className="sub-text">Account Level</span>
-                <span className="caption-text">{detail.Level}</span>
+                <span className="caption-text">{detail.level}</span>
               </Col>
             </Row>
           </div>

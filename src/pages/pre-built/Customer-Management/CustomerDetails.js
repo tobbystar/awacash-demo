@@ -18,20 +18,19 @@ import {
 import { findUpper } from "../../../utils/Utils";
 
 import { customerData } from "./CustomerData";
-import  CustomeroneDetails  from "./CustomeroneDetails";
-import  CustomertwoDetails  from "./CustomertwoDetails";
-import  CustomerthreeDetails  from "./CustomerthreeDetails";
+import CustomerOneDetails from "./CustomerOneDetails";
+import CustomerTwoDetails from "./CustomerTwoDetails";
+import CustomerThreeDetails from "./CustomerThreeDetails";
 
 import { Link, useParams } from "react-router-dom";
 
-
-
 const CustomerDetails = ({ match }) => {
-  const [level, setLevel] = useState();
-  const Level = match.params.Level;
+  // const [level, setLevel] = useState();
+
+  const id = match.params.id;
 
   useEffect(() => {
-    console.log(Level);
+    console.log(id);
 
     // if (id !== undefined || null || "") {
     //   let spUser = data.find((item) => item.id === id);
@@ -46,21 +45,13 @@ const CustomerDetails = ({ match }) => {
       <Head title="Customer Details "></Head>
       <Content>
         <BlockTitle page>
-
-
-          {Level === "" ? <CustomeroneDetails name={Level} /> :
-           Level === "" ? <CustomertwoDetails name={Level} />: <CustomerthreeDetails name={Level} />}
-
+          {id === "1" ? <CustomerOneDetails /> : id === "2" ? <CustomerTwoDetails /> : <CustomerThreeDetails />}
         </BlockTitle>
       </Content>
     </React.Fragment>
   );
 };
 export default CustomerDetails;
-
-
-
-
 
 // function CustomerDetails() {
 //   const { id } = useParams();
@@ -85,7 +76,6 @@ export default CustomerDetails;
 //                   </Button>
 //                 </Link>
 //               </BlockHeadContent>
-
 
 //         <BlockTitle page>
 //           <div>
@@ -148,13 +138,11 @@ export default CustomerDetails;
 //                     </div>
 //                   </li>
 
-                  
 //                 </ul>
 //               </Card>
 //             </Col>
 //           </div>
 //         </BlockTitle>
-
 
 //         <BlockTitle page>
 //           <div>
@@ -166,7 +154,7 @@ export default CustomerDetails;
 //               </BlockHead>
 //               <Card className="card-bordered">
 //                 <ul className="data-list is-compact">
-                 
+
 //                   <li className="data-item">
 //                     <div className="data-col">
 //                       <div className="data-label">First Name</div>
@@ -201,22 +189,15 @@ export default CustomerDetails;
 //                       <div className="data-value">{details[0].Residentaddress}</div>
 //                     </div>
 //                   </li>
-                  
+
 //                 </ul>
 //               </Card>
 //             </Col>
 //           </div>
 //         </BlockTitle>
 
-
-
-
-
-
 //       </Content>
 //     </React.Fragment>
-
-
 
 //   );
 // }

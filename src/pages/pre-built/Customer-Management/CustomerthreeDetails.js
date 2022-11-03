@@ -21,7 +21,7 @@ import { customerData } from "./CustomerData";
 
 import { Link, useParams } from "react-router-dom";
 
-function CustomerDetails() {
+function CustomerThreeDetails() {
   const { id } = useParams();
   const details = customerData.filter((e) => e.id === id);
   // console.log(id);
@@ -29,29 +29,28 @@ function CustomerDetails() {
 
   return (
     <React.Fragment>
-
       <Head title="Customerthree Details "></Head>
       <Content>
-
-              <BlockHeadContent >
-                <Link to={`${process.env.PUBLIC_URL}/customer-management`}>
-                  <Button color="light" outline className="bg-white d-none d-sm-inline-flex align='right'">
-                    <Icon name="arrow-left"></Icon>
-                    <span>Back</span>
-                  </Button>
-                  <Button color="light" outline className="btn-icon bg-white d-inline-flex d-sm-none">
-                    <Icon name="arrow-left"></Icon>
-                  </Button>
-                </Link>
-              </BlockHeadContent>
-
+        <BlockHeadContent>
+          <Link to={`${process.env.PUBLIC_URL}/customer-management`}>
+            <Button color="light" outline className="bg-white d-none d-sm-inline-flex align='right'">
+              <Icon name="arrow-left"></Icon>
+              <span>Back</span>
+            </Button>
+            <Button color="light" outline className="btn-icon bg-white d-inline-flex d-sm-none">
+              <Icon name="arrow-left"></Icon>
+            </Button>
+          </Link>
+        </BlockHeadContent>
 
         <BlockTitle page>
           <div>
             <Col lg="6">
               <BlockHead>
                 <BlockHeadContent>
-                  <BlockTitle tag="h5" padding="auto">Applicant Information</BlockTitle>
+                  <BlockTitle tag="h5" padding="auto">
+                    Applicant Information
+                  </BlockTitle>
                 </BlockHeadContent>
               </BlockHead>
               <Card className="card-bordered">
@@ -103,17 +102,14 @@ function CustomerDetails() {
                   <li className="data-item">
                     <div className="data-col">
                       <div className="data-label">Full Address</div>
-                    <div className="data-value">{details[0].Fulladdress}</div>
+                      <div className="data-value">{details[0].Fulladdress}</div>
                     </div>
                   </li>
-
-                  
                 </ul>
               </Card>
             </Col>
           </div>
         </BlockTitle>
-
 
         <BlockTitle page>
           <div>
@@ -125,7 +121,6 @@ function CustomerDetails() {
               </BlockHead>
               <Card className="card-bordered">
                 <ul className="data-list is-compact">
-                 
                   <li className="data-item">
                     <div className="data-col">
                       <div className="data-label">First Name</div>
@@ -160,24 +155,14 @@ function CustomerDetails() {
                       <div className="data-value">{details[0].Residentaddress}</div>
                     </div>
                   </li>
-                  
                 </ul>
               </Card>
             </Col>
           </div>
         </BlockTitle>
-
-
-
-
-
-
       </Content>
     </React.Fragment>
-
-
-
   );
 }
 
-export default CustomerDetails;
+export default CustomerThreeDetails;
