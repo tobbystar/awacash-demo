@@ -24,12 +24,11 @@ import { Link, useParams } from "react-router-dom";
 function CustomerThreeDetails() {
   const { id } = useParams();
 
-  // const details = customerData.filter((e) => e.id === id);
-  const details = customerData;
-  console.log(details);
+  console.log(id);
 
-  // console.log(id);
-  console.log(details[0]);
+  const details = customerData.filter((e) => e.id === id);
+
+  console.log(details);
 
   return (
     <React.Fragment>
@@ -57,6 +56,9 @@ function CustomerThreeDetails() {
                   </BlockTitle>
                 </BlockHeadContent>
               </BlockHead>
+
+              <img src={details[0].image} alt="" />
+
               <Card className="card-bordered">
                 <ul className="data-list is-compact">
                   <li className="data-item">
