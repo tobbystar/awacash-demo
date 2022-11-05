@@ -59,7 +59,7 @@ function CustomerOneDetails({id}) {
 
 
               <img src={details[0].image} alt="" />
-
+              <img src={details[0].avatarBg} alt="" />
               <Card className="card-bordered">
                 <ul className="data-list is-compact">
                   <li className="data-item">

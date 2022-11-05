@@ -2,6 +2,9 @@ import User from "../../../images/avatar/b-sm.jpg";
 import User2 from "../../../images/avatar/c-sm.jpg";
 import User3 from "../../../images/avatar/a-sm.jpg";
 import User4 from "../../../images/avatar/d-sm.jpg";
+import User5 from "../../../images/avatar/d-sm.jpg";
+import User6 from "../../../images/avatar/d-sm.jpg";
+
 
 export const customerData = [
   {
@@ -13,7 +16,6 @@ export const customerData = [
     Middlename: "Iyax",
     BVN: "22345664",
     account: "23243444",
-    avatarBg: "primary",
     email: "abubin@yahoo.com",
     Phonenumber: "+34556644455",
     dob: "23 Sep 1995",
@@ -38,7 +40,7 @@ export const customerData = [
     Lastname: "Grant",
     BVN: "22345664",
     account: "232536444",
-    image: User3,
+    image: User2,
     avatarBg: "primary",
     check: false,
     doc: "NationalID",
@@ -56,7 +58,7 @@ export const customerData = [
     BVN: "22345664",
     account: "23243784",
     avatarBg: "primary",
-    image: User,
+    image: User3,
     doc: "Passport",
     check: false,
     front: true,
@@ -71,6 +73,7 @@ export const customerData = [
     Firstname: "Tommy ",
     Lastname: "Vasquez",
     BVN: "22345664",
+    image: User4,
     account: "23243784",
     avatarBg: "purple",
     doc: "Driving ID",
@@ -87,6 +90,7 @@ export const customerData = [
     Firstname: "Alejandro ",
     Lastname: "Haynes",
     BVN: "22345664",
+    image: User5,
     account: "22543444",
     avatarBg: "teal",
     doc: "Passport",
@@ -105,7 +109,7 @@ export const customerData = [
     BVN: "22345664",
     account: "28243444",
     avatarBg: "primary",
-    image: User4,
+    image: User6,
     doc: "Passport",
     check: false,
     front: true,

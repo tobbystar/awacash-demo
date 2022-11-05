@@ -21,10 +21,10 @@ import { customerData } from "./CustomerData";
 
 import { Link, useParams } from "react-router-dom";
 
-function CustomerTwoDetails() {
-  const { id } = useParams();
+function CustomerTwoDetails({id}) {
 
-  console.log(id);
+  //const {id} = props;
+  //console.log(props);
 
   const details = customerData.filter((e) => e.id === id);
 
@@ -47,7 +47,7 @@ function CustomerTwoDetails() {
         </BlockHeadContent>
 
         <BlockTitle page>
-          <div>
+          <Content>
             <Col lg="6">
               <BlockHead>
                 <BlockHeadContent>
@@ -120,7 +120,7 @@ function CustomerTwoDetails() {
                 </ul>
               </Card>
             </Col>
-          </div>
+          </Content>
         </BlockTitle>
       </Content>
     </React.Fragment>

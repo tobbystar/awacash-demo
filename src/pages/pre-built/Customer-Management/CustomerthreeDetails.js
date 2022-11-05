@@ -21,14 +21,25 @@ import { customerData } from "./CustomerData";
 
 import { Link, useParams } from "react-router-dom";
 
-function CustomerThreeDetails() {
-  const { id } = useParams();
+function CustomerThreeDetails({id}) {
 
-  console.log(id);
+  //const {id} = props;
+  //console.log(props);
 
   const details = customerData.filter((e) => e.id === id);
 
   console.log(details);
+
+
+
+// function CustomerThreeDetails() {
+//   const { id } = useParams();
+//
+//   console.log(id);
+//
+//   const details = customerData.filter((e) => e.id === id);
+//
+//   console.log(details);
 
   return (
     <React.Fragment>
@@ -47,7 +58,7 @@ function CustomerThreeDetails() {
         </BlockHeadContent>
 
         <BlockTitle page>
-          <div>
+          <Content>
             <Col lg="6">
               <BlockHead>
                 <BlockHeadContent>
@@ -132,11 +143,11 @@ function CustomerThreeDetails() {
                 </ul>
               </Card>
             </Col>
-          </div>
+          </Content>
         </BlockTitle>
 
         <BlockTitle page>
-          <div>
+          <Content>
             <Col lg="6">
               <BlockHead>
                 <BlockHeadContent>
@@ -189,7 +200,7 @@ function CustomerThreeDetails() {
                 </ul>
               </Card>
             </Col>
-          </div>
+          </Content>
         </BlockTitle>
       </Content>
     </React.Fragment>
