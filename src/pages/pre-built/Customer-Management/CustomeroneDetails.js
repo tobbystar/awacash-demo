@@ -21,10 +21,10 @@ import { customerData } from "./CustomerData";
 
 import { Link, useParams } from "react-router-dom";
 
-function CustomerOneDetails() {
-  const { id } = useParams();
+function CustomerOneDetails({id}) {
 
-  console.log(id);
+  //const {id} = props;
+  //console.log(props);
 
   const details = customerData.filter((e) => e.id === id);
 
@@ -33,8 +33,8 @@ function CustomerOneDetails() {
   return (
     <React.Fragment>
       <Head title="Customer Details "></Head>
-      <Content>
-        <BlockHeadContent>
+      <Content >
+        <BlockHeadContent className="back-arrow">
           <Link to={`${process.env.PUBLIC_URL}/customer-management`}>
             <Button color="light" outline className="bg-white d-none d-sm-inline-flex align='right'">
               <Icon name="arrow-left"></Icon>
@@ -47,7 +47,7 @@ function CustomerOneDetails() {
         </BlockHeadContent>
 
         <BlockTitle page>
-          <div>
+          <Content>
             <Col lg="6">
               <BlockHead>
                 <BlockHeadContent>
@@ -56,6 +56,7 @@ function CustomerOneDetails() {
                   </BlockTitle>
                 </BlockHeadContent>
               </BlockHead>
+
 
               <img src={details[0].image} alt="" />
 
@@ -114,11 +115,11 @@ function CustomerOneDetails() {
                 </ul>
               </Card>
             </Col>
-          </div>
+          </Content>
         </BlockTitle>
 
         <BlockTitle page>
-          <div>
+          <Content>
             <Col lg="6">
               <BlockHead>
                 <BlockHeadContent>
@@ -164,7 +165,7 @@ function CustomerOneDetails() {
                 </ul>
               </Card>
             </Col>
-          </div>
+          </Content>
         </BlockTitle>
       </Content>
     </React.Fragment>

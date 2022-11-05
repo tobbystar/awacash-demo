@@ -1,15 +1,16 @@
 .data{
     &-list{
         &:not(:first-child){
-            margin-top: 1.5rem;
+            margin-top: 2rem;
         }
     }
     &-item{
         position: relative;
-        padding: 1rem 1.25rem;
+        padding: 1.5rem 1.5rem;
         display: flex;
         align-items: center;
         cursor: pointer;
+        font-size: 0.9375rem;
         .icon{
             color: $base-light;
             text-align: center;
@@ -70,6 +71,7 @@
     &-value{
         color: $base-text;
         font-size: 0.9375rem;
+        align-items: center;
     }
     &-more{
         position: relative;
@@ -133,6 +135,10 @@
     }
 }
 
+.back-arrow{
+    padding: 5px;
+}
+
 @include media-breakpoint-up(md){
     .data{
         &-list{
@@ -191,4 +197,11 @@
 .is-medium .data-item{
     padding-top: 1.125rem;
     padding-bottom: 1.125rem;
+}
+
+
+.back-arrow{
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+
 }

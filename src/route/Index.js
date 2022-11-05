@@ -187,10 +187,7 @@ const Pages = () => {
         <Route exact path={`${process.env.PUBLIC_URL}/transaction-basic`} component={TransListBasic}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/transaction-crypto`} component={TransListCrypto}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/product-list`} component={ProductList}></Route>
-        <Route exact path={`${process.env.PUBLIC_URL}/customer-details/:id`} component={CustomerDetails}></Route>
-        <Route exact path={`${process.env.PUBLIC_URL}/customer-details/:id`} component={CustomerOneDetails}></Route>
-        <Route exact path={`${process.env.PUBLIC_URL}/customer-details/:id`} component={CustomerTwoDetails}></Route>
-        <Route exact path={`${process.env.PUBLIC_URL}/customer-details/:id`} component={CustomerThreeDetails}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/customer-details/:id/:level`} component={CustomerDetails}></Route>
 
         
 

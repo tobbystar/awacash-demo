@@ -24,17 +24,19 @@ import CustomerThreeDetails from "./CustomerThreeDetails";
 
 import { Link, useParams } from "react-router-dom";
 
-const CustomerDetails = ({ match }) => {
-  const [level, setLevel] = useState();
+const CustomerDetails = () => {
+  //const [level, setLevel] = useState();
 
-  const id = match.params.id;
-
+  const { id,level } = useParams();
+  //console.log(id,typeof level);
   return (
     <React.Fragment>
       <Head title="Customer Details "></Head>
       <Content>
         <BlockTitle page>
-          {id === "1" ? <CustomerOneDetails /> : id === "2" ? <CustomerTwoDetails /> : <CustomerThreeDetails />}
+          {level === "1" && <CustomerOneDetails id={id} />}
+          {level === "2" && <CustomerTwoDetails id={id}/>}
+          {level === "3" && <CustomerThreeDetails id={id}/>}
         </BlockTitle>
       </Content>
     </React.Fragment>
