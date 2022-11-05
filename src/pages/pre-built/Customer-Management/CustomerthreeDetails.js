@@ -128,12 +128,6 @@ function CustomerThreeDetails({id}) {
                   </li>
                   <li className="data-item">
                     <div className="data-col">
-                      <div className="data-label">Resident Address</div>
-                      <div className="data-value">{details[0].residentAddress}</div>
-                    </div>
-                  </li>
-                  <li className="data-item">
-                    <div className="data-col">
                       <div className="data-label">City</div>
                       <div className="data-value">{details[0].city}</div>
                     </div>
@@ -146,7 +140,7 @@ function CustomerThreeDetails({id}) {
                   </li>
                   <li className="data-item">
                     <div className="data-col">
-                      <div className="data-label">Full Address</div>
+                      <div className="data-label">Resident Address</div>
                       <div className="data-value">{details[0].Fulladdress}</div>
                     </div>
                   </li>
