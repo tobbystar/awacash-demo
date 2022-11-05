@@ -34,9 +34,9 @@ function CustomerOneDetails({id}) {
     <React.Fragment>
       <Head title="Customer Details "></Head>
       <Content >
-        <BlockHeadContent className="back-arrow">
+        <BlockHeadContent className="back-arrow" align="right">
           <Link to={`${process.env.PUBLIC_URL}/customer-management`}>
-            <Button color="light" outline className="bg-white d-none d-sm-inline-flex align='right'">
+            <Button color="light" outline className="bg-white d-none d-sm-inline-flex ">
               <Icon name="arrow-left"></Icon>
               <span>Back</span>
             </Button>
@@ -46,8 +46,10 @@ function CustomerOneDetails({id}) {
           </Link>
         </BlockHeadContent>
 
+
+
         <BlockTitle page>
-          <Content>
+          <Content style={{display: "inline-flex"}}>
             <Col lg="6">
               <BlockHead>
                 <BlockHeadContent>
@@ -58,9 +60,12 @@ function CustomerOneDetails({id}) {
               </BlockHead>
 
 
-              <img src={details[0].image} alt="" />
-              <img src={details[0].avatarBg} alt="" />
-              <Card className="card-bordered">
+
+                <img src={details[0].image} alt="" style={{border: '1px solid grey', borderRadius: '20px'
+                  , margin:'20px', boxShadow: '1px 2px 9px #00172D' }}/>
+
+              <Card className="card-bordered" style={{border: '1px solid grey'
+                , boxShadow: '1px 2px 9px #00172D' }}>
                 <ul className="data-list is-compact">
                   <li className="data-item">
                     <div className="data-col">
@@ -88,7 +93,7 @@ function CustomerOneDetails({id}) {
                   </li>
                   <li className="data-item">
                     <div className="data-col">
-                      <div className="data-label">Phonenumber</div>
+                      <div className="data-label">Phone Number</div>
                       <div className="data-value">{details[0].Phonenumber}</div>
                     </div>
                   </li>
@@ -118,15 +123,16 @@ function CustomerOneDetails({id}) {
           </Content>
         </BlockTitle>
 
-        <BlockTitle page>
-          <Content>
+        <BlockTitle page >
+          <Content style={{display: "inline-flex"}}>
             <Col lg="6">
               <BlockHead>
                 <BlockHeadContent>
                   <BlockTitle tag="h5">Next of Kin</BlockTitle>
                 </BlockHeadContent>
               </BlockHead>
-              <Card className="card-bordered">
+              <Card className="card-bordered" style={{border: '1px solid grey'
+                , boxShadow: '1px 2px 9px #00172D' }}>
                 <ul className="data-list is-compact">
                   <li className="data-item">
                     <div className="data-col">
@@ -167,6 +173,8 @@ function CustomerOneDetails({id}) {
             </Col>
           </Content>
         </BlockTitle>
+
+
       </Content>
     </React.Fragment>
   );

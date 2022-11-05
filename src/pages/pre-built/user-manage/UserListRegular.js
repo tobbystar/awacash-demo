@@ -124,6 +124,7 @@ const UserListRegularPage = () => {
     setFormData({
       name: "",
       email: "",
+      role: "",
       balance: "",
       phone: "",
       status: "Active",
@@ -143,7 +144,7 @@ const UserListRegularPage = () => {
       id: data.length + 1,
       avatarBg: "purple",
       name: name,
-      role: "Customer",
+      role: "role",
       email: email,
       balance: balance,
       phone: phone,
@@ -155,7 +156,7 @@ const UserListRegularPage = () => {
     };
     setData([submittedData, ...data]);
     resetForm();
-    setModal({ edit: false }, { add: false });
+    setModal({ edit: false }, { add: true });
   };
 
   // submit function to update a new item
@@ -199,7 +200,7 @@ const UserListRegularPage = () => {
           phone: item.phone,
           balance: item.balance,
         });
-        setModal({ edit: true }, { add: false });
+        setModal({ edit: true }, { add: true });
         setEditedId(id);
       }
     });
@@ -836,7 +837,7 @@ const UserListRegularPage = () => {
             </div>
           </DataTable>
         </Block>
-        <Modal isOpen={modal.add} toggle={() => setModal({ add: false })} className="modal-dialog-centered" size="lg">
+        <Modal isOpen={modal.add} toggle={() => setModal({ add: true })} className="modal-dialog-centered" size="lg">
           <ModalBody>
             <a
               href="#close"
@@ -890,7 +891,7 @@ const UserListRegularPage = () => {
                         className="form-control"
                         type="text"
                         name="name"
-                        defaultValue={formData.email}
+                        defaultValue={formData.role}
                         placeholder="Enter name"
                         ref={register({ required: "This field is required" })}
                       />
@@ -920,18 +921,18 @@ const UserListRegularPage = () => {
                     </FormGroup>
                   </Col>
                   <Col md="6">
-                    <FormGroup>
-                      <label className="form-label">Balance</label>
-                      <input
-                        className="form-control"
-                        type="number"
-                        name="balance"
-                        defaultValue={formData.balance}
-                        placeholder="Balance"
-                        ref={register({ required: "This field is required" })}
-                      />
-                      {errors.balance && <span className="invalid">{errors.balance.message}</span>}
-                    </FormGroup>
+                    {/*<FormGroup>*/}
+                    {/*  <label className="form-label">Balance</label>*/}
+                    {/*  <input*/}
+                    {/*    className="form-control"*/}
+                    {/*    type="number"*/}
+                    {/*    name="balance"*/}
+                    {/*    defaultValue={formData.balance}*/}
+                    {/*    placeholder="Balance"*/}
+                    {/*    ref={register({ required: "This field is required" })}*/}
+                    {/*  />*/}
+                    {/*  {errors.balance && <span className="invalid">{errors.balance.message}</span>}*/}
+                    {/*</FormGroup>*/}
                   </Col>
                   <Col md="6">
                     <FormGroup>
