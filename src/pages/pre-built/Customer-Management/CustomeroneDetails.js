@@ -29,20 +29,28 @@ function CustomerOneDetails({id}) {
   const details = customerData.filter((e) => e.id === id);
 
   console.log(details);
+  const [isHover, setIsHover] = useState(false)
 
   return (
     <React.Fragment>
       <Head title="Customer Details "></Head>
       <Content >
-        <BlockHeadContent className="back-arrow" align="right">
+        <BlockHeadContent >
           <Link to={`${process.env.PUBLIC_URL}/customer-management`}>
-            <Button color="light" outline className="bg-white d-none d-sm-inline-flex ">
-              <Icon name="arrow-left"></Icon>
-              <span>Back</span>
-            </Button>
-            <Button color="light" outline className="btn-icon bg-white d-inline-flex d-sm-none">
-              <Icon name="arrow-left"></Icon>
-            </Button>
+            <div style={{ display: "flex" }}>
+              <Button
+                onMouseEnter={() => setIsHover(true)}
+                onMouseLeave={() => setIsHover(false)}
+                color="light" outline className="bg-white d-none d-sm-inline-flex align='right'"
+                style={{border: '1px solid grey',
+                  // boxShadow: '1px 2px 9px #00172D',
+                  marginLeft: "auto",
+                  transition: 'box-shadow .3s', //added for Smouth transition
+                  boxShadow: `5px 5px 18px 3px  rgba(0,0,0,${isHover ? 0.27 : 0})`}}>
+                <Icon name="arrow-left"></Icon>
+                <span>Back</span>
+              </Button>
+            </div>
           </Link>
         </BlockHeadContent>
 
