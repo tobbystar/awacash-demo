@@ -123,15 +123,16 @@ const UserListCompact = () => {
   };
 
   // function to reset the form
-  // const resetForm = () => {
-  //   setFormData({
-  //     name: "",
-  //     email: "",
-  //     balance: "",
-  //     phone: "",
-  //     status: "Active",
-  //   });
-  // };
+  const resetForm = () => {
+    setFormData({
+      name: "",
+      email: "",
+      role: "",
+      // balance: "",
+      phone: "",
+      status: "Active",
+    });
+  };
 
   // function to close the form modal
   const onFormCancel = () => {
@@ -705,7 +706,7 @@ const UserListCompact = () => {
                         </DataTableRow>
 
                         <DataTableRow size="lg">
-                          <span>{item.role}</span>
+                          <span className="tb-lead">{item.role}</span>
                         </DataTableRow>
 
                         <DataTableRow size="md">
