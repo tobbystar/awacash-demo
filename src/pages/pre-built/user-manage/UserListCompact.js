@@ -142,7 +142,7 @@ const UserListCompact = () => {
 
   // submit function to add a new item
   const onFormSubmit = (submitData) => {
-    const { name, lastname, role, email, phone, address,status } = submitData;
+    const { name, lastname,role, email, phone, address,status } = submitData;
     let submittedData = {
       id: data.length + 1,
       avatarBg: "purple",
@@ -895,6 +895,9 @@ const UserListCompact = () => {
                           onChange={(e) => setFormData({ ...formData, role: e.value })}
                         /> */}
                         <RSelect
+                          className="form-control"
+                          type="text"
+                          name="role"
                           options={roleOptions}
                           defaultValue={{
                             value: formData.role,
@@ -902,7 +905,7 @@ const UserListCompact = () => {
                           }}
                           onChange={(e) => setFormData({ ...formData, role: e.value })}
                         />
-                    
+                      {errors.role && <span className="invalid">{errors.role.message}</span>}
                     </FormGroup>
                   </Col>
 
