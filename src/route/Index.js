@@ -85,6 +85,7 @@ import PricingTable from "../pages/pre-built/pricing-table/PricingTable";
 import GalleryPreview from "../pages/pre-built/gallery/GalleryCardPreview";
 import ReactToastify from "../pages/components/misc/ReactToastify";
 import Transactions from "../pages/pre-built/Transactions/Transactions";
+import ReportManagement from "../pages/pre-built/report-management/ReportManagement";
 import CaseManagement from "../pages/pre-built/case-management/CaseManagement";
 import CustomerManagement from "../pages/pre-built/Customer-Management/CustomerManagement";
 import CardManagement from "../pages/pre-built/cardManagement/ProjectList";
@@ -235,6 +236,7 @@ const Pages = () => {
         <Route exact path={`${process.env.PUBLIC_URL}/image-gallery`} component={GalleryPreview}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/transactions`} component={Transactions}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/case-management`} component={CaseManagement}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/report-management`} component={ReportManagement}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/customer-management`} component={CustomerManagement}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/card-management`} component={CardManagement}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/user-cards`} component={userCards}></Route>

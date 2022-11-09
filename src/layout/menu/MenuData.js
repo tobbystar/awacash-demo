@@ -46,6 +46,14 @@ const menu = [
     ],
   },
 
+  {
+    icon: "report",
+    text: "Report Management",
+    active: false,
+    link: "/report-management",
+  },
+
+
   // {
   //   icon: "bitcoin-cash",
   //   text: "Crypto Dashboard",

@@ -889,26 +889,17 @@ const UserListCompact = () => {
                   <Col md="6">
                     <FormGroup>
                       <label className="form-label">Role</label>
-                      {/* <RSelect
-                          options={roleOptions}
-                          defaultValue={{ value: "Manager", label: "Manager" }}
-                          onChange={(e) => setFormData({ ...formData, role: e.value })}
-                        /> */}
-                        <RSelect
-                          className="form-control"
-                          type="text"
-                          name="role"
-                          options={roleOptions}
-                          defaultValue={{
-                            value: formData.role,
-                            label: formData.role,
-                          }}
-                          onChange={(e) => setFormData({ ...formData, role: e.value })}
-                        />
-                      {errors.role && <span className="invalid">{errors.role.message}</span>}
+                      <RSelect
+                        options={roleOptions}
+                        defaultValue={{
+                          value: formData.role,
+                          label: formData.role,
+                        }}
+                        onChange={(e) => setFormData({ ...formData, role: e.value })}
+                      />
+
                     </FormGroup>
                   </Col>
-
 
                   <Col md="6">
                     <FormGroup>
