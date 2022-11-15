@@ -387,6 +387,9 @@ const CustomerManagement = ({ history }) => {
                 <DataTableRow size="">
                   <span>Account Level</span>
                 </DataTableRow>
+                <DataTableRow size="">
+                  <span>Status</span>
+                </DataTableRow>
 
                 {/* <DataTableRow className="nk-tb-col-tools">&nbsp;</DataTableRow> */}
               </DataTableHead>
@@ -468,16 +471,16 @@ const CustomerManagement = ({ history }) => {
                                     text="Approve"
                                   />
                                 </li>
-                                <li className="nk-tb-action-hidden" onClick={() => onRejectClick(item.id)}>
-                                  <TooltipComponent
-                                    tag="a"
-                                    containerClassName="btn btn-trigger btn-icon"
-                                    id={"reject" + item.id}
-                                    icon="cross-fill-c"
-                                    direction="top"
-                                    text="Reject"
-                                  />
-                                </li>
+                                {/*<li className="nk-tb-action-hidden" onClick={() => onRejectClick(item.id)}>*/}
+                                {/*  <TooltipComponent*/}
+                                {/*    tag="a"*/}
+                                {/*    containerClassName="btn btn-trigger btn-icon"*/}
+                                {/*    id={"reject" + item.id}*/}
+                                {/*    icon="cross-fill-c"*/}
+                                {/*    direction="top"*/}
+                                {/*    text="Reject"*/}
+                                {/*  />*/}
+                                {/*</li>*/}
                               </React.Fragment>
                             )}
                             <li>
@@ -525,7 +528,7 @@ const CustomerManagement = ({ history }) => {
                                           }}
                                         >
                                           <Icon name="na"></Icon>
-                                          <span>Reject User</span>
+                                          <span>Freeze</span>
                                         </DropdownItem>
                                       </li>
                                     ) : (
@@ -539,21 +542,24 @@ const CustomerManagement = ({ history }) => {
                                             }}
                                           >
                                             <Icon name="check-thick"></Icon>
-                                            <span>Approve</span>
+                                            <span>Unfreeze</span>
                                           </DropdownItem>
                                         </li>
-                                        <li onClick={() => onRejectClick(item.id)}>
-                                          <DropdownItem
-                                            tag="a"
-                                            href="#suspend"
-                                            onClick={(ev) => {
-                                              ev.preventDefault();
-                                            }}
-                                          >
-                                            <Icon name="na"></Icon>
-                                            <span>Suspend User</span>
-                                          </DropdownItem>
-                                        </li>
+                                        {/*<li onClick={() => onRejectClick(item.id)}>*/}
+                                        {/*  <DropdownItem*/}
+                                        {/*    tag="a"*/}
+                                        {/*    href="#suspend"*/}
+                                        {/*    onClick={(ev) => {*/}
+                                        {/*      ev.preventDefault();*/}
+                                        {/*    }}*/}
+                                        {/*  >*/}
+                                        {/*    <Icon name="na"></Icon>*/}
+                                        {/*    <span>Suspend User</span>*/}
+                                        {/*  </DropdownItem>*/}
+                                        {/*</li>*/}
+                                        {/*<li>*/}
+
+                                        {/*</li>*/}
                                       </React.Fragment>
                                     )}
                                   </ul>

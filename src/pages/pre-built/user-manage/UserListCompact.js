@@ -272,7 +272,7 @@ const UserListCompact = () => {
                 Sub-Admin Lists
               </BlockTitle>
               <BlockDes className="text-soft">
-                <p>---</p>
+                <p></p>
               </BlockDes>
             </BlockHeadContent>
             <BlockHeadContent>

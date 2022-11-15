@@ -122,10 +122,41 @@ function CustomerTwoDetails({id}) {
                       <div className="data-value">{details[0].Fulladdress}</div>
                     </div>
                   </li>
+                </ul>
+              </Card>
+            </Col>
+          </Content>
+        </BlockTitle>
+
+        <BlockTitle page>
+          <Content>
+            <Col lg="6">
+              <BlockHead>
+                <BlockHeadContent>
+                  <BlockTitle tag="h5">Utility Bills</BlockTitle>
+                </BlockHeadContent>
+              </BlockHead>
+              <Card className="card-bordered" style={{border: '1px solid grey'
+                , boxShadow: '1px 2px 9px #00172D' }}>
+                <ul className="data-list is-compact">
                   <li className="data-item">
                     <div className="data-col">
-                      <div className="data-label">Utility bill</div>
-                      <div className="data-value">{details[0].bill}</div>
+                      <div className="data-label">Type of Document</div>
+                      <div className="data-value">PDF</div>
+                    </div>
+                  </li>
+
+                  <li className="data-item">
+                    <div className="data-col">
+                      <div className="data-label">Type of Document</div>
+                      <div className="data-value">JPEG</div>
+                    </div>
+                  </li>
+
+                  <li className="data-item">
+                    <div className="data-col">
+                      <div className="data-label">Type of Document</div>
+                      <div className="data-value">PNG</div>
                     </div>
                   </li>
                 </ul>
@@ -133,9 +164,12 @@ function CustomerTwoDetails({id}) {
             </Col>
           </Content>
         </BlockTitle>
+
       </Content>
     </React.Fragment>
+
   );
+
 }
 
 export default CustomerTwoDetails;

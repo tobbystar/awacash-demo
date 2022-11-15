@@ -28,9 +28,9 @@ const Header = ({ fixed, theme, className, setVisibility, ...props }) => {
           <div className="nk-header-brand d-xl-none">
             <Logo />
           </div>
-          <div className="nk-header-news d-none d-xl-block">
-            <News />
-          </div>
+          {/*<div className="nk-header-news d-none d-xl-block">*/}
+          {/*  <News />*/}
+          {/*</div>*/}
           <div className="nk-header-tools">
             <ul className="nk-quick-nav">
               <li className="user-dropdown"  onClick={() => setVisibility(false)}>
