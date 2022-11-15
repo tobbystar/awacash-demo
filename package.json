@@ -1,6 +1,6 @@
 {
-  "homepage": "https://tobbystar.github.io/awacash-demo",
-  "name": "DashliteReact-Demo1",
+  "homepage": "http://tobbystar.github.io/awacash-demo",
+  "name": "awacash-demo",
   "version": "1.2.0",
   "private": true,
   "dependencies": {
