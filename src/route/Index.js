@@ -85,8 +85,22 @@ import PricingTable from "../pages/pre-built/pricing-table/PricingTable";
 import GalleryPreview from "../pages/pre-built/gallery/GalleryCardPreview";
 import ReactToastify from "../pages/components/misc/ReactToastify";
 import Transactions from "../pages/pre-built/Transactions/Transactions";
-import ReportManagement from "../pages/pre-built/report-management/ReportManagement";
-import CustomerReport from "../pages/pre-built/report-management/CustomerReport";
+
+import CustomerReportList from "../pages/pre-built/report-management/CustomerReportList";
+import CustomerReportDetails from "../pages/pre-built/report-management/CustomerReportDetails";
+
+import TransactionReportList from "../pages/pre-built/report-management/TransactionReportList";
+import TransactionReportDetails from "../pages/pre-built/report-management/TransactionReportDetails";
+
+import UserReportList from "../pages/pre-built/report-management/UserReportList";
+import UserReportDetails from "../pages/pre-built/report-management/UserReportDetails";
+
+import LoanReportList from "../pages/pre-built/report-management/LoanReportList";
+import LoanReportDetails from "../pages/pre-built/report-management/LoanReportDetails";
+
+import SavingsReportList from "../pages/pre-built/report-management/SavingsReportList";
+import SavingsReportDetails from "../pages/pre-built/report-management/SavingsReportDetails";
+
 import CaseManagement from "../pages/pre-built/case-management/CaseManagement";
 import CustomerManagement from "../pages/pre-built/Customer-Management/CustomerManagement";
 import CardManagement from "../pages/pre-built/cardManagement/ProjectList";
@@ -237,8 +251,22 @@ const Pages = () => {
         <Route exact path={`${process.env.PUBLIC_URL}/image-gallery`} component={GalleryPreview}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/transactions`} component={Transactions}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/case-management`} component={CaseManagement}></Route>
-        <Route exact path={`${process.env.PUBLIC_URL}/report-management`} component={ReportManagement}></Route>
-        <Route exact path={`${process.env.PUBLIC_URL}/customer-report`} component={CustomerReport}></Route>
+
+        <Route exact path={`${process.env.PUBLIC_URL}/customer-report-list`} component={CustomerReportList}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/customer-report-details/:id`} component={CustomerReportDetails}></Route>
+
+        <Route exact path={`${process.env.PUBLIC_URL}/user-report-list`} component={UserReportList}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/user-report-details/:id`} component={UserReportDetails}></Route>
+
+        <Route exact path={`${process.env.PUBLIC_URL}/transaction-report-list`} component={TransactionReportList}></Route>
+      <Route exact path={`${process.env.PUBLIC_URL}/transaction-report-details/:id`} component={TransactionReportDetails}></Route>
+
+        <Route exact path={`${process.env.PUBLIC_URL}/loan-report-list`} component={LoanReportList}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/loan-report-details/:id`} component={LoanReportDetails}></Route>
+
+        <Route exact path={`${process.env.PUBLIC_URL}/savings-report-list`} component={SavingsReportList}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/savings-report-details/:id`} component={SavingsReportDetails}></Route>
+
         <Route exact path={`${process.env.PUBLIC_URL}/customer-management`} component={CustomerManagement}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/card-management`} component={CardManagement}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/user-cards`} component={userCards}></Route>

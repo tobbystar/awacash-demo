@@ -50,37 +50,32 @@ const menu = [
     icon: "report",
     text: "Report Management",
     active: false,
-    link: "/report-management",
     subMenu: [
+
       {
-        text: "User Report",
-        link: ""
+        text: "Transaction Report",
+        link: "/transaction-report-list",
       },
       {
         text: "Customer Report",
-        link: "/customer-report",
+        link: "/customer-report-list",
       },
+      {
+        text: "User Report",
+        link: "/user-report-list",
+      },
+
       {
         text: "Loan Report",
-        link: ""
+        link: "/loan-report-list",
       },
+
       {
-        text: "Loan Disbursement",
-        link: ""
+        text: "Savings Report",
+        link: "/savings-report-list",
       },
-      {
-        text: "Status Report",
-        link: ""
-      },
-      {
-        text: "Transaction Report",
-        link: ""
-      },
-      {
-        text: "Cardrequest Report",
-        link: ""
-      },
-    ],
+
+    ]
   },
 
 
@@ -271,21 +266,21 @@ const menu = [
   //     },
   //   ],
   // },
-  // {
-  //   icon: "file-docs",
-  //   text: "Invoice",
-  //   active: false,
-  //   subMenu: [
-  //     {
-  //       text: "Invoice List",
-  //       link: "/invoice-list",
-  //     },
-  //     {
-  //       text: "Invoice Details",
-  //       link: "/invoice-details/1",
-  //     },
-  //   ],
-  // },
+   {
+    icon: "file-docs",
+    text: "Invoice",
+    active: false,
+    subMenu: [
+      {
+        text: "Invoice List",
+        link: "/invoice-list",
+      },
+      {
+        text: "Invoice Details",
+        link: "/invoice-details/1",
+      },
+    ],
+  },
   // {
   //   icon: "view-col",
   //   text: "Pricing Table",
