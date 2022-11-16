@@ -51,6 +51,36 @@ const menu = [
     text: "Report Management",
     active: false,
     link: "/report-management",
+    subMenu: [
+      {
+        text: "User Report",
+        link: ""
+      },
+      {
+        text: "Customer Report",
+        link: "/customer-report",
+      },
+      {
+        text: "Loan Report",
+        link: ""
+      },
+      {
+        text: "Loan Disbursement",
+        link: ""
+      },
+      {
+        text: "Status Report",
+        link: ""
+      },
+      {
+        text: "Transaction Report",
+        link: ""
+      },
+      {
+        text: "Cardrequest Report",
+        link: ""
+      },
+    ],
   },
 
 
