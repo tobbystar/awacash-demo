@@ -26,6 +26,7 @@ import {
   PreviewAltCard,
   BlockBetween,
 } from "../components/Component";
+import TransListBasic from "./pre-built/Transactions/Transactions";
 
 const Homepage = () => {
   const [sm, updateSm] = useState(false);
@@ -144,9 +145,15 @@ const Homepage = () => {
               </PreviewAltCard>
             </Col>
 
-            <Col xxl="8">
+            {/*<Col xxl="8">*/}
+            {/*  <Card className="card-bordered card-full">*/}
+            {/*    <TransactionTable />*/}
+            {/*  </Card>*/}
+            {/*</Col>*/}
+
+            <Col xl="12" xxl="8">
               <Card className="card-bordered card-full">
-                <TransactionTable />
+                <TransListBasic />
               </Card>
             </Col>
 

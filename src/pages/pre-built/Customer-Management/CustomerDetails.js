@@ -17,39 +17,26 @@ import {
 } from "../../../components/Component";
 import { findUpper } from "../../../utils/Utils";
 
-
-
 import { customerData } from "./CustomerData";
-import LevelOneData from "./LevelOneData";
+import CustomerOneDetails from "./CustomerOneDetails";
+import CustomerTwoDetails from "./CustomerTwoDetails";
+import CustomerThreeDetails from "./CustomerThreeDetails";
 
-import { Link } from "react-router-dom";
-import LevelTwoData from "./LevelTwoData";
-import LevelThreeData from "./LevelThreeData";
+import { Link, useParams } from "react-router-dom";
 
-const CustomerDetails = ({ match }) => {
-  const [user, setUser] = useState();
-  const id = match.params.id;
+const CustomerDetails = () => {
+  //const [level, setLevel] = useState();
 
-  useEffect(() => {
-    console.log(id);
-
-    // if (id !== undefined || null || "") {
-    //   let spUser = data.find((item) => item.id === id);
-    //   +setUser(spUser);
-    // } else {
-    //   setUser(data[0]);
-    // }
-  });
-
+  const { id,level } = useParams();
+  //console.log(id,typeof level);
   return (
     <React.Fragment>
       <Head title="Customer Details "></Head>
       <Content>
         <BlockTitle page>
-
-
-          {id === "1" ? <LevelOneData /> : id === "2" ? <LevelTwoData /> : <LevelThreeData />}
-
+          {level === "1" && <CustomerOneDetails id={id} />}
+          {level === "2" && <CustomerTwoDetails id={id}/>}
+          {level === "3" && <CustomerThreeDetails id={id}/>}
         </BlockTitle>
       </Content>
     </React.Fragment>

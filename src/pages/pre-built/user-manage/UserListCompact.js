@@ -55,7 +55,7 @@ const UserListCompact = () => {
   const [formData, setFormData] = useState({
     name: "",
     lastname: "",
-    role: "Manager",
+    role: "",
     email: "",
     //balance: "",
     phone: "",
@@ -123,15 +123,16 @@ const UserListCompact = () => {
   };
 
   // function to reset the form
-  // const resetForm = () => {
-  //   setFormData({
-  //     name: "",
-  //     email: "",
-  //     balance: "",
-  //     phone: "",
-  //     status: "Active",
-  //   });
-  // };
+  const resetForm = () => {
+    setFormData({
+      name: "",
+      email: "",
+      role: "",
+      // balance: "",
+      phone: "",
+      status: "Active",
+    });
+  };
 
   // function to close the form modal
   const onFormCancel = () => {
@@ -141,7 +142,7 @@ const UserListCompact = () => {
 
   // submit function to add a new item
   const onFormSubmit = (submitData) => {
-    const { name, lastname, role, email, phone, address,status } = submitData;
+    const { name, lastname,role, email, phone, address,status } = submitData;
     let submittedData = {
       id: data.length + 1,
       avatarBg: "purple",
@@ -271,7 +272,7 @@ const UserListCompact = () => {
                 Sub-Admin Lists
               </BlockTitle>
               <BlockDes className="text-soft">
-                <p>---</p>
+                <p></p>
               </BlockDes>
             </BlockHeadContent>
             <BlockHeadContent>
@@ -705,7 +706,7 @@ const UserListCompact = () => {
                         </DataTableRow>
 
                         <DataTableRow size="lg">
-                          <span>{item.role}</span>
+                          <span className="tb-lead">{item.role}</span>
                         </DataTableRow>
 
                         <DataTableRow size="md">
@@ -888,23 +889,17 @@ const UserListCompact = () => {
                   <Col md="6">
                     <FormGroup>
                       <label className="form-label">Role</label>
-                      {/* <RSelect
-                          options={roleOptions}
-                          defaultValue={{ value: "Manager", label: "Manager" }}
-                          onChange={(e) => setFormData({ ...formData, role: e.value })}
-                        /> */}
-                        <RSelect
-                          options={roleOptions}
-                          defaultValue={{
-                            value: formData.role,
-                            label: formData.role,
-                          }}
-                          onChange={(e) => setFormData({ ...formData, role: e.value })}
-                        />
-                    
+                      <RSelect
+                        options={roleOptions}
+                        defaultValue={{
+                          value: formData.role,
+                          label: formData.role,
+                        }}
+                        onChange={(e) => setFormData({ ...formData, role: e.value })}
+                      />
+
                     </FormGroup>
                   </Col>
-
 
                   <Col md="6">
                     <FormGroup>

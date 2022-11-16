@@ -5,14 +5,15 @@ import { Card } from "reactstrap";
 import { Icon } from "../../../components/Component";
 import { customerData } from "./CustomerData";
 
-function LevelTwoData() {
+function CustomerQuickView() {
+  const [user, setUser] = useState(customerData);
   return (
     <div>
+
       <Col lg="6">
         <BlockHead>
           <BlockHeadContent>
             <BlockTitle tag="h5">Applicant Information</BlockTitle>
-            {/* <p>Tier One</p> */}
           </BlockHeadContent>
         </BlockHead>
         <Card className="card-bordered">
@@ -37,12 +38,6 @@ function LevelTwoData() {
                 <div className="data-value">Adeagbo</div>
               </div>
             </li>
-            {/* <li className="data-item">
-              <div className="data-col">
-                <div className="data-label">Middle Name</div>
-                <div className="data-value">{user.name.split(" ").pop()}</div>
-              </div>
-            </li> */}
             <li className="data-item">
               <div className="data-col">
                 <div className="data-label">Email Address</div>
@@ -73,45 +68,15 @@ function LevelTwoData() {
                 <div className="data-value">28 Oct, 2015</div>
               </div>
             </li>
-            {/* <li className="data-item">
-              <div className="data-col">
-                <div className="data-label">Country of Residence</div>
-                <div className="data-value">Kenya</div>
-              </div>
-            </li> */}
             <li className="data-item">
               <div className="data-col">
                 <div className="data-label">Full Address</div>
                 <div className="data-value">6516, Eldoret, Uasin Gishu, 30100</div>
               </div>
             </li>
-            {/* <li className="data-item">
-              <div className="data-col">
-                <div className="data-label">Wallet Type</div>
-                <div className="data-value">Bitcoin</div>
-              </div>
-            </li> */}
-            {/* <li className="data-item">
-              <div className="data-col">
-                <div className="data-label">Wallet Address</div>
-                <div className="data-value text-break">1F1tAaz5x1HUXrCNLbtMDqcw6o5GNn4xqX</div>
-              </div>
-            </li> */}
-            {/* <li className="data-item">
-              <div className="data-col">
-                <div className="data-label">Telegram</div>
-                <div className="data-value">
-                  <span>@tokenlite</span>{" "}
-                  <a href="https://t.me/tokenlite">
-                    <Icon name="telegram"></Icon>
-                  </a>
-                </div>
-              </div>
-            </li> */}
+            <h5> Next of Kin:</h5>
 
-              <h5> Next of Kin:</h5>
-
-              <li className="data-item">
+            <li className="data-item">
               <div className="data-col">
                 <div className="data-label">First Name</div>
                 <div className="data-value">Tolulope</div>
@@ -124,7 +89,6 @@ function LevelTwoData() {
                 <div className="data-value">Tife</div>
               </div>
             </li>
-
 
             <li className="data-item">
               <div className="data-col">
@@ -146,19 +110,11 @@ function LevelTwoData() {
                 <div className="data-value">No. 8 Nelson street</div>
               </div>
             </li>
-
-
-
           </ul>
         </Card>
       </Col>
     </div>
-
-            
-
-
-
   );
 }
 
-export default LevelTwoData;
+export default CustomerQuickView;

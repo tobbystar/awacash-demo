@@ -46,6 +46,44 @@ const menu = [
     ],
   },
 
+  {
+    icon: "report",
+    text: "Report Management",
+    active: false,
+    link: "/report-management",
+    subMenu: [
+      {
+        text: "User Report",
+        link: ""
+      },
+      {
+        text: "Customer Report",
+        link: "/customer-report",
+      },
+      {
+        text: "Loan Report",
+        link: ""
+      },
+      {
+        text: "Loan Disbursement",
+        link: ""
+      },
+      {
+        text: "Status Report",
+        link: ""
+      },
+      {
+        text: "Transaction Report",
+        link: ""
+      },
+      {
+        text: "Cardrequest Report",
+        link: ""
+      },
+    ],
+  },
+
+
   // {
   //   icon: "bitcoin-cash",
   //   text: "Crypto Dashboard",
@@ -261,33 +299,33 @@ const menu = [
   // {
   //   heading: "Misc Pages",
   // },
-  {
-    icon: "signin",
-    text: "Auth Pages",
-    active: false,
-    subMenu: [
-      {
-        text: "Login / Signin",
-        link: "/auth-login",
-        newTab: true,
-      },
-      {
-        text: "Register / Signup",
-        link: "/auth-register",
-        newTab: true,
-      },
-      {
-        text: "Forgot Password",
-        link: "/auth-reset",
-        newTab: true,
-      },
-      {
-        text: "Success / Confirm",
-        link: "/auth-success",
-        newTab: true,
-      },
-    ],
-  },
+  // {
+  //   icon: "signin",
+  //   text: "Auth Pages",
+  //   active: false,
+  //   subMenu: [
+  //     {
+  //       text: "Login / Signin",
+  //       link: "/auth-login",
+  //       newTab: true,
+  //     },
+  //     {
+  //       text: "Register / Signup",
+  //       link: "/auth-register",
+  //       newTab: true,
+  //     },
+  //     {
+  //       text: "Forgot Password",
+  //       link: "/auth-reset",
+  //       newTab: true,
+  //     },
+  //     {
+  //       text: "Success / Confirm",
+  //       link: "/auth-success",
+  //       newTab: true,
+  //     },
+  //   ],
+  // },
   // {
   //   icon: "files",
   //   text: "Error Pages",

@@ -32,22 +32,21 @@ import {
   PaginationComponent,
   RSelect,
 } from "../../../components/Component";
-import { customerData, filterStatus, filterDoc, bulkActionKycOptions } from "./CustomerData";
+import { reportManagementData, filterStatus, filterDoc, bulkActionKycOptions } from "./ReportManagementData";
 import { findUpper } from "../../../utils/Utils";
 import { Link } from "react-router-dom";
 
-const CustomerManagement = ({ history }) => {
+const ReportManagement = ({ history }) => {
   const [onSearch, setonSearch] = useState(true);
   const [onSearchText, setSearchText] = useState("");
   const [tablesm, updateTableSm] = useState(false);
-  const [data, setData] = useState(customerData);
+  const [data, setData] = useState(reportManagementData);
   const [viewModal, setViewModal] = useState(false);
   const [detail, setDetail] = useState({});
   const [actionText, setActionText] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [itemPerPage, setItemPerPage] = useState(10);
   const [sort, setSortState] = useState("");
-  const [currentLevel, setCurrentLevel] = useState(1);
 
   // Sorting data
   const sortFunc = (params) => {
@@ -64,12 +63,12 @@ const CustomerManagement = ({ history }) => {
   // Changing state value when searching name
   useEffect(() => {
     if (onSearchText !== "") {
-      const filteredObject = customerData.filter((item) => {
+      const filteredObject = reportManagementData.filter((item) => {
         return item.name.toLowerCase().includes(onSearchText.toLowerCase());
       });
       setData([...filteredObject]);
     } else {
-      setData([...customerData]);
+      setData([...reportManagementData]);
     }
   }, [onSearchText]);
 
@@ -156,8 +155,10 @@ const CustomerManagement = ({ history }) => {
         <BlockHead size="sm">
           <BlockBetween>
             <BlockHeadContent>
-              <BlockTitle page>Customer Management</BlockTitle>
+              <BlockTitle page>Report Management</BlockTitle>
+
             </BlockHeadContent>
+
           </BlockBetween>
         </BlockHead>
 
@@ -165,7 +166,10 @@ const CustomerManagement = ({ history }) => {
           <DataTable className="card-stretch">
             <div className="card-inner position-relative card-tools-toggle">
               <div className="card-title-group">
-                <div className="card-tools"></div>
+                <div className="card-tools">
+
+
+                </div>
                 <div className="card-tools mr-n1">
                   <ul className="btn-toolbar gx-1">
                     <li>
@@ -370,25 +374,28 @@ const CustomerManagement = ({ history }) => {
                   </div>
                 </DataTableRow>
                 <DataTableRow>
-                  <span>Firstname</span>
+                  <span>SN</span>
                 </DataTableRow>
                 <DataTableRow size="">
-                  <span>Lastname</span>
+                  <span>User Report</span>
                 </DataTableRow>
                 <DataTableRow size="">
-                  <span>BVN</span>
+                  <span>Customer Report</span>
                 </DataTableRow>
                 <DataTableRow size="">
-                  <span>Account Number</span>
+                  <span>loan disbursement</span>
                 </DataTableRow>
                 <DataTableRow size="">
-                  <span>Date Created</span>
+                  <span>Status Report</span>
                 </DataTableRow>
                 <DataTableRow size="">
-                  <span>Account Level</span>
+                  <span>Saving Report</span>
                 </DataTableRow>
                 <DataTableRow size="">
-                  <span>Status</span>
+                  <span>Transaction Report</span>
+                </DataTableRow>
+                <DataTableRow size="">
+                  <span>Card Request Report</span>
                 </DataTableRow>
 
                 {/* <DataTableRow className="nk-tb-col-tools">&nbsp;</DataTableRow> */}
@@ -396,59 +403,98 @@ const CustomerManagement = ({ history }) => {
 
               {currentItems.length > 0
                 ? currentItems.map((item) => {
-                    return (
-                      <DataTableItem key={item.id}>
-                        <DataTableRow className="nk-tb-col-check">
-                          <div className="custom-control custom-control-sm custom-checkbox notext">
-                            <input
-                              type="checkbox"
-                              className="custom-control-input form-control"
-                              defaultChecked={item.check}
-                              id={item.id + "uid1"}
-                              key={Math.random()}
-                              onChange={(e) => onSelectChange(e, item.id)}
-                            />
-                            <label className="custom-control-label" htmlFor={item.id + "uid1"}></label>
-                          </div>
-                        </DataTableRow>
-                        <DataTableRow>
-                          <span className="tb-lead">{item.Firstname}</span>
-                        </DataTableRow>
-                        <DataTableRow size="">
-                          <span className="tb-lead-sub">{item.Lastname}</span>
-                        </DataTableRow>
-                        <DataTableRow size="">
-                          <span>{item.BVN}</span>
-                        </DataTableRow>
-                        <DataTableRow size="">
-                          <span className="tb-date">{item.account}</span>
-                        </DataTableRow>
-                        <DataTableRow size="">
-                          <span className="tb-date">{item.date}</span>
-                        </DataTableRow>
-                        <DataTableRow size="">
-                          <span className="tb-date">{item.level}</span>
-                        </DataTableRow>
+                  return (
+                    <DataTableItem key={item.id}>
+                      <DataTableRow className="nk-tb-col-check">
+                        <div className="custom-control custom-control-sm custom-checkbox notext">
+                          <input
+                            type="checkbox"
+                            className="custom-control-input form-control"
+                            defaultChecked={item.check}
+                            id={item.id + "uid1"}
+                            key={Math.random()}
+                            onChange={(e) => onSelectChange(e, item.id)}
+                          />
+                          <label className="custom-control-label" htmlFor={item.id + "uid1"}></label>
+                        </div>
+                      </DataTableRow>
+                      <DataTableRow>
 
-                        <DataTableRow className="nk-tb-col-tools">
-                          <ul className="nk-tb-actions gx-1">
-                            <li
-                              className="nk-tb-action-hidden"
-                              onClick={() => {
-                                loadDetail(item.level);
-                                setViewModal(true);
-                              }}
-                            >
+                                <span className="tb-lead">
+                                  {item.id}
+
+                                </span>
+
+
+                      </DataTableRow>
+                      <DataTableRow size="">
+                        <span className="tb-lead-sub">{item.user}</span>
+                      </DataTableRow>
+                      <DataTableRow size="">
+                        <span>{item.doc}</span>
+                      </DataTableRow>
+                      <DataTableRow size="">
+                        <span className="tb-date">{item.customer}</span>
+                      </DataTableRow>
+                      <DataTableRow size="">
+                        <span className="tb-date">{item.status}</span>
+                      </DataTableRow>
+                      <DataTableRow size="">
+                        <span className="tb-date">{item.laon}</span>
+                      </DataTableRow>
+                      <DataTableRow size="">
+                        <span className="tb-date">{item.savings}</span>
+                      </DataTableRow>
+                      <DataTableRow size="">
+                        <span className="tb-date">{item.transaction}</span>
+                      </DataTableRow>
+                      <DataTableRow size="">
+                        <span className="tb-date">{item.card}</span>
+                      </DataTableRow>
+
+
+
+                      <DataTableRow className="nk-tb-col-tools">
+                        <ul className="nk-tb-actions gx-1">
+                          <li
+                            className="nk-tb-action-hidden"
+                            onClick={() => {
+                              loadDetail(item.id);
+                              setViewModal(true);
+                            }}
+                          >
+                            <TooltipComponent
+                              tag="a"
+                              containerClassName="btn btn-trigger btn-icon"
+                              id={"view" + item.id}
+                              icon="eye-fill"
+                              direction="top"
+                              text="Quick View"
+                            />
+                          </li>
+                          {item.status === "Rejected" ? null : item.status === "Approved" ? (
+                            <li className="nk-tb-action-hidden" onClick={() => onRejectClick(item.id)}>
                               <TooltipComponent
                                 tag="a"
                                 containerClassName="btn btn-trigger btn-icon"
-                                id={"view" + item.id}
-                                icon="eye-fill"
+                                id={"reject" + item.id}
+                                icon="cross-fill-c"
                                 direction="top"
-                                text="Quick View"
+                                text="Reject"
                               />
                             </li>
-                            {item.status === "Rejected" ? null : item.status === "Approved" ? (
+                          ) : (
+                            <React.Fragment>
+                              <li className="nk-tb-action-hidden" onClick={() => onApproveClick(item.id)}>
+                                <TooltipComponent
+                                  tag="a"
+                                  containerClassName="btn btn-trigger btn-icon"
+                                  id={"approve" + item.id}
+                                  icon="check-fill-c"
+                                  direction="top"
+                                  text="Approve"
+                                />
+                              </li>
                               <li className="nk-tb-action-hidden" onClick={() => onRejectClick(item.id)}>
                                 <TooltipComponent
                                   tag="a"
@@ -459,118 +505,92 @@ const CustomerManagement = ({ history }) => {
                                   text="Reject"
                                 />
                               </li>
-                            ) : (
-                              <React.Fragment>
-                                <li className="nk-tb-action-hidden" onClick={() => onApproveClick(item.id)}>
-                                  <TooltipComponent
-                                    tag="a"
-                                    containerClassName="btn btn-trigger btn-icon"
-                                    id={"approve" + item.id}
-                                    icon="check-fill-c"
-                                    direction="top"
-                                    text="Approve"
-                                  />
-                                </li>
-                                {/*<li className="nk-tb-action-hidden" onClick={() => onRejectClick(item.id)}>*/}
-                                {/*  <TooltipComponent*/}
-                                {/*    tag="a"*/}
-                                {/*    containerClassName="btn btn-trigger btn-icon"*/}
-                                {/*    id={"reject" + item.id}*/}
-                                {/*    icon="cross-fill-c"*/}
-                                {/*    direction="top"*/}
-                                {/*    text="Reject"*/}
-                                {/*  />*/}
-                                {/*</li>*/}
-                              </React.Fragment>
-                            )}
-                            <li>
-                              <UncontrolledDropdown>
-                                <DropdownToggle tag="a" className="dropdown-toggle btn btn-icon btn-trigger">
-                                  <Icon name="more-h"></Icon>
-                                </DropdownToggle>
-                                <DropdownMenu right>
-                                  <ul className="link-list-opt no-bdr">
-                                    <li>
+                            </React.Fragment>
+                          )}
+                          <li>
+                            <UncontrolledDropdown>
+                              <DropdownToggle tag="a" className="dropdown-toggle btn btn-icon btn-trigger">
+                                <Icon name="more-h"></Icon>
+                              </DropdownToggle>
+                              <DropdownMenu right>
+                                <ul className="link-list-opt no-bdr">
+                                  <li>
+                                    <DropdownItem
+                                      tag="a"
+                                      href="#view"
+                                      onClick={(ev) => {
+                                        ev.preventDefault();
+                                        loadDetail(item.id);
+                                        setViewModal(true);
+                                      }}
+                                    >
+                                      <Icon name="eye"></Icon>
+                                      <span>Quick View</span>
+                                    </DropdownItem>
+                                  </li>
+                                  <li>
+                                    <DropdownItem
+                                      tag="a"
+                                      href="#details"
+                                      onClick={(ev) => {
+                                        ev.preventDefault();
+                                        history.push(`${process.env.PUBLIC_URL}/kyc-details-regular/${item.id}`);
+                                      }}
+                                    >
+                                      <Icon name="focus"></Icon>
+                                      <span>View Details</span>
+                                    </DropdownItem>
+                                  </li>
+                                  {item.status === "Rejected" ? null : item.status === "Approved" ? (
+                                    <li onClick={() => onRejectClick(item.id)}>
                                       <DropdownItem
                                         tag="a"
-                                        href="#view"
+                                        href="#reject"
                                         onClick={(ev) => {
                                           ev.preventDefault();
-                                          loadDetail(item.id);
-                                          setViewModal(true);
                                         }}
                                       >
-                                        <Icon name="eye"></Icon>
-                                        <span>Quick View</span>
-'                                      </DropdownItem>
-                                    </li>
-                                    <li>
-                                      <DropdownItem
-                                        tag="a"
-                                        href="#details"
-                                        onClick={(ev) => {
-                                          ev.preventDefault();
-                                          console.log(item.level);
-                                          history.push(`${process.env.PUBLIC_URL}/customer-details/${item.id}/${item.level}`);
-                                        }}
-                                      >
-                                        <Icon name="focus"></Icon>
-                                        <span>View Details</span>
+                                        <Icon name="na"></Icon>
+                                        <span>Reject User</span>
                                       </DropdownItem>
                                     </li>
-                                    {item.status === "Rejected" ? null : item.status === "Approved" ? (
+                                  ) : (
+                                    <React.Fragment>
+                                      <li onClick={() => onApproveClick(item.id)}>
+                                        <DropdownItem
+                                          tag="a"
+                                          href="#approve"
+                                          onClick={(ev) => {
+                                            ev.preventDefault();
+                                          }}
+                                        >
+                                          <Icon name="check-thick"></Icon>
+                                          <span>Approve</span>
+                                        </DropdownItem>
+                                      </li>
                                       <li onClick={() => onRejectClick(item.id)}>
                                         <DropdownItem
                                           tag="a"
-                                          href="#reject"
+                                          href="#suspend"
                                           onClick={(ev) => {
                                             ev.preventDefault();
                                           }}
                                         >
                                           <Icon name="na"></Icon>
-                                          <span>Freeze</span>
+                                          <span>Suspend User</span>
                                         </DropdownItem>
                                       </li>
-                                    ) : (
-                                      <React.Fragment>
-                                        <li onClick={() => onApproveClick(item.id)}>
-                                          <DropdownItem
-                                            tag="a"
-                                            href="#approve"
-                                            onClick={(ev) => {
-                                              ev.preventDefault();
-                                            }}
-                                          >
-                                            <Icon name="check-thick"></Icon>
-                                            <span>Unfreeze</span>
-                                          </DropdownItem>
-                                        </li>
-                                        {/*<li onClick={() => onRejectClick(item.id)}>*/}
-                                        {/*  <DropdownItem*/}
-                                        {/*    tag="a"*/}
-                                        {/*    href="#suspend"*/}
-                                        {/*    onClick={(ev) => {*/}
-                                        {/*      ev.preventDefault();*/}
-                                        {/*    }}*/}
-                                        {/*  >*/}
-                                        {/*    <Icon name="na"></Icon>*/}
-                                        {/*    <span>Suspend User</span>*/}
-                                        {/*  </DropdownItem>*/}
-                                        {/*</li>*/}
-                                        {/*<li>*/}
-
-                                        {/*</li>*/}
-                                      </React.Fragment>
-                                    )}
-                                  </ul>
-                                </DropdownMenu>
-                              </UncontrolledDropdown>
-                            </li>
-                          </ul>
-                        </DataTableRow>
-                      </DataTableItem>
-                    );
-                  })
+                                    </React.Fragment>
+                                  )}
+                                </ul>
+                              </DropdownMenu>
+                            </UncontrolledDropdown>
+                          </li>
+                        </ul>
+                      </DataTableRow>
+                    </DataTableItem>
+                  );
+                })
                 : null}
             </DataTableBody>
             <div className="card-inner">
@@ -605,34 +625,29 @@ const CustomerManagement = ({ history }) => {
             <Icon name="cross-sm"></Icon>
           </a>
           <div className="nk-modal-head">
-            <h4 className="nk-modal-title title">Case Management</h4>
+            <h4 className="nk-modal-title title">
+              Case Management
+            </h4>
           </div>
           <div className="nk-tnx-details mt-sm-3">
             <Row className="gy-3">
               <Col lg={6}>
-                <span className="sub-text">Firstname</span>
-                <span className="caption-text">{detail.Firstname}</span>
+                <span className="sub-text"> SN</span>
+                <span className="caption-text">{detail.id}</span>
               </Col>
               <Col lg={6}>
-                <span className="sub-text">Lastname</span>
-                <span className="caption-text">{detail.Lastname}</span>
+                <span className="sub-text"> Customer</span>
+                <span className="caption-text">{detail.name}</span>
               </Col>
               <Col lg={6}>
-                <span className="sub-text">BVN</span>
-                <span className="caption-text">{detail.BVN}</span>
+                <span className="sub-text">Customer Complaints </span>
+                <span className="caption-text">{detail.check}</span>
               </Col>
               <Col lg={6}>
-                <span className="sub-text">Account Number</span>
+                <span className="sub-text">Actions </span>
                 <span className="caption-text">{detail.doc}</span>
               </Col>
-              <Col lg={6}>
-                <span className="sub-text">Date Created</span>
-                <span className="caption-text">{detail.date}</span>
-              </Col>
-              <Col lg={6}>
-                <span className="sub-text">Account Level</span>
-                <span className="caption-text">{detail.level}</span>
-              </Col>
+
             </Row>
           </div>
         </ModalBody>
@@ -640,4 +655,4 @@ const CustomerManagement = ({ history }) => {
     </React.Fragment>
   );
 };
-export default CustomerManagement;
+export default ReportManagement;

@@ -56,7 +56,7 @@ const KycDetailsRegular = ({ match }) => {
                 </BlockDes>
               </BlockHeadContent>
               <BlockHeadContent>
-                <Link to={`${process.env.PUBLIC_URL}/kyc-list-regular`}>
+                <Link to={`${process.env.PUBLIC_URL}/case-management`}>
                   <Button color="light" outline className="bg-white d-none d-sm-inline-flex">
                     <Icon name="arrow-left"></Icon>
                     <span>Back</span>
@@ -223,29 +223,29 @@ const KycDetailsRegular = ({ match }) => {
                         <div className="data-value">6516, Eldoret, Uasin Gishu, 30100</div>
                       </div>
                     </li>
-                    <li className="data-item">
-                      <div className="data-col">
-                        <div className="data-label">Wallet Type</div>
-                        <div className="data-value">Bitcoin</div>
-                      </div>
-                    </li>
-                    <li className="data-item">
-                      <div className="data-col">
-                        <div className="data-label">Wallet Address</div>
-                        <div className="data-value text-break">1F1tAaz5x1HUXrCNLbtMDqcw6o5GNn4xqX</div>
-                      </div>
-                    </li>
-                    <li className="data-item">
-                      <div className="data-col">
-                        <div className="data-label">Telegram</div>
-                        <div className="data-value">
-                          <span>@tokenlite</span>{" "}
-                          <a href="https://t.me/tokenlite">
-                            <Icon name="telegram"></Icon>
-                          </a>
-                        </div>
-                      </div>
-                    </li>
+                    {/*<li className="data-item">*/}
+                    {/*  <div className="data-col">*/}
+                    {/*    <div className="data-label">Wallet Type</div>*/}
+                    {/*    <div className="data-value">Bitcoin</div>*/}
+                    {/*  </div>*/}
+                    {/*</li>*/}
+                    {/*<li className="data-item">*/}
+                    {/*  <div className="data-col">*/}
+                    {/*    <div className="data-label">Wallet Address</div>*/}
+                    {/*    <div className="data-value text-break">1F1tAaz5x1HUXrCNLbtMDqcw6o5GNn4xqX</div>*/}
+                    {/*  </div>*/}
+                    {/*</li>*/}
+                    {/*<li className="data-item">*/}
+                    {/*  <div className="data-col">*/}
+                    {/*    <div className="data-label">Telegram</div>*/}
+                    {/*    <div className="data-value">*/}
+                    {/*      <span>@tokenlite</span>{" "}*/}
+                    {/*      <a href="https://t.me/tokenlite">*/}
+                    {/*        <Icon name="telegram"></Icon>*/}
+                    {/*      </a>*/}
+                    {/*    </div>*/}
+                    {/*  </div>*/}
+                    {/*</li>*/}
                   </ul>
                 </Card>
               </Col>

@@ -9,9 +9,9 @@ import Crypto from "../pages/Crypto";
 import Analytics from "../pages/Analytics";
 import Invest from "../pages/Invest";
 import CustomerDetails from "../pages/pre-built/Customer-Management/CustomerDetails";
-import LevelOneData from "../pages/pre-built/Customer-Management/LevelOneData";
-import LevelTwoData from "../pages/pre-built/Customer-Management/LevelTwoData";
-import LevelThreeData from "../pages/pre-built/Customer-Management/LevelThreeData";
+import CustomerOneDetails from "../pages/pre-built/Customer-Management/CustomerOneDetails";
+import CustomerTwoDetails from "../pages/pre-built/Customer-Management/CustomerTwoDetails";
+import CustomerThreeDetails from "../pages/pre-built/Customer-Management/CustomerThreeDetails";
 import Component from "../pages/components/Index";
 import Accordian from "../pages/components/Accordions";
 import Alerts from "../pages/components/Alerts";
@@ -85,6 +85,8 @@ import PricingTable from "../pages/pre-built/pricing-table/PricingTable";
 import GalleryPreview from "../pages/pre-built/gallery/GalleryCardPreview";
 import ReactToastify from "../pages/components/misc/ReactToastify";
 import Transactions from "../pages/pre-built/Transactions/Transactions";
+import ReportManagement from "../pages/pre-built/report-management/ReportManagement";
+import CustomerReport from "../pages/pre-built/report-management/CustomerReport";
 import CaseManagement from "../pages/pre-built/case-management/CaseManagement";
 import CustomerManagement from "../pages/pre-built/Customer-Management/CustomerManagement";
 import CardManagement from "../pages/pre-built/cardManagement/ProjectList";
@@ -98,7 +100,7 @@ import EmailDetails from "../pages/pre-built/sms-email-list/email-details";
 import SavingManagement from "../pages/pre-built/savings-list/savingManagement";
 import SavingDetails from "../pages/pre-built/savings-list/savingDetails";
 import SavingConfiguration from "../pages/pre-built/savings-list/savingConfiguration";
-import SubAdminOne from "../pages/pre-built/Customer-Management/SubAdminOne";
+
 
 import AppMessages from "../pages/app/messages/Messages";
 import Chat from "../pages/app/chat/ChatContainer";
@@ -187,14 +189,9 @@ const Pages = () => {
         <Route exact path={`${process.env.PUBLIC_URL}/transaction-basic`} component={TransListBasic}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/transaction-crypto`} component={TransListCrypto}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/product-list`} component={ProductList}></Route>
-        <Route exact path={`${process.env.PUBLIC_URL}/customer-details/:id`} component={CustomerDetails}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/customer-details/:id/:level`} component={CustomerDetails}></Route>
 
-        <Route exact path={`${process.env.PUBLIC_URL}/customer-details/`} component={SubAdminOne}></Route>
-
-        <Route exact path={`${process.env.PUBLIC_URL}/customer-details/level-one`} component={LevelOneData}></Route>
-        <Route exact path={`${process.env.PUBLIC_URL}/customer-details/level-two`} component={LevelTwoData}></Route>
-
-        <Route exact path={`${process.env.PUBLIC_URL}/customer-details/level-three`} component={LevelThreeData}></Route>
+        
 
         <Route // context api added
           exact
@@ -240,6 +237,8 @@ const Pages = () => {
         <Route exact path={`${process.env.PUBLIC_URL}/image-gallery`} component={GalleryPreview}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/transactions`} component={Transactions}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/case-management`} component={CaseManagement}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/report-management`} component={ReportManagement}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/customer-report`} component={CustomerReport}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/customer-management`} component={CustomerManagement}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/card-management`} component={CardManagement}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/user-cards`} component={userCards}></Route>
