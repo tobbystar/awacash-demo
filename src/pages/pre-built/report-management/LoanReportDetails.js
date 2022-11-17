@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Content from "../../../layout/content/Content";
 import Head from "../../../layout/head/Head";
-import LogoDark from "../../../images/logo-dark.png";
+import LogoDark from "../../../images/awacashlogo.png";
 import {
   BlockHead,
   BlockTitle,
@@ -67,7 +67,7 @@ const CustomerReportDetails = ({ match }) => {
           <Block>
             <div className="invoice">
               <div className="invoice-action">
-                <Link to={`${process.env.PUBLIC_URL}/savings-print/${user.id}`} target="_blank">
+                <Link to={`${process.env.PUBLIC_URL}/loan-report-print/${user.id}`} target="_blank">
                   <Button size="lg" color="primary" outline className="btn-icon btn-white btn-dim">
                     <Icon name="printer-fill"></Icon>
                   </Button>

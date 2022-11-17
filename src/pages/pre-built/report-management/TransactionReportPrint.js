@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Content from "../../../layout/content/Content";
 import Head from "../../../layout/head/Head";
-import LogoDark from "../../../images/logo-dark2x.png";
+import LogoDark from "../../../images/awacashlogo.png";
 import { Button, Icon, Block } from "../../../components/Component";
 import { invoiceData } from "./Invoice";
 
@@ -48,7 +48,7 @@ const TransactionReportPrint = ({ match }) => {
 
                 <div className="invoice-head">
                   <div className="invoice-contact">
-                    <span className="overline-title">Invoice To</span>
+                    {/*<span className="overline-title">Invoice To</span>*/}
                     <div className="invoice-contact-info">
                       <h4 className="title">{user.name}</h4>
                       <ul className="list-plain">
@@ -68,10 +68,10 @@ const TransactionReportPrint = ({ match }) => {
                     </div>
                   </div>
                   <div className="invoice-desc">
-                    <h3 className="title">Invoice</h3>
+                    <h3 className="title">Transaction Report</h3>
                     <ul className="list-plain">
                       <li className="invoice-id">
-                        <span>Invoice ID</span>:<span>{user.orderId}</span>
+                        <span>Transaction ID</span>:<span>{user.orderId}</span>
                       </li>
                       <li className="invoice-date">
                         <span>Date</span>:<span>{user.date.split(",")[0]}</span>
@@ -87,15 +87,15 @@ const TransactionReportPrint = ({ match }) => {
                         <tr>
                           <th className="w-150px">Item ID</th>
                           <th className="w-60">Description</th>
-                          <th>Price</th>
-                          <th>Qty</th>
+                          {/*<th>Price</th>*/}
+                          {/*<th>Qty</th>*/}
                           <th>Amount</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
                           <td>24108054</td>
-                          <td>Dashlite - Conceptual App Dashboard - Regular License</td>
+                          <td>Conceptual App Dashboard - Regular License</td>
                           <td>${user.invoiceItem1}</td>
                           <td>1</td>
                           <td>${user.invoiceItem1}</td>
@@ -140,20 +140,20 @@ const TransactionReportPrint = ({ match }) => {
                           <td colSpan="2">Processing fee</td>
                           <td>$10.00</td>
                         </tr>
-                        <tr>
-                          <td colSpan="2"></td>
-                          <td colSpan="2">TAX</td>
-                          <td>$50.00</td>
-                        </tr>
-                        <tr>
-                          <td colSpan="2"></td>
-                          <td colSpan="2">Grand Total</td>
-                          <td>${user.totalAmount}</td>
-                        </tr>
+                        {/*<tr>*/}
+                        {/*  <td colSpan="2"></td>*/}
+                        {/*  <td colSpan="2">TAX</td>*/}
+                        {/*  <td>$50.00</td>*/}
+                        {/*</tr>*/}
+                        {/*<tr>*/}
+                        {/*  <td colSpan="2"></td>*/}
+                        {/*  <td colSpan="2">Grand Total</td>*/}
+                        {/*  <td>${user.totalAmount}</td>*/}
+                        {/*</tr>*/}
                       </tfoot>
                     </table>
                     <div className="nk-notes ff-italic fs-12px text-soft">
-                      Invoice was created on a computer and is valid without the signature and seal.
+                      {/*Invoice was created on a computer and is valid without the signature and seal.*/}
                     </div>
                   </div>
                 </div>

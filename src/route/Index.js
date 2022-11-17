@@ -88,18 +88,24 @@ import Transactions from "../pages/pre-built/Transactions/Transactions";
 
 import CustomerReportList from "../pages/pre-built/report-management/CustomerReportList";
 import CustomerReportDetails from "../pages/pre-built/report-management/CustomerReportDetails";
+import CustomerReportPrint from "../pages/pre-built/report-management/CustomerReportPrint";
 
 import TransactionReportList from "../pages/pre-built/report-management/TransactionReportList";
 import TransactionReportDetails from "../pages/pre-built/report-management/TransactionReportDetails";
+import TransactionReportPrint from "../pages/pre-built/report-management/TransactionReportPrint";
 
 import UserReportList from "../pages/pre-built/report-management/UserReportList";
 import UserReportDetails from "../pages/pre-built/report-management/UserReportDetails";
+import UserReportPrint from "../pages/pre-built/report-management/UserReportPrint";
 
 import LoanReportList from "../pages/pre-built/report-management/LoanReportList";
 import LoanReportDetails from "../pages/pre-built/report-management/LoanReportDetails";
+import LoanReportPrint from "../pages/pre-built/report-management/LoanReportPrint";
+
 
 import SavingsReportList from "../pages/pre-built/report-management/SavingsReportList";
 import SavingsReportDetails from "../pages/pre-built/report-management/SavingsReportDetails";
+import SavingsReportPrint from "../pages/pre-built/report-management/SavingsReportPrint";
 
 import CaseManagement from "../pages/pre-built/case-management/CaseManagement";
 import CustomerManagement from "../pages/pre-built/Customer-Management/CustomerManagement";
@@ -254,18 +260,23 @@ const Pages = () => {
 
         <Route exact path={`${process.env.PUBLIC_URL}/customer-report-list`} component={CustomerReportList}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/customer-report-details/:id`} component={CustomerReportDetails}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/customer-report-print/:id`} component={CustomerReportPrint}></Route>
 
         <Route exact path={`${process.env.PUBLIC_URL}/user-report-list`} component={UserReportList}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/user-report-details/:id`} component={UserReportDetails}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/user-report-print/:id`} component={UserReportPrint}></Route>
 
         <Route exact path={`${process.env.PUBLIC_URL}/transaction-report-list`} component={TransactionReportList}></Route>
       <Route exact path={`${process.env.PUBLIC_URL}/transaction-report-details/:id`} component={TransactionReportDetails}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/transaction-report-print/:id`} component={TransactionReportPrint}></Route>
 
         <Route exact path={`${process.env.PUBLIC_URL}/loan-report-list`} component={LoanReportList}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/loan-report-details/:id`} component={LoanReportDetails}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/loan-report-print/:id`} component={LoanReportPrint}></Route>
 
         <Route exact path={`${process.env.PUBLIC_URL}/savings-report-list`} component={SavingsReportList}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/savings-report-details/:id`} component={SavingsReportDetails}></Route>
+        <Route exact path={`${process.env.PUBLIC_URL}/savings-report-print/:id`} component={SavingsReportPrint}></Route>
 
         <Route exact path={`${process.env.PUBLIC_URL}/customer-management`} component={CustomerManagement}></Route>
         <Route exact path={`${process.env.PUBLIC_URL}/card-management`} component={CardManagement}></Route>

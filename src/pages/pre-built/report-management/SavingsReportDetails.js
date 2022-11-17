@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Content from "../../../layout/content/Content";
 import Head from "../../../layout/head/Head";
-import LogoDark from "../../../images/logo-dark.png";
+import LogoDark from "../../../images/awacashlogo.png";
 import {
   BlockHead,
   BlockTitle,

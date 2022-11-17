@@ -228,7 +228,7 @@ const menu = [
       //   link: "/user-list-regular",
       // },
       {
-        text: "User Management - Role",
+        text: "Role Management",
         link: "/user-list-compact",
       },
       // {
@@ -266,21 +266,21 @@ const menu = [
   //     },
   //   ],
   // },
-   {
-    icon: "file-docs",
-    text: "Invoice",
-    active: false,
-    subMenu: [
-      {
-        text: "Invoice List",
-        link: "/invoice-list",
-      },
-      {
-        text: "Invoice Details",
-        link: "/invoice-details/1",
-      },
-    ],
-  },
+  //  {
+  //   icon: "file-docs",
+  //   text: "Invoice",
+  //   active: false,
+  //   subMenu: [
+  //     {
+  //       text: "Invoice List",
+  //       link: "/invoice-list",
+  //     },
+  //     {
+  //       text: "Invoice Details",
+  //       link: "/invoice-details/1",
+  //     },
+  //   ],
+  // },
   // {
   //   icon: "view-col",
   //   text: "Pricing Table",

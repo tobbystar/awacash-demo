@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Content from "../../../layout/content/Content";
 import Head from "../../../layout/head/Head";
-import LogoDark from "../../../images/logo-dark2x.png";
+import LogoDark from "../../../images/awacashlogo.png";
 import { Button, Icon, Block } from "../../../components/Component";
 import { invoiceData } from "./Invoice";
 

@@ -71,9 +71,9 @@ const UserReportList = () => {
         <BlockHead size="sm">
           <BlockBetween>
             <BlockHeadContent>
-              <BlockTitle page>Invoices</BlockTitle>
+              <BlockTitle page>User Report</BlockTitle>
               <BlockDes className="text-soft">
-                <p>You have total 937 invoices.</p>
+                <p></p>
               </BlockDes>
             </BlockHeadContent>
             <BlockHeadContent>
@@ -94,7 +94,7 @@ const UserReportList = () => {
               <div className="card-inner">
                 <div className="card-title-group">
                   <div className="card-title">
-                    <h5 className="title">All Invoices</h5>
+                    <h5 className="title">All User Report</h5>
                   </div>
                   <div className="card-tools mr-n1">
                     <ul className="btn-toolbar">
@@ -205,14 +205,17 @@ const UserReportList = () => {
                   <thead className="tb-odr-head">
                   <tr className="tb-odr-item">
                     <th className="tb-odr-info">
-                      <span className="tb-odr-id">Order ID</span>
-                      <span className="tb-odr-date d-none d-md-inline-block">Date</span>
+                      <span className="tb-odr-id">S/N</span>
+                      <span className="tb-odr-date d-none d-md-inline-block">Name</span>
                     </th>
                     <th className="tb-odr-amount">
-                      <span className="tb-odr-total">Amount</span>
-                      <span className="tb-odr-status d-none d-md-inline-block">Status</span>
+                      <span className="tb-odr-total">Role</span>
+                      <span className="tb-odr-status d-none d-md-inline-block">Phone</span>
                     </th>
-                    <th className="tb-odr-action">&nbsp;</th>
+                    <th className="tb-odr-amount">
+                      <span className="tb-odr-total">Email</span>
+                    </th>
+                    {/*<th className="tb-odr-action">&nbsp;</th>*/}
                   </tr>
                   </thead>
                   <tbody className="tb-odr-body">
@@ -223,29 +226,32 @@ const UserReportList = () => {
                           <td className="tb-odr-info">
                                 <span className="tb-odr-id">
                                   <Link to={`${process.env.PUBLIC_URL}/user-report-details/${item.id}`}>
-                                    #{item.orderId}
+                                    {item.id}
                                   </Link>
                                 </span>
-                            <span className="tb-odr-date">{item.date}</span>
+                            <span className="tb-odr-date">{item.name}</span>
                           </td>
                           <td className="tb-odr-amount">
                                 <span className="tb-odr-total">
-                                  <span className="amount">${item.totalAmount}</span>
+                                  <span className="amount">{item.role}</span>
                                 </span>
-                            <span className="tb-odr-status">
-                                  <Badge
-                                    color={
-                                      item.status === "Complete"
-                                        ? "success"
-                                        : item.status === "Pending"
-                                          ? "warning"
-                                          : "danger"
-                                    }
-                                    className="badge-dot"
-                                  >
-                                    {item.status}
-                                  </Badge>
+                            <span className="tb-odr-total">
+                                  <span className="status">{item.phone}</span>
                                 </span>
+                            {/*<span className="tb-odr-status">*/}
+                            {/*      <Badge*/}
+                            {/*        color={*/}
+                            {/*          item.status === "Complete"*/}
+                            {/*            ? "success"*/}
+                            {/*            : item.status === "Pending"*/}
+                            {/*              ? "warning"*/}
+                            {/*              : "danger"*/}
+                            {/*        }*/}
+                            {/*        className="badge-dot"*/}
+                            {/*      >*/}
+                            {/*        {item.status}*/}
+                            {/*      </Badge>*/}
+                            {/*    </span>*/}
                           </td>
                           <td className="tb-odr-action">
                             <div className="tb-odr-btns d-none d-sm-inline">

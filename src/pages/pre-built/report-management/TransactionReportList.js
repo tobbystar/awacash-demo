@@ -66,14 +66,14 @@ const TransactionReportList = () => {
 
   return (
     <React.Fragment>
-      <Head title="Invoice List"></Head>
+      <Head title="Transaction Report List"></Head>
       <Content>
         <BlockHead size="sm">
           <BlockBetween>
             <BlockHeadContent>
-              <BlockTitle page>Invoices</BlockTitle>
+              <BlockTitle page>Transaction Report</BlockTitle>
               <BlockDes className="text-soft">
-                <p>You have total 937 invoices.</p>
+                <p>You have total 200 Transaction.</p>
               </BlockDes>
             </BlockHeadContent>
             <BlockHeadContent>
@@ -94,7 +94,7 @@ const TransactionReportList = () => {
               <div className="card-inner">
                 <div className="card-title-group">
                   <div className="card-title">
-                    <h5 className="title">All Invoices</h5>
+                    <h5 className="title">All Transactions</h5>
                   </div>
                   <div className="card-tools mr-n1">
                     <ul className="btn-toolbar">
@@ -205,8 +205,8 @@ const TransactionReportList = () => {
                   <thead className="tb-odr-head">
                     <tr className="tb-odr-item">
                       <th className="tb-odr-info">
-                        <span className="tb-odr-id">Order ID</span>
-                        <span className="tb-odr-date d-none d-md-inline-block">Date</span>
+                        <span className="tb-odr-id">Transaction ID</span>
+                        <span className="tb-odr-date d-none d-md-inline-block">Transaction Date</span>
                       </th>
                       <th className="tb-odr-amount">
                         <span className="tb-odr-total">Amount</span>
@@ -222,7 +222,7 @@ const TransactionReportList = () => {
                             <tr className="tb-odr-item" key={item.id}>
                               <td className="tb-odr-info">
                                 <span className="tb-odr-id">
-                                  <Link to={`${process.env.PUBLIC_URL}/invoice-details/${item.id}`}>
+                                  <Link to={`${process.env.PUBLIC_URL}/transaction-report-details/${item.id}`}>
                                     #{item.orderId}
                                   </Link>
                                 </span>
@@ -249,18 +249,18 @@ const TransactionReportList = () => {
                               </td>
                               <td className="tb-odr-action">
                                 <div className="tb-odr-btns d-none d-sm-inline">
-                                  <Link to={`${process.env.PUBLIC_URL}/invoice-print/${item.id}`} target="_blank">
+                                  <Link to={`${process.env.PUBLIC_URL}/transaction-report-print/${item.id}`} target="_blank">
                                     <Button color="primary" size="sm" className="btn-icon btn-white btn-dim">
                                       <Icon name="printer-fill"></Icon>
                                     </Button>
                                   </Link>
-                                  <Link to={`${process.env.PUBLIC_URL}/invoice-details/${item.id}`}>
+                                  <Link to={`${process.env.PUBLIC_URL}/transaction-report-details/${item.id}`}>
                                     <Button color="primary" size="sm" className="btn btn-dim">
                                       View
                                     </Button>
                                   </Link>
                                 </div>
-                                <Link to={`${process.env.PUBLIC_URL}/invoice-details/${item.id}`}>
+                                <Link to={`${process.env.PUBLIC_URL}/transaction-report-details/${item.id}`}>
                                   <Button className="btn-pd-auto d-sm-none">
                                     <Icon name="chevron-right"></Icon>
                                   </Button>
