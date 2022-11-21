@@ -71,6 +71,7 @@ import UserListRegularPage from "../pages/pre-built/user-manage/UserListRegular"
 import UserContactCardPage from "../pages/pre-built/user-manage/UserContactCard";
 import UserDetailsPage from "../pages/pre-built/user-manage/UserDetailsRegular";
 import UserListCompact from "../pages/pre-built/user-manage/UserListCompact";
+import RoleListCompact from "../pages/pre-built/user-manage/RoleListCompact";
 import UserProfileLayout from "../pages/pre-built/user-manage/UserProfileLayout";
 import KycListRegular from "../pages/pre-built/kyc-list-regular/KycListRegular";
 import KycDetailsRegular from "../pages/pre-built/kyc-list-regular/kycDetailsRegular";
@@ -177,6 +178,18 @@ const Pages = () => {
             </UserContextProvider>
           )}
         ></Route>
+
+        <Route //Context Api added
+          exact
+          path={`${process.env.PUBLIC_URL}/role-list-compact`}
+          render={() => (
+            <UserContextProvider>
+              <RoleListCompact />
+            </UserContextProvider>
+          )}
+        ></Route>
+
+
         <Route //Context Api added
           exact
           path={`${process.env.PUBLIC_URL}/user-details-regular/:id`}

@@ -39,7 +39,7 @@ import { useForm } from "react-hook-form";
 import { UserContext } from "./UserContext";
 import { bulkActionOptions } from "../../../utils/Utils";
 
-const UserListCompact = () => {
+const RoleListCompact = () => {
   const { contextData } = useContext(UserContext);
   const [data, setData] = contextData;
 
@@ -269,7 +269,7 @@ const UserListCompact = () => {
           <BlockBetween>
             <BlockHeadContent>
               <BlockTitle tag="h3" page>
-                User Management
+                Role Management
               </BlockTitle>
               <BlockDes className="text-soft">
                 <p></p>
@@ -297,11 +297,11 @@ const UserListCompact = () => {
                         <span>Export</span>
                       </a>
                     </li> */}
-                    {/*<li className="nk-block-tools-opt">*/}
-                    {/*  <Button color="primary" className="btn-icon" onClick={() => setModal({ add: true })}>*/}
-                    {/*    <Icon name="plus"></Icon>*/}
-                    {/*  </Button>*/}
-                    {/*</li>*/}
+                    <li className="nk-block-tools-opt">
+                      <Button color="primary" className="btn-icon" onClick={() => setModal({ add: true })}>
+                        <Icon name="plus"></Icon>
+                      </Button>
+                    </li>
                   </ul>
                 </div>
               </div>
@@ -596,10 +596,17 @@ const UserListCompact = () => {
                 {/*  </div>*/}
                 {/*</DataTableRow>*/}
                 <DataTableRow size="sm">
+                  <span className="sub-text">Date Created</span>
+                </DataTableRow>
+                <DataTableRow size="sm">
                   <span className="sub-text">Firstname</span>
                 </DataTableRow>
                 <DataTableRow size="sm">
                   <span className="sub-text">Lastname</span>
+                </DataTableRow>
+
+                <DataTableRow size="sm">
+                  <span className="sub-text">Role Name</span>
                 </DataTableRow>
 
                 <DataTableRow size="sm">
@@ -613,11 +620,6 @@ const UserListCompact = () => {
                 <DataTableRow size="sm">
                   <span className="sub-text">Phone Number</span>
                 </DataTableRow>
-
-                <DataTableRow size="sm">
-                  <span className="sub-text">Role</span>
-                </DataTableRow>
-
                 {/*<DataTableRow size="lg">*/}
                 {/*  <span className="sub-text">Verified</span>*/}
                 {/*</DataTableRow>*/}
@@ -671,84 +673,93 @@ const UserListCompact = () => {
               {/*Head*/}
               {currentItems.length > 0
                 ? currentItems.map((item) => {
-                    return (
-                      <DataTableItem key={item.id}>
-                        {/*<DataTableRow className="nk-tb-col-check">*/}
-                        {/*  <div className="custom-control custom-control-sm custom-checkbox notext">*/}
-                        {/*    <input*/}
-                        {/*      type="checkbox"*/}
-                        {/*      className="custom-control-input form-control"*/}
-                        {/*      defaultChecked={item.checked}*/}
-                        {/*      id={item.id + "uid1"}*/}
-                        {/*      key={Math.random()}*/}
-                        {/*      onChange={(e) => onSelectChange(e, item.id)}*/}
-                        {/*    />*/}
-                        {/*    <label className="custom-control-label" htmlFor={item.id + "uid1"}></label>*/}
-                        {/*  </div>*/}
-                        {/*</DataTableRow>*/}
-                        <DataTableRow>
-                          <Link to={`${process.env.PUBLIC_URL}/user-details-regular/${item.id}`}>
-                            <div className="user-card">
-                              <UserAvatar
-                                theme={item.avatarBg}
-                                className="xs"
-                                text={findUpper(item.name)}
-                                image={item.image}
-                              ></UserAvatar>
-                              <div className="user-info">
-                                <span className="tb-lead">{item.name} </span>
-                              </div>
+                  return (
+                    <DataTableItem key={item.id}>
+                      {/*<DataTableRow className="nk-tb-col-check">*/}
+                      {/*  <div className="custom-control custom-control-sm custom-checkbox notext">*/}
+                      {/*    <input*/}
+                      {/*      type="checkbox"*/}
+                      {/*      className="custom-control-input form-control"*/}
+                      {/*      defaultChecked={item.checked}*/}
+                      {/*      id={item.id + "uid1"}*/}
+                      {/*      key={Math.random()}*/}
+                      {/*      onChange={(e) => onSelectChange(e, item.id)}*/}
+                      {/*    />*/}
+                      {/*    <label className="custom-control-label" htmlFor={item.id + "uid1"}></label>*/}
+                      {/*  </div>*/}
+                      {/*</DataTableRow>*/}
+                      <DataTableRow>
+                      <div className="user-info">
+                        <span className="tb-lead">{item.date} </span>
+                      </div>
+                      </DataTableRow>
+                      <DataTableRow>
+                        <Link to={`${process.env.PUBLIC_URL}/user-details-regular/${item.id}`}>
+
+                          <div className="user-info">
+                            <span className="tb-lead">{item.date} </span>
+                          </div>
+                          <div className="user-card">
+                            <UserAvatar
+                              theme={item.avatarBg}
+                              className="xs"
+                              text={findUpper(item.name)}
+                              image={item.image}
+                            ></UserAvatar>
+                            <div className="user-info">
+                              <span className="tb-lead">{item.name} </span>
                             </div>
-                          </Link>
-                        </DataTableRow>
+                          </div>
+                        </Link>
+                      </DataTableRow>
 
-                        <DataTableRow size="sm">
-                          <span className="tb-lead">{item.lastname}</span>
-                        </DataTableRow>
+                      <DataTableRow size="sm">
+                        <span className="tb-lead">{item.lastname}</span>
+                      </DataTableRow>
 
-                        <DataTableRow size="sm">
-                          <span className="tb-lead">{item.email}</span>
-                        </DataTableRow>
+                      <DataTableRow size="sm">
+                        <span className="tb-lead">{item.email}</span>
+                      </DataTableRow>
 
-                        <DataTableRow size="sm">
-                          <span>{item.address}</span>
-                        </DataTableRow>
-                        <DataTableRow size="sm">
-                          <span>{item.phone}</span>
-                        </DataTableRow>
+                      <DataTableRow size="sm">
+                        <span>{item.address}</span>
+                      </DataTableRow>
+                      <DataTableRow size="sm">
+                        <span>{item.phone}</span>
+                      </DataTableRow>
 
-                        <DataTableRow size="sm">
-                          <span>{item.role}</span>
-                        </DataTableRow>
+                      <DataTableRow size="sm">
+                        <span>{item.role}</span>
+                      </DataTableRow>
 
-                        {/*<DataTableRow size="sm">*/}
-                        {/*  <span>{item.status}</span>*/}
-                        {/*</DataTableRow>*/}
+                      {/*<DataTableRow size="sm">*/}
+                      {/*  <span>{item.status}</span>*/}
+                      {/*</DataTableRow>*/}
 
-                        {/*<DataTableRow size="lg">*/}
-                        {/*  <ul className="list-status">*/}
-                        {/*    <li>*/}
-                        {/*      <Icon*/}
-                        {/*        className={`text-${*/}
-                        {/*          item.emailStatus === "success"*/}
-                        {/*            ? "success"*/}
-                        {/*            : item.emailStatus === "pending"*/}
-                        {/*            ? "info"*/}
-                        {/*            : "secondary"*/}
-                        {/*        }`}*/}
-                        {/*        name={`${*/}
-                        {/*          item.emailStatus === "success"*/}
-                        {/*            ? "check-circle"*/}
-                        {/*            : item.emailStatus === "alert"*/}
-                        {/*            ? "alert-circle"*/}
-                        {/*            : "alarm-alt"*/}
-                        {/*        }`}*/}
-                        {/*      ></Icon>{" "}*/}
-                        {/*      <span>Email</span>*/}
-                        {/*    </li>*/}
-                        {/*  </ul>*/}
-                        {/*</DataTableRow>*/}
-                        <DataTableRow>
+                      {/*<DataTableRow size="lg">*/}
+                      {/*  <ul className="list-status">*/}
+                      {/*    <li>*/}
+                      {/*      <Icon*/}
+                      {/*        className={`text-${*/}
+                      {/*          item.emailStatus === "success"*/}
+                      {/*            ? "success"*/}
+                      {/*            : item.emailStatus === "pending"*/}
+                      {/*            ? "info"*/}
+                      {/*            : "secondary"*/}
+                      {/*        }`}*/}
+                      {/*        name={`${*/}
+                      {/*          item.emailStatus === "success"*/}
+                      {/*            ? "check-circle"*/}
+                      {/*            : item.emailStatus === "alert"*/}
+                      {/*            ? "alert-circle"*/}
+                      {/*            : "alarm-alt"*/}
+                      {/*        }`}*/}
+                      {/*      ></Icon>{" "}*/}
+                      {/*      <span>Email</span>*/}
+                      {/*    </li>*/}
+                      {/*  </ul>*/}
+                      {/*</DataTableRow>*/}
+                      <DataTableRow>
                           <span
                             className={`tb-status text-${
                               item.status === "Active" ? "success" : item.status === "Pending" ? "warning" : "danger"
@@ -756,78 +767,78 @@ const UserListCompact = () => {
                           >
                             {item.status}
                           </span>
-                        </DataTableRow>
-                        <DataTableRow className="nk-tb-col-tools">
-                          <ul className="nk-tb-actions gx-1">
-                            <li className="nk-tb-action-hidden" onClick={() => onEditClick(item.id)}>
-                              <TooltipComponent
-                                tag="a"
-                                containerClassName="btn btn-trigger btn-icon"
-                                id={"edit" + item.id}
-                                icon="edit-alt-fill"
-                                direction="top"
-                                text="Edit"
-                              />
-                            </li>
-                            {item.status !== "Suspend" && (
-                              <React.Fragment>
-                                <li className="nk-tb-action-hidden" onClick={() => suspendUser(item.id)}>
-                                  <TooltipComponent
-                                    tag="a"
-                                    containerClassName="btn btn-trigger btn-icon"
-                                    id={"suspend" + item.id}
-                                    icon="user-cross-fill"
-                                    direction="top"
-                                    text="Block"
-                                  />
-                                </li>
-                              </React.Fragment>
-                            )}
-                            <li>
-                              <UncontrolledDropdown>
-                                <DropdownToggle tag="a" className="dropdown-toggle btn btn-icon btn-trigger">
-                                  <Icon name="more-h"></Icon>
-                                </DropdownToggle>
-                                <DropdownMenu right>
-                                  <ul className="link-list-opt no-bdr">
-                                    <li onClick={() => onEditClick(item.id)}>
-                                      <DropdownItem
-                                        tag="a"
-                                        href="#edit"
-                                        onClick={(ev) => {
-                                          ev.preventDefault();
-                                        }}
-                                      >
-                                        <Icon name="edit"></Icon>
-                                        <span>Edit</span>
-                                      </DropdownItem>
-                                    </li>
-                                    {item.status !== "Suspend" && (
-                                      <React.Fragment>
-                                        <li className="divider"></li>
-                                        <li onClick={() => suspendUser(item.id)}>
-                                          <DropdownItem
-                                            tag="a"
-                                            href="#suspend"
-                                            onClick={(ev) => {
-                                              ev.preventDefault();
-                                            }}
-                                          >
-                                            <Icon name="na"></Icon>
-                                            <span>Block</span>
-                                          </DropdownItem>
-                                        </li>
-                                      </React.Fragment>
-                                    )}
-                                  </ul>
-                                </DropdownMenu>
-                              </UncontrolledDropdown>
-                            </li>
-                          </ul>
-                        </DataTableRow>
-                      </DataTableItem>
-                    );
-                  })
+                      </DataTableRow>
+                      <DataTableRow className="nk-tb-col-tools">
+                        <ul className="nk-tb-actions gx-1">
+                          <li className="nk-tb-action-hidden" onClick={() => onEditClick(item.id)}>
+                            <TooltipComponent
+                              tag="a"
+                              containerClassName="btn btn-trigger btn-icon"
+                              id={"edit" + item.id}
+                              icon="edit-alt-fill"
+                              direction="top"
+                              text="Edit"
+                            />
+                          </li>
+                          {item.status !== "Suspend" && (
+                            <React.Fragment>
+                              <li className="nk-tb-action-hidden" onClick={() => suspendUser(item.id)}>
+                                <TooltipComponent
+                                  tag="a"
+                                  containerClassName="btn btn-trigger btn-icon"
+                                  id={"suspend" + item.id}
+                                  icon="user-cross-fill"
+                                  direction="top"
+                                  text="Block"
+                                />
+                              </li>
+                            </React.Fragment>
+                          )}
+                          <li>
+                            <UncontrolledDropdown>
+                              <DropdownToggle tag="a" className="dropdown-toggle btn btn-icon btn-trigger">
+                                <Icon name="more-h"></Icon>
+                              </DropdownToggle>
+                              <DropdownMenu right>
+                                <ul className="link-list-opt no-bdr">
+                                  <li onClick={() => onEditClick(item.id)}>
+                                    <DropdownItem
+                                      tag="a"
+                                      href="#edit"
+                                      onClick={(ev) => {
+                                        ev.preventDefault();
+                                      }}
+                                    >
+                                      <Icon name="edit"></Icon>
+                                      <span>Edit</span>
+                                    </DropdownItem>
+                                  </li>
+                                  {item.status !== "Suspend" && (
+                                    <React.Fragment>
+                                      <li className="divider"></li>
+                                      <li onClick={() => suspendUser(item.id)}>
+                                        <DropdownItem
+                                          tag="a"
+                                          href="#suspend"
+                                          onClick={(ev) => {
+                                            ev.preventDefault();
+                                          }}
+                                        >
+                                          <Icon name="na"></Icon>
+                                          <span>Block</span>
+                                        </DropdownItem>
+                                      </li>
+                                    </React.Fragment>
+                                  )}
+                                </ul>
+                              </DropdownMenu>
+                            </UncontrolledDropdown>
+                          </li>
+                        </ul>
+                      </DataTableRow>
+                    </DataTableItem>
+                  );
+                })
                 : null}
             </DataTableBody>
             <div className="card-inner">
@@ -846,156 +857,156 @@ const UserListCompact = () => {
             </div>
           </DataTable>
         </Block>
-        {/*<Modal isOpen={modal.add} toggle={() => setModal({ add: false })} className="modal-dialog-centered" size="lg">*/}
-        {/*  <ModalBody>*/}
-        {/*    <a*/}
-        {/*      href="#cancel"*/}
-        {/*      onClick={(ev) => {*/}
-        {/*        ev.preventDefault();*/}
-        {/*        onFormCancel();*/}
-        {/*      }}*/}
-        {/*      className="close"*/}
-        {/*    >*/}
-        {/*      <Icon name="cross-sm"></Icon>*/}
-        {/*    </a>*/}
-        {/*    <div className="p-2">*/}
-        {/*      <h5 className="title">Add User</h5>*/}
-        {/*      <div className="mt-4">*/}
-        {/*        <Form className="row gy-4" onSubmit={handleSubmit(onFormSubmit)}>*/}
-        {/*          <Col md="6">*/}
-        {/*            <FormGroup>*/}
-        {/*              <label className="form-label">First Name</label>*/}
-        {/*              <input*/}
-        {/*                className="form-control"*/}
-        {/*                type="text"*/}
-        {/*                name="name"*/}
-        {/*                defaultValue={formData.name}*/}
-        {/*                placeholder="Enter name"*/}
-        {/*                ref={register({ required: "This field is required" })}*/}
-        {/*              />*/}
-        {/*              {errors.name && <span className="invalid">{errors.name.message}</span>}*/}
-        {/*            </FormGroup>*/}
-        {/*          </Col>*/}
-        {/*          */}
-        {/*          <Col md="6">*/}
-        {/*            <FormGroup>*/}
-        {/*              <label className="form-label"> Last Name</label>*/}
-        {/*              <input*/}
-        {/*                className="form-control"*/}
-        {/*                type="text"*/}
-        {/*                name="lastname"*/}
-        {/*                defaultValue={formData.lastname}*/}
-        {/*                placeholder="Enter lastname"*/}
-        {/*                ref={register({ required: "This field is required" })}*/}
-        {/*              />*/}
-        {/*              {errors.lastname && <span className="invalid">{errors.lastname.message}</span>}*/}
-        {/*            </FormGroup>*/}
-        {/*          </Col>*/}
+        <Modal isOpen={modal.add} toggle={() => setModal({ add: false })} className="modal-dialog-centered" size="lg">
+          <ModalBody>
+            <a
+              href="#cancel"
+              onClick={(ev) => {
+                ev.preventDefault();
+                onFormCancel();
+              }}
+              className="close"
+            >
+              <Icon name="cross-sm"></Icon>
+            </a>
+            <div className="p-2">
+              <h5 className="title">Add User</h5>
+              <div className="mt-4">
+                <Form className="row gy-4" onSubmit={handleSubmit(onFormSubmit)}>
+                  {/*<Col md="6">*/}
+                  {/*  <FormGroup>*/}
+                  {/*    <label className="form-label">First Name</label>*/}
+                  {/*    <input*/}
+                  {/*      className="form-control"*/}
+                  {/*      type="text"*/}
+                  {/*      name="name"*/}
+                  {/*      defaultValue={formData.name}*/}
+                  {/*      placeholder="Enter name"*/}
+                  {/*      ref={register({ required: "This field is required" })}*/}
+                  {/*    />*/}
+                  {/*    {errors.name && <span className="invalid">{errors.name.message}</span>}*/}
+                  {/*  </FormGroup>*/}
+                  {/*</Col>*/}
 
-        {/*          <Col md="6">*/}
-        {/*            <FormGroup>*/}
-        {/*              <label className="form-label">Role</label>*/}
-        {/*              <RSelect*/}
-        {/*                options={roleOptions}*/}
-        {/*                defaultValue={{*/}
-        {/*                  value: formData.role,*/}
-        {/*                  label: formData.role,*/}
-        {/*                }}*/}
-        {/*                onChange={(e) => setFormData({ ...formData, role: e.value })}*/}
-        {/*              />*/}
+                  <Col md="6">
+                    <FormGroup>
+                      <label className="form-label"> Role Name</label>
+                      <input
+                        className="form-control"
+                        type="text"
+                        name="lastname"
+                        defaultValue={formData.lastname}
+                        placeholder="Enter lastname"
+                        ref={register({ required: "This field is required" })}
+                      />
+                      {errors.lastname && <span className="invalid">{errors.lastname.message}</span>}
+                    </FormGroup>
+                  </Col>
 
-        {/*            </FormGroup>*/}
-        {/*          </Col>*/}
+                  <Col md="6">
+                    <FormGroup>
+                      <label className="form-label">Select Privileges</label>
+                      <RSelect
+                        options={roleOptions}
+                        defaultValue={{
+                          value: formData.role,
+                          label: formData.role,
+                        }}
+                        onChange={(e) => setFormData({ ...formData, role: e.value })}
+                      />
 
-        {/*          <Col md="6">*/}
-        {/*            <FormGroup>*/}
-        {/*              <label className="form-label">Email </label>*/}
-        {/*              <input*/}
-        {/*                className="form-control"*/}
-        {/*                type="text"*/}
-        {/*                name="email"*/}
-        {/*                defaultValue={formData.email}*/}
-        {/*                placeholder="Enter email"*/}
-        {/*                ref={register({*/}
-        {/*                  required: "This field is required",*/}
-        {/*                  pattern: {*/}
-        {/*                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,*/}
-        {/*                    message: "invalid email address",*/}
-        {/*                  },*/}
-        {/*                })}*/}
-        {/*              />*/}
-        {/*              {errors.email && <span className="invalid">{errors.email.message}</span>}*/}
-        {/*            </FormGroup>*/}
-        {/*          </Col>*/}
-        {/*          <Col md="6">*/}
-        {/*            <FormGroup>*/}
-        {/*              <label className="form-label">Phone</label>*/}
-        {/*              <input*/}
-        {/*                className="form-control"*/}
-        {/*                type="number"*/}
-        {/*                name="phone"*/}
-        {/*                defaultValue={formData.phone}*/}
-        {/*                ref={register({*/}
-        {/*                  required: "This field is required",*/}
-        {/*                })}*/}
-        {/*              />*/}
-        {/*              {errors.phone && <span className="invalid">{errors.phone.message}</span>}*/}
-        {/*            </FormGroup>*/}
-        {/*          </Col>*/}
+                    </FormGroup>
+                  </Col>
 
-        {/*          <Col md="6">*/}
-        {/*            <FormGroup>*/}
-        {/*              <label className="form-label">Address</label>*/}
-        {/*              <input*/}
-        {/*                className="form-control"*/}
-        {/*                type="text"*/}
-        {/*                name="address"*/}
-        {/*                defaultValue={formData.address}*/}
-        {/*                placeholder="Enter address"*/}
-        {/*                ref={register({ required: "This field is required" })}*/}
-        {/*              />*/}
-        {/*              {errors.address && <span className="invalid">{errors.address.message}</span>}*/}
-        {/*            </FormGroup>*/}
-        {/*          </Col>*/}
+                  {/*<Col md="6">*/}
+                  {/*  <FormGroup>*/}
+                  {/*    <label className="form-label">Email </label>*/}
+                  {/*    <input*/}
+                  {/*      className="form-control"*/}
+                  {/*      type="text"*/}
+                  {/*      name="email"*/}
+                  {/*      defaultValue={formData.email}*/}
+                  {/*      placeholder="Enter email"*/}
+                  {/*      ref={register({*/}
+                  {/*        required: "This field is required",*/}
+                  {/*        pattern: {*/}
+                  {/*          value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,*/}
+                  {/*          message: "invalid email address",*/}
+                  {/*        },*/}
+                  {/*      })}*/}
+                  {/*    />*/}
+                  {/*    {errors.email && <span className="invalid">{errors.email.message}</span>}*/}
+                  {/*  </FormGroup>*/}
+                  {/*</Col>*/}
+                  {/*<Col md="6">*/}
+                  {/*  <FormGroup>*/}
+                  {/*    <label className="form-label">Phone</label>*/}
+                  {/*    <input*/}
+                  {/*      className="form-control"*/}
+                  {/*      type="number"*/}
+                  {/*      name="phone"*/}
+                  {/*      defaultValue={formData.phone}*/}
+                  {/*      ref={register({*/}
+                  {/*        required: "This field is required",*/}
+                  {/*      })}*/}
+                  {/*    />*/}
+                  {/*    {errors.phone && <span className="invalid">{errors.phone.message}</span>}*/}
+                  {/*  </FormGroup>*/}
+                  {/*</Col>*/}
 
-        {/*         <Col md="12">*/}
-        {/*            <FormGroup>*/}
-        {/*              <label className="form-label">Status</label>*/}
-        {/*              <div className="form-control-wrap">*/}
-        {/*                <RSelect*/}
-        {/*                  options={filterStatus}*/}
-        {/*                  defaultValue={{ value: "active", label: "Active" }}*/}
-        {/*                  onChange={(e) => setFormData({ ...formData, status: e.value })}*/}
-        {/*                />*/}
-        {/*              </div>*/}
-        {/*            </FormGroup >*/}
-        {/*          </Col>*/}
-        {/*          <Col size="12">*/}
-        {/*            <ul className="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">*/}
-        {/*              <li>*/}
-        {/*                <Button color="primary" size="md" type="submit">*/}
-        {/*                  Add User*/}
-        {/*                </Button>*/}
-        {/*              </li>*/}
-        {/*              <li>*/}
-        {/*                <a*/}
-        {/*                  href="#cancel"*/}
-        {/*                  onClick={(ev) => {*/}
-        {/*                    ev.preventDefault();*/}
-        {/*                    onFormCancel();*/}
-        {/*                  }}*/}
-        {/*                  className="link link-light"*/}
-        {/*                >*/}
-        {/*                  Cancel*/}
-        {/*                </a>*/}
-        {/*              </li>*/}
-        {/*            </ul>*/}
-        {/*          </Col>*/}
-        {/*        </Form>*/}
-        {/*      </div>*/}
-        {/*    </div>*/}
-        {/*  </ModalBody>*/}
-        {/*</Modal>*/}
+                  {/*<Col md="6">*/}
+                  {/*  <FormGroup>*/}
+                  {/*    <label className="form-label">Address</label>*/}
+                  {/*    <input*/}
+                  {/*      className="form-control"*/}
+                  {/*      type="text"*/}
+                  {/*      name="address"*/}
+                  {/*      defaultValue={formData.address}*/}
+                  {/*      placeholder="Enter address"*/}
+                  {/*      ref={register({ required: "This field is required" })}*/}
+                  {/*    />*/}
+                  {/*    {errors.address && <span className="invalid">{errors.address.message}</span>}*/}
+                  {/*  </FormGroup>*/}
+                  {/*</Col>*/}
+
+                  <Col md="12">
+                    <FormGroup>
+                      <label className="form-label">Status</label>
+                      <div className="form-control-wrap">
+                        <RSelect
+                          options={filterStatus}
+                          defaultValue={{ value: "active", label: "Active" }}
+                          onChange={(e) => setFormData({ ...formData, status: e.value })}
+                        />
+                      </div>
+                    </FormGroup >
+                  </Col>
+                  <Col size="12">
+                    <ul className="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
+                      <li>
+                        <Button color="primary" size="md" type="submit">
+                          Create
+                        </Button>
+                      </li>
+                      <li>
+                        <a
+                          href="#cancel"
+                          onClick={(ev) => {
+                            ev.preventDefault();
+                            onFormCancel();
+                          }}
+                          className="link link-light"
+                        >
+                          Cancel
+                        </a>
+                      </li>
+                    </ul>
+                  </Col>
+                </Form>
+              </div>
+            </div>
+          </ModalBody>
+        </Modal>
         <Modal isOpen={modal.edit} toggle={() => setModal({ edit: false })} className="modal-dialog-centered" size="lg">
           <ModalBody>
             <a
@@ -1046,14 +1057,14 @@ const UserListCompact = () => {
                     <FormGroup>
                       <label className="form-label">Role</label>
                       <RSelect
-                          options={roleOptions}
-                          defaultValue={{
-                            value: formData.role,
-                            label: formData.role,
-                          }}
-                          onChange={(e) => setFormData({ ...formData, role: e.value })}
-                        />
-        
+                        options={roleOptions}
+                        defaultValue={{
+                          value: formData.role,
+                          label: formData.role,
+                        }}
+                        onChange={(e) => setFormData({ ...formData, role: e.value })}
+                      />
+
                     </FormGroup>
                   </Col>
 
@@ -1170,4 +1181,4 @@ const UserListCompact = () => {
     </React.Fragment>
   );
 };
-export default UserListCompact;
+export default RoleListCompact;

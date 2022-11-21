@@ -228,8 +228,12 @@ const menu = [
       //   link: "/user-list-regular",
       // },
       {
-        text: "Role Management",
+        text: "User",
         link: "/user-list-compact",
+      },
+      {
+        text: "Role",
+        link: "/role-list-compact",
       },
       // {
       //   text: "User Details - Regular",
