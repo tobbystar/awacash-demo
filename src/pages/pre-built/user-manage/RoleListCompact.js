@@ -315,14 +315,14 @@ const RoleListCompact = () => {
               <div className="card-title-group">
                 <div className="card-tools">
                   <div className="form-inline flex-nowrap gx-3">
-                    <div className="form-wrap">
-                      <RSelect
-                        options={bulkActionOptions}
-                        className="w-130px"
-                        placeholder="Bulk Action"
-                        onChange={(e) => onActionText(e)}
-                      />
-                    </div>
+                    {/*<div className="form-wrap">*/}
+                    {/*  <RSelect*/}
+                    {/*    options={bulkActionOptions}*/}
+                    {/*    className="w-130px"*/}
+                    {/*    placeholder="Bulk Action"*/}
+                    {/*    onChange={(e) => onActionText(e)}*/}
+                    {/*  />*/}
+                    {/*</div>*/}
                     <div className="btn-wrap">
                       {/*<span className="d-none d-md-block">*/}
                       {/*  <Button*/}

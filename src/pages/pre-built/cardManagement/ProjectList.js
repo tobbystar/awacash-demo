@@ -375,7 +375,7 @@ export const CardManagement = () => {
                             className="project-title"
                           >
                             <div className="project-info">
-                              <h6 className="title">1</h6>
+                              <h6 className="title">{item.id}</h6>
                             </div>
                           </a>
                         </DataTableRow>

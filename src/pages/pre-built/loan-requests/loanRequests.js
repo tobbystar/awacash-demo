@@ -181,15 +181,15 @@ const KycListRegular = ({ history }) => {
                 <p>You have total {data.length} loan requests.</p>
               </BlockDes>
             </BlockHeadContent>
-            <BlockHeadContent>
-              <Button color="light" outline className="bg-white d-none d-sm-inline-flex">
-                <Icon name="download-cloud"></Icon>
-                <span>Export</span>
-              </Button>
-              <Button color="light" outline className="btn-icon bg-white d-inline-flex d-sm-none">
-                <Icon name="download-cloud"></Icon>
-              </Button>
-            </BlockHeadContent>
+            {/*<BlockHeadContent>*/}
+            {/*  <Button color="light" outline className="bg-white d-none d-sm-inline-flex">*/}
+            {/*    <Icon name="download-cloud"></Icon>*/}
+            {/*    <span>Export</span>*/}
+            {/*  </Button>*/}
+            {/*  <Button color="light" outline className="btn-icon bg-white d-inline-flex d-sm-none">*/}
+            {/*    <Icon name="download-cloud"></Icon>*/}
+            {/*  </Button>*/}
+            {/*</BlockHeadContent>*/}
           </BlockBetween>
         </BlockHead>
 
@@ -199,14 +199,14 @@ const KycListRegular = ({ history }) => {
               <div className="card-title-group">
                 <div className="card-tools">
                   <div className="form-inline flex-nowrap gx-3">
-                    <div className="form-wrap">
-                      <RSelect
-                        options={bulkActionKycOptions}
-                        className="w-130px"
-                        placeholder="Bulk Action"
-                        onChange={(e) => onActionText(e)}
-                      />
-                    </div>
+                    {/*<div className="form-wrap">*/}
+                    {/*  <RSelect*/}
+                    {/*    options={bulkActionKycOptions}*/}
+                    {/*    className="w-130px"*/}
+                    {/*    placeholder="Bulk Action"*/}
+                    {/*    onChange={(e) => onActionText(e)}*/}
+                    {/*  />*/}
+                    {/*</div>*/}
                     <div className="btn-wrap">
                       <span className="d-md-none">
                         <Button

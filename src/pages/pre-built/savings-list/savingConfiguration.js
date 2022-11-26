@@ -72,6 +72,7 @@ const UserListRegularPage = () => {
     description: "",
     duration: "",
     rate: "",
+    date: "",
     status: "Active",
   });
   const [actionText, setActionText] = useState("");
@@ -138,6 +139,10 @@ const UserListRegularPage = () => {
   const resetForm = () => {
     setFormData({
       name: "",
+      description: "",
+      rate: "",
+      duration: "",
+      date: "",
       email: "",
       balance: "",
       phone: "",
@@ -153,11 +158,15 @@ const UserListRegularPage = () => {
 
   // submit function to add a new item
   const onFormSubmit = (submitData) => {
-    const { name, email, balance, phone } = submitData;
+    const { name, email, balance, phone, description, rate, duration, date } = submitData;
     let submittedData = {
       id: data.length + 1,
       avatarBg: "purple",
       name: name,
+      description: description,
+      rate: rate,
+      duration: duration,
+      date: date,
       role: "Customer",
       email: email,
       balance: balance,
@@ -175,7 +184,7 @@ const UserListRegularPage = () => {
 
   // submit function to update a new item
   const onEditSubmit = (submitData) => {
-    const { name, email, phone } = submitData;
+    const { name, email, phone, description, rate, duration, date } = submitData;
     let submittedData;
     let newitems = data;
     newitems.forEach((item) => {
@@ -184,10 +193,14 @@ const UserListRegularPage = () => {
           id: item.id,
           avatarBg: item.avatarBg,
           name: name,
+          description: description,
+          rate: rate,
+          duration: duration,
+          date: date,
           image: item.image,
           role: item.role,
           email: email,
-          balance: formData.balance,
+          balance: item.balance,
           phone: "+" + phone,
           emailStatus: item.emailStatus,
           kycStatus: item.kycStatus,
@@ -212,6 +225,7 @@ const UserListRegularPage = () => {
           description: item.description,
           duration: item.duration,
           rate: item.rate,
+          date: item.date,
           status: item.status,
         });
         setModal({ edit: true }, { add: false });
@@ -309,38 +323,38 @@ const UserListRegularPage = () => {
               <div className="card-title-group">
                 <div className="card-tools">
                   <div className="form-inline flex-nowrap gx-3">
-                    <div className="form-wrap">
-                      <RSelect
-                        options={bulkActionOptions}
-                        className="w-130px"
-                        placeholder="Bulk Action"
-                        onChange={(e) => onActionText(e)}
-                      />
-                    </div>
-                    <div className="btn-wrap">
-                      <span className="d-none d-md-block">
-                        <Button
-                          disabled={actionText !== "" ? false : true}
-                          color="light"
-                          outline
-                          className="btn-dim"
-                          onClick={(e) => onActionClick(e)}
-                        >
-                          Apply
-                        </Button>
-                      </span>
-                      <span className="d-md-none">
-                        <Button
-                          color="light"
-                          outline
-                          disabled={actionText !== "" ? false : true}
-                          className="btn-dim btn-icon"
-                          onClick={(e) => onActionClick(e)}
-                        >
-                          <Icon name="arrow-right"></Icon>
-                        </Button>
-                      </span>
-                    </div>
+                    {/*<div className="form-wrap">*/}
+                    {/*  <RSelect*/}
+                    {/*    options={bulkActionOptions}*/}
+                    {/*    className="w-130px"*/}
+                    {/*    placeholder="Bulk Action"*/}
+                    {/*    onChange={(e) => onActionText(e)}*/}
+                    {/*  />*/}
+                    {/*</div>*/}
+                    {/*<div className="btn-wrap">*/}
+                    {/*  <span className="d-none d-md-block">*/}
+                    {/*    <Button*/}
+                    {/*      disabled={actionText !== "" ? false : true}*/}
+                    {/*      color="light"*/}
+                    {/*      outline*/}
+                    {/*      className="btn-dim"*/}
+                    {/*      onClick={(e) => onActionClick(e)}*/}
+                    {/*    >*/}
+                    {/*      Apply*/}
+                    {/*    </Button>*/}
+                    {/*  </span>*/}
+                    {/*  <span className="d-md-none">*/}
+                    {/*    <Button*/}
+                    {/*      color="light"*/}
+                    {/*      outline*/}
+                    {/*      disabled={actionText !== "" ? false : true}*/}
+                    {/*      className="btn-dim btn-icon"*/}
+                    {/*      onClick={(e) => onActionClick(e)}*/}
+                    {/*    >*/}
+                    {/*      <Icon name="arrow-right"></Icon>*/}
+                    {/*    </Button>*/}
+                    {/*  </span>*/}
+                    {/*</div>*/}
                   </div>
                 </div>
                 <div className="card-tools mr-n1">
@@ -602,9 +616,9 @@ const UserListRegularPage = () => {
                 <DataTableRow size="lg">
                   <span className="sub-text">Date Created</span>
                 </DataTableRow>
-                <DataTableRow size="md">
-                  <span className="sub-text">Action</span>
-                </DataTableRow>
+                {/*<DataTableRow size="md">*/}
+                {/*  <span className="sub-text">Action</span>*/}
+                {/*</DataTableRow>*/}
                 <DataTableRow className="nk-tb-col-tools text-right">
                   
                 </DataTableRow>
@@ -641,7 +655,7 @@ const UserListRegularPage = () => {
                         </DataTableRow>
                         <DataTableRow size="lg">
                           <ul className="list-status" style={{color:"green"}}>
-                            {item.rate}
+                            {item.rate || "5%"}
                           </ul>
                         </DataTableRow>
                         <DataTableRow size="lg">
@@ -649,9 +663,16 @@ const UserListRegularPage = () => {
                             {item.duration || "1yr"}
                           </ul>
                         </DataTableRow>
+
                         <DataTableRow size="lg">
-                          <span>{item.lastLogin || "07 Apr 2022"}</span>
+                          <ul className="list-status">
+                            {item.date || "07 Apr 2022"}
+                          </ul>
                         </DataTableRow>
+
+                        {/*<DataTableRow size="lg">*/}
+                        {/*  <span>{item.date || "07 Apr 2022"}</span>*/}
+                        {/*</DataTableRow>*/}
                         <DataTableRow size="md">
                           {/* <span
                             className={`tb-status text-${
@@ -754,18 +775,18 @@ const UserListRegularPage = () => {
                       <input
                         className="form-control"
                         type="text"
-                        name="email"
+                        name="description"
                         defaultValue={formData.description}
                         placeholder="Enter Description"
                         ref={register({
                           required: "This field is required",
-                          pattern: {
-                            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                            message: "invalid email address",
-                          },
+                          // pattern: {
+                          //   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                          //   message: "invalid email address",
+                          // },
                         })}
                       />
-                      {errors.email && <span className="invalid">{errors.email.message}</span>}
+                      {errors.description && <span className="invalid">{errors.description.message}</span>}
                     </FormGroup>
                   </Col>
                   <Col md="6">
@@ -774,12 +795,12 @@ const UserListRegularPage = () => {
                       <input
                         className="form-control"
                         type="text"
-                        name="balance"
+                        name="rate"
                         defaultValue={formData.rate}
                         placeholder="Interest Rate"
                         ref={register({ required: "This field is required" })}
                       />
-                      {errors.balance && <span className="invalid">{errors.balance.message}</span>}
+                      {errors.rate && <span className="invalid">{errors.rate.message}</span>}
                     </FormGroup>
                   </Col>
                   <Col md="6">
@@ -787,15 +808,30 @@ const UserListRegularPage = () => {
                       <label className="form-label">Duration</label>
                       <input
                         className="form-control"
-                        type="number"
-                        name="phone"
+                        type="text"
+                        name="duration"
                         defaultValue={formData.duration}
                         ref={register({ required: "This field is required" })}
                       />
-                      {errors.phone && <span className="invalid">{errors.phone.message}</span>}
+                      {errors.duration && <span className="invalid">{errors.duration.message}</span>}
                     </FormGroup>
                   </Col>
-                  <Col md="12">
+
+                  <Col md="6">
+                    <FormGroup>
+                      <label className="form-label">Date Created</label>
+                      <input
+                        className="form-control"
+                        type="text"
+                        name="date"
+                        defaultValue={formData.date}
+                        ref={register({ required: "This field is required" })}
+                      />
+                      {errors.date && <span className="invalid">{errors.date.message}</span>}
+                    </FormGroup>
+                  </Col>
+
+                  <Col md="6">
                     <FormGroup>
                       <label className="form-label">Status</label>
                       <div className="form-control-wrap">
@@ -864,38 +900,54 @@ const UserListRegularPage = () => {
                       {errors.name && <span className="invalid">{errors.name.message}</span>}
                     </FormGroup>
                   </Col>
+                  {/*<Col md="6">*/}
+                  {/*  <FormGroup>*/}
+                  {/*    <label className="form-label">description</label>*/}
+                  {/*    <input*/}
+                  {/*      className="form-control"*/}
+                  {/*      type="text"*/}
+                  {/*      name="email"*/}
+                  {/*      defaultValue={formData.description}*/}
+                  {/*      placeholder="Enter email"*/}
+                  {/*      ref={register({*/}
+                  {/*        required: "This field is required",*/}
+                  {/*        pattern: {*/}
+                  {/*          value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,*/}
+                  {/*          message: "invalid email address",*/}
+                  {/*        },*/}
+                  {/*      })}*/}
+                  {/*    />*/}
+                  {/*    {errors.email && <span className="invalid">{errors.email.message}</span>}*/}
+                  {/*  </FormGroup>*/}
+                  {/*</Col>*/}
+
                   <Col md="6">
                     <FormGroup>
                       <label className="form-label">description</label>
                       <input
                         className="form-control"
                         type="text"
-                        name="email"
+                        name="description"
                         defaultValue={formData.description}
-                        placeholder="Enter email"
-                        ref={register({
-                          required: "This field is required",
-                          pattern: {
-                            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                            message: "invalid email address",
-                          },
-                        })}
+                        placeholder="Enter Description"
+                        ref={register({ required: "This field is required" })}
                       />
-                      {errors.email && <span className="invalid">{errors.email.message}</span>}
+                      {errors.description && <span className="invalid">{errors.description.message}</span>}
                     </FormGroup>
                   </Col>
+
                   <Col md="6">
                     <FormGroup>
                       <label className="form-label">Interest Rate</label>
                       <input
                         className="form-control"
-                        type="number"
-                        name="balance"
-                        defaultValue={FormData.rate}
+                        type="text"
+                        name="rate"
+                        defaultValue={formData.rate}
                         placeholder="interest Rate"
                         ref={register({ required: "This field is required" })}
                       />
-                      {errors.balance && <span className="invalid">{errors.balance.message}</span>}
+                      {errors.rate && <span className="invalid">{errors.rate.message}</span>}
                     </FormGroup>
                   </Col>
                   <Col md="6">
@@ -903,15 +955,31 @@ const UserListRegularPage = () => {
                       <label className="form-label">Duration</label>
                       <input
                         className="form-control"
-                        type="number"
-                        name="phone"
+                        type="text"
+                        name="duration"
                         defaultValue={formData.duration}
                         ref={register({ required: "This field is required" })}
                       />
-                      {errors.phone && <span className="invalid">{errors.phone.message}</span>}
+                      {errors.duration && <span className="invalid">{errors.duration.message}</span>}
                     </FormGroup>
                   </Col>
-                  <Col md="12">
+
+
+                  <Col md="6">
+                    <FormGroup>
+                      <label className="form-label">Date Created</label>
+                      <input
+                        className="form-control"
+                        type="text"
+                        name="date"
+                        defaultValue={formData.date}
+                        ref={register({ required: "This field is required" })}
+                      />
+                      {errors.date && <span className="invalid">{errors.date.message}</span>}
+                    </FormGroup>
+                  </Col>
+
+                  <Col md="6">
                     <FormGroup>
                       <label className="form-label">Status</label>
                       <div className="form-control-wrap">

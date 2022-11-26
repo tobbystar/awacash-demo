@@ -365,17 +365,17 @@ const TransListBasic = () => {
                                           View
                                         </DropdownItem>
                                       </li>
-                                      <li>
-                                        <DropdownItem
-                                          tag="a"
-                                          href="#print"
-                                          onClick={(ev) => {
-                                            ev.preventDefault();
-                                          }}
-                                        >
-                                          Print
-                                        </DropdownItem>
-                                      </li>
+                                      {/*<li>*/}
+                                      {/*  <DropdownItem*/}
+                                      {/*    tag="a"*/}
+                                      {/*    href="#print"*/}
+                                      {/*    onClick={(ev) => {*/}
+                                      {/*      ev.preventDefault();*/}
+                                      {/*    }}*/}
+                                      {/*  >*/}
+                                      {/*    Print*/}
+                                      {/*  </DropdownItem>*/}
+                                      {/*</li>*/}
                                     </ul>
                                   </DropdownMenu>
                                 </UncontrolledDropdown>

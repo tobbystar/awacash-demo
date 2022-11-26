@@ -45,6 +45,7 @@ export const UserCards = () => {
   const [editId, setEditedId] = useState();
   const [data, setData] = useState(projectData);
   const [formData, setFormData] = useState({
+    id: "",
     title: "",
     subtitle: "",
     description: "",
@@ -65,6 +66,7 @@ export const UserCards = () => {
   // function to reset the form
   const resetForm = () => {
     setFormData({
+      id: "",
       title: "",
       subtitle: "",
       description: "",
@@ -84,9 +86,10 @@ export const UserCards = () => {
 
   // submit function to add a new item
   const onFormSubmit = (sData) => {
-    const { title, subtitle, description, tasks, totalTask } = sData;
+    const { id, title, subtitle, description, tasks, totalTask } = sData;
     let submittedData = {
-      id: data.length + 1,
+      // id: data.length + 1,
+      id: id,
       avatarClass: "pink",
       title: title,
       subtitle: subtitle,
@@ -134,6 +137,7 @@ export const UserCards = () => {
     data.forEach((item) => {
       if (item.id === id) {
         setFormData({
+          id: id,
           title: item.title,
           subtitle: item.subtitle,
           description: item.desc,
@@ -359,11 +363,11 @@ export const UserCards = () => {
                               type="checkbox"
                               className="custom-control-input form-control"
                               defaultChecked={item.checked}
-                              id={item.id + "pid-all"}
+                              id={item.id}
                               key={Math.random()}
                               onChange={(e) => onSelectChange(e, item.id)}
                             />
-                            <label className="custom-control-label" htmlFor={item.id + "pid-all"}></label>
+                            <label className="custom-control-label" htmlFor={item.id}></label>
                           </div>
                         </DataTableRow>
                         <DataTableRow>
@@ -375,7 +379,7 @@ export const UserCards = () => {
                             className="project-title"
                           >
                             <div className="project-info">
-                              <h6 className="title">1</h6>
+                              <h6 className="title">{item.id}</h6>
                             </div>
                           </a>
                         </DataTableRow>

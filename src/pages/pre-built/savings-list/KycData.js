@@ -68,6 +68,19 @@ export const kycData = [
     status: "Approved",
     checked: "Janet Snyder",
   },
+
+  {
+    id: "UD01235",
+    name: "CDs",
+    rate: "25%",
+    description: "A certificate of deposit, or CD, is another way to build your savings. CDs typically pay a higher yield than traditional savings accounts in exchange for keeping your money for a set term ",
+    check: false,
+    front: true,
+    back: true,
+    date: "18 Dec, 2019 01:02 PM",
+    status: "Approved",
+    checked: "Janet Snyder",
+  },
  
 ];
 
