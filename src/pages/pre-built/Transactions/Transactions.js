@@ -89,6 +89,7 @@ const TransListBasic = () => {
       due: new Date(),
       total: "",
       status: "",
+      ref: "",
     });
   };
 
@@ -274,62 +275,76 @@ const TransListBasic = () => {
               <div className="card-inner p-0">
                 <table className="table table-tranx">
                   <thead>
-                    <tr className="tb-tnx-head">
-                      <th className="tb-tnx-id">
-                        <span className="">S/N</span>
-                      </th>
-                      <th className="tb-tnx-info">
+                  <tr className="tb-tnx-head">
+                    <th className="tb-tnx-id">
+                      <span className="">S/N</span>
+                    </th>
+                    <th className="tb-tnx-info">
                         <span className="tb-tnx-desc d-none d-md-inline-block">
-                          <span>Transaction Date</span>
+                          <span className="resize">Transaction Date</span>
                         </span>
-                        <span className="tb-tnx-date d-md-inline-block d-none">
-                          <span className="d-md-none">Date</span>
+                      <span className="tb-tnx-date d-md-inline-block d-none">
                           <span className="d-none d-md-block">
 
                             <span>Transaction type</span>
-                            <span>Account No</span>
+                            <span>Account Number</span>
                           </span>
                         </span>
-                      </th>
-                      <th className="tb-tnx-amount is-alt">
-                        <span className="tb-tnx-total">Registration Amount</span>
-                        <span className="tb-tnx-status d-none d-md-inline-block">Amount Status</span>
-                      </th>
-                      <th className="tb-tnx-action">
-                        <span>&nbsp;</span>
-                      </th>
-                    </tr>
+
+                    </th>
+
+                    <th className="tb-tnx-destination">
+                      <span className="tb-tnx-destination d-none d-md-inline-block">Destination Amount</span>
+                    </th>
+
+                    <th className="tb-tnx-amount is-alt">
+                      <span className="tb-tnx-total">Amount</span>
+                      <span className="tb-tnx-status d-none d-md-inline-block">Status</span>
+                    </th>
+                    <th className="tb-tnx-action">
+                      <span>&nbsp;</span>
+                    </th>
+                  </tr>
                   </thead>
                   <tbody>
-                    {currentItems.length > 0
-                      ? currentItems.map((item) => {
-                          return (
-                            <tr key={item.id} className="tb-tnx-item">
-                              <td className="tb-tnx-id">
-                                <a
-                                  href="#ref"
-                                  onClick={(ev) => {
-                                    ev.preventDefault();
-                                  }}
-                                >
-                                  <span>{item.ref}</span>
-                                </a>
-                              </td>
-                              <td className="tb-tnx-info">
-                                <div className="tb-tnx-desc">
-                                  <span className="title">{item.issue}</span>
-                                </div>
-                                <div className="tb-tnx-date">
-                                  <span className="date">{item.type}</span>
-                                  <span className="date">{item.due}</span>
-                                </div>
-                                <div></div>
-                              </td>
-                              <td className="tb-tnx-amount is-alt">
-                                <div className="tb-tnx-total">
-                                  <span className="amount">${item.total}</span>
-                                </div>
-                                <div className="tb-tnx-status">
+                  {currentItems.length > 0
+                    ? currentItems.map((item) => {
+                      return (
+                        <tr key={item.id} className="tb-tnx-item">
+                          <td className="tb-tnx-id">
+                            <a
+                              href="#ref"
+                              onClick={(ev) => {
+                                ev.preventDefault();
+                              }}
+                            >
+                              <span>{item.ref}</span>
+                            </a>
+                          </td>
+                          <td className="tb-tnx-info">
+                            <div className="tb-tnx-desc">
+                              <span className="title">{item.issue}</span>
+                            </div>
+                            <div className="tb-tnx-date">
+                              <span className="date">{item.type}</span>
+                              <span className="amount">{item.due}</span>
+                            </div>
+                            <div></div>
+                          </td>
+
+
+                          <td className="tb-tnx-destination">
+                            <div className="tb-tnx-date">
+                              <span className="amount">{item.due}</span>
+                            </div>
+                          </td>
+
+
+                          <td className="tb-tnx-amount is-alt">
+                            <div className="tb-tnx-total">
+                              <span className="amount">${item.total}</span>
+                            </div>
+                            <div className="tb-tnx-status">
                                   <span
                                     className={`badge badge-dot badge-${
                                       item.status === "Paid" ? "success" : item.status === "Due" ? "warning" : "danger"
@@ -337,53 +352,53 @@ const TransListBasic = () => {
                                   >
                                     {item.status}
                                   </span>
-                                </div>
-                              </td>
-                              <td className="tb-tnx-action">
-                                <UncontrolledDropdown>
-                                  <DropdownToggle
-                                    tag="a"
-                                    className="text-soft dropdown-toggle btn btn-icon btn-trigger"
+                            </div>
+                          </td>
+                          <td className="tb-tnx-action">
+                            <UncontrolledDropdown>
+                              <DropdownToggle
+                                tag="a"
+                                className="text-soft dropdown-toggle btn btn-icon btn-trigger"
+                              >
+                                <Icon name="more-h"></Icon>
+                              </DropdownToggle>
+                              <DropdownMenu right>
+                                <ul className="link-list-plain">
+                                  <li
+                                    onClick={() => {
+                                      loadDetail(item.id);
+                                      setViewModal(true);
+                                    }}
                                   >
-                                    <Icon name="more-h"></Icon>
-                                  </DropdownToggle>
-                                  <DropdownMenu right>
-                                    <ul className="link-list-plain">
-                                      <li
-                                        onClick={() => {
-                                          loadDetail(item.id);
-                                          setViewModal(true);
-                                        }}
-                                      >
-                                        <DropdownItem
-                                          tag="a"
-                                          href="#view"
-                                          onClick={(ev) => {
-                                            ev.preventDefault();
-                                          }}
-                                        >
-                                          View
-                                        </DropdownItem>
-                                      </li>
-                                      {/*<li>*/}
-                                      {/*  <DropdownItem*/}
-                                      {/*    tag="a"*/}
-                                      {/*    href="#print"*/}
-                                      {/*    onClick={(ev) => {*/}
-                                      {/*      ev.preventDefault();*/}
-                                      {/*    }}*/}
-                                      {/*  >*/}
-                                      {/*    Print*/}
-                                      {/*  </DropdownItem>*/}
-                                      {/*</li>*/}
-                                    </ul>
-                                  </DropdownMenu>
-                                </UncontrolledDropdown>
-                              </td>
-                            </tr>
-                          );
-                        })
-                      : null}
+                                    <DropdownItem
+                                      tag="a"
+                                      href="#view"
+                                      onClick={(ev) => {
+                                        ev.preventDefault();
+                                      }}
+                                    >
+                                      View
+                                    </DropdownItem>
+                                  </li>
+                                  {/*<li>*/}
+                                  {/*  <DropdownItem*/}
+                                  {/*    tag="a"*/}
+                                  {/*    href="#print"*/}
+                                  {/*    onClick={(ev) => {*/}
+                                  {/*      ev.preventDefault();*/}
+                                  {/*    }}*/}
+                                  {/*  >*/}
+                                  {/*    Print*/}
+                                  {/*  </DropdownItem>*/}
+                                  {/*</li>*/}
+                                </ul>
+                              </DropdownMenu>
+                            </UncontrolledDropdown>
+                          </td>
+                        </tr>
+                      );
+                    })
+                    : null}
                   </tbody>
                 </table>
               </div>
@@ -406,7 +421,7 @@ const TransListBasic = () => {
           </Card>
         </Block>
 
-        
+
 
         <Modal isOpen={viewModal} toggle={() => setViewModal(false)} className="modal-dialog-centered" size="lg">
           <ModalBody>
@@ -436,13 +451,19 @@ const TransListBasic = () => {
                   <span className="caption-text text-break">{detail.due}</span>
                 </Col>
                 <Col lg={6}>
-                  <span className="sub-text">Registration Amount</span>
+                  <span className="sub-text">Amount</span>
                   <span className="caption-text">$ {detail.total}</span>
                 </Col>
                 <Col lg={6}>
                   <span className="sub-text">Recipient Name</span>
                   <span className="caption-text"> {detail.recipient}</span>
                 </Col>
+
+                <Col lg={6}>
+                  <span className="sub-text">Destination Account</span>
+                  <span className="caption-text"> {detail.due}</span>
+                </Col>
+
                 <Col lg={6}>
                   <span className="sub-text">Status</span>
                   <Badge

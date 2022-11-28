@@ -75,22 +75,22 @@
         }
     }
     &-btns {
-    	.btn + .btn {
+        .btn + .btn {
             @if($rtl==false){
                 margin-left: .5rem;
             }
             @if($rtl==true){
                 margin-right: .5rem;
             }
-    	}
-    	& + .dropdown {
+        }
+        & + .dropdown {
             @if($rtl==false){
                 margin-left: 1rem;
             }
             @if($rtl==true){
                 margin-right: 1rem;
             }
-    	}
+        }
     }
 }
 @media (max-width: 767px){
@@ -139,7 +139,7 @@
             flex-grow: 0 !important;
         }
         &-info{
-            width: 45%;
+            width: 20%;
         }
         &-date {
             .date {
@@ -171,6 +171,7 @@
     }
 }
 
+
 @media (max-width: 575px){
     .tb-tnx {
         &-item {
@@ -187,9 +188,18 @@
                 }
             }
         }
+
+
+
+
         &-info{
-            width: 65%;
+            width: 20%;
         }
+
+        .resize{
+            padding-right: 0.1rem !important;
+        }
+
         &-amount{
             &:last-child {
                 width: 25%;
@@ -228,18 +238,27 @@
             vertical-align: middle;
 
         }
-        &-desc, &-date {
-            width: calc(50% - 4px);
+        &-desc{
+            width: calc(40% - 4px);
+        }
+
+        &-date {
+            width: calc(60% - 4px);
         }
         &-total {
-            width: calc(60% - 4px);
+            width: calc(40% - 4px);
         }
         &-status{
             width: calc(40% - 4px);
+            padding-left: 20px;
         }
         &-amount {
-            width: 25%;
+            width: 20%;
         }
+        &-destination{
+            width: calc(85% - 4px);
+        }
+
         &-date {
             .date, > span > span {
                 width: calc(50% - 4px);

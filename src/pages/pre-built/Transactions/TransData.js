@@ -12,7 +12,7 @@ export const transData = [
   {
     id: 2,
     ref: 4904,
-    type: "Maintenance Year Subscription",
+    type: "Year Subscription",
     issue: "06-19-2022",
     due: "06262022",
     total: "99.00",
@@ -52,7 +52,7 @@ export const transData = [
   {
     id: 6,
     ref: 4844,
-    type: "	Manual Subscription Adjustments",
+    type: " Subscription Adjustments",
     issue: "12-08-2022",
     due: "13222022",
     total: "99.00",
@@ -62,7 +62,7 @@ export const transData = [
   {
     id: 7,
     ref: 4847,
-    type: "Automatic Subscription Adjustments",
+    type: "Automatic Subscription",
     issue: "12-08-2022",
     due: "13222022",
     total: "99.00",
@@ -92,7 +92,7 @@ export const transData = [
   {
     id: 10,
     ref: 4750,
-    type: "Flexible Subscription Plan",
+    type: "Flexible Subscription",
     issue: "12-08-2022",
     due: "13222022",
     total: "99.00",
@@ -112,7 +112,7 @@ export const transData = [
   {
     id: 12,
     ref: 4520,
-    type: "Maintenance Year Subscription",
+    type: "Yearly Subscription",
     issue: "06-19-2022",
     due: "06262022",
     total: "99.00",
@@ -152,7 +152,7 @@ export const transData = [
   {
     id: 16,
     ref: 4580,
-    type: "	Manual Subscription Adjustments",
+    type: " Subscription Adjustments",
     issue: "12-08-2022",
     due: "13222022",
     total: "99.00",
@@ -162,7 +162,7 @@ export const transData = [
   {
     id: 17,
     ref: 4590,
-    type: "Automatic Subscription Adjustments",
+    type: "Subscription Adjustments",
     issue: "12-08-2022",
     due: "13222022",
     total: "99.00",
@@ -190,7 +190,7 @@ export const transData = [
   {
     id: 20,
     ref: 4490,
-    type: "Flexible Subscription Plan",
+    type: "Flexible Subscription",
     issue: "12-08-2022",
     due: "13222022",
     total: "99.00",
