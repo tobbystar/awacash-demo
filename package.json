@@ -1,5 +1,5 @@
 {
-  "homepage": "https://tobbystar.github.io/awacash-demo",
+  "homepage": "http://tobbystar.github.io/awacash-demo",
   "name": "awacash-demo",
   "version": "1.2.0",
   "private": true,
@@ -22,7 +22,6 @@
     "chartjs": "^0.3.24",
     "classnames": "^2.3.1",
     "export-from-json": "^1.4.1",
-    "gh-pages": "^4.0.0",
     "html-react-parser": "^1.2.8",
     "nouislider-react": "^3.4.1",
     "react": "^17.0.2",
@@ -81,5 +80,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^4.0.0"
   }
 }
