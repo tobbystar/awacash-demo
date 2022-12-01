@@ -445,41 +445,41 @@ const CaseManagement = ({ history }) => {
                                 text="Quick View"
                               />
                             </li>
-                            {item.status === "Rejected" ? null : item.status === "Approved" ? (
-                              <li className="nk-tb-action-hidden" onClick={() => onRejectClick(item.id)}>
-                                <TooltipComponent
-                                  tag="a"
-                                  containerClassName="btn btn-trigger btn-icon"
-                                  id={"reject" + item.id}
-                                  icon="cross-fill-c"
-                                  direction="top"
-                                  text="Reject"
-                                />
-                              </li>
-                            ) : (
-                              <React.Fragment>
-                                <li className="nk-tb-action-hidden" onClick={() => onApproveClick(item.id)}>
-                                  <TooltipComponent
-                                    tag="a"
-                                    containerClassName="btn btn-trigger btn-icon"
-                                    id={"approve" + item.id}
-                                    icon="check-fill-c"
-                                    direction="top"
-                                    text="Approve"
-                                  />
-                                </li>
-                                <li className="nk-tb-action-hidden" onClick={() => onRejectClick(item.id)}>
-                                  <TooltipComponent
-                                    tag="a"
-                                    containerClassName="btn btn-trigger btn-icon"
-                                    id={"reject" + item.id}
-                                    icon="cross-fill-c"
-                                    direction="top"
-                                    text="Reject"
-                                  />
-                                </li>
-                              </React.Fragment>
-                            )}
+                            {/*{item.status === "Rejected" ? null : item.status === "Approved" ? (*/}
+                            {/*  <li className="nk-tb-action-hidden" onClick={() => onRejectClick(item.id)}>*/}
+                            {/*    <TooltipComponent*/}
+                            {/*      tag="a"*/}
+                            {/*      containerClassName="btn btn-trigger btn-icon"*/}
+                            {/*      id={"reject" + item.id}*/}
+                            {/*      icon="cross-fill-c"*/}
+                            {/*      direction="top"*/}
+                            {/*      text="Reject"*/}
+                            {/*    />*/}
+                            {/*  </li>*/}
+                            {/*) : (*/}
+                            {/*  <React.Fragment>*/}
+                            {/*    <li className="nk-tb-action-hidden" onClick={() => onApproveClick(item.id)}>*/}
+                            {/*      <TooltipComponent*/}
+                            {/*        tag="a"*/}
+                            {/*        containerClassName="btn btn-trigger btn-icon"*/}
+                            {/*        id={"approve" + item.id}*/}
+                            {/*        icon="check-fill-c"*/}
+                            {/*        direction="top"*/}
+                            {/*        text="Approve"*/}
+                            {/*      />*/}
+                            {/*    </li>*/}
+                            {/*    <li className="nk-tb-action-hidden" onClick={() => onRejectClick(item.id)}>*/}
+                            {/*      <TooltipComponent*/}
+                            {/*        tag="a"*/}
+                            {/*        containerClassName="btn btn-trigger btn-icon"*/}
+                            {/*        id={"reject" + item.id}*/}
+                            {/*        icon="cross-fill-c"*/}
+                            {/*        direction="top"*/}
+                            {/*        text="Reject"*/}
+                            {/*      />*/}
+                            {/*    </li>*/}
+                            {/*  </React.Fragment>*/}
+                            {/*)}*/}
                             <li>
                               <UncontrolledDropdown>
                                 <DropdownToggle tag="a" className="dropdown-toggle btn btn-icon btn-trigger">
@@ -501,60 +501,60 @@ const CaseManagement = ({ history }) => {
                                         <span>Quick View</span>
                                       </DropdownItem>
                                     </li>
-                                    <li>
-                                      <DropdownItem
-                                        tag="a"
-                                        href="#details"
-                                        onClick={(ev) => {
-                                          ev.preventDefault();
-                                          history.push(`${process.env.PUBLIC_URL}/kyc-details-regular/${item.id}`);
-                                        }}
-                                      >
-                                        <Icon name="focus"></Icon>
-                                        <span>View Details</span>
-                                      </DropdownItem>
-                                    </li>
-                                    {item.status === "Rejected" ? null : item.status === "Approved" ? (
-                                      <li onClick={() => onRejectClick(item.id)}>
-                                        <DropdownItem
-                                          tag="a"
-                                          href="#reject"
-                                          onClick={(ev) => {
-                                            ev.preventDefault();
-                                          }}
-                                        >
-                                          <Icon name="na"></Icon>
-                                          <span>Reject User</span>
-                                        </DropdownItem>
-                                      </li>
-                                    ) : (
-                                      <React.Fragment>
-                                        <li onClick={() => onApproveClick(item.id)}>
-                                          <DropdownItem
-                                            tag="a"
-                                            href="#approve"
-                                            onClick={(ev) => {
-                                              ev.preventDefault();
-                                            }}
-                                          >
-                                            <Icon name="check-thick"></Icon>
-                                            <span>Approve</span>
-                                          </DropdownItem>
-                                        </li>
-                                        <li onClick={() => onRejectClick(item.id)}>
-                                          <DropdownItem
-                                            tag="a"
-                                            href="#suspend"
-                                            onClick={(ev) => {
-                                              ev.preventDefault();
-                                            }}
-                                          >
-                                            <Icon name="na"></Icon>
-                                            <span>Suspend User</span>
-                                          </DropdownItem>
-                                        </li>
-                                      </React.Fragment>
-                                    )}
+                                    {/*<li>*/}
+                                    {/*  <DropdownItem*/}
+                                    {/*    tag="a"*/}
+                                    {/*    href="#details"*/}
+                                    {/*    onClick={(ev) => {*/}
+                                    {/*      ev.preventDefault();*/}
+                                    {/*      history.push(`${process.env.PUBLIC_URL}/kyc-details-regular/${item.id}`);*/}
+                                    {/*    }}*/}
+                                    {/*  >*/}
+                                    {/*    <Icon name="focus"></Icon>*/}
+                                    {/*    <span>View Details</span>*/}
+                                    {/*  </DropdownItem>*/}
+                                    {/*</li>*/}
+                                    {/*{item.status === "Rejected" ? null : item.status === "Approved" ? (*/}
+                                    {/*  <li onClick={() => onRejectClick(item.id)}>*/}
+                                    {/*    <DropdownItem*/}
+                                    {/*      tag="a"*/}
+                                    {/*      href="#reject"*/}
+                                    {/*      onClick={(ev) => {*/}
+                                    {/*        ev.preventDefault();*/}
+                                    {/*      }}*/}
+                                    {/*    >*/}
+                                    {/*      <Icon name="na"></Icon>*/}
+                                    {/*      <span>Reject User</span>*/}
+                                    {/*    </DropdownItem>*/}
+                                    {/*  </li>*/}
+                                    {/*) : (*/}
+                                    {/*  <React.Fragment>*/}
+                                    {/*    <li onClick={() => onApproveClick(item.id)}>*/}
+                                    {/*      <DropdownItem*/}
+                                    {/*        tag="a"*/}
+                                    {/*        href="#approve"*/}
+                                    {/*        onClick={(ev) => {*/}
+                                    {/*          ev.preventDefault();*/}
+                                    {/*        }}*/}
+                                    {/*      >*/}
+                                    {/*        <Icon name="check-thick"></Icon>*/}
+                                    {/*        <span>Approve</span>*/}
+                                    {/*      </DropdownItem>*/}
+                                    {/*    </li>*/}
+                                    {/*    <li onClick={() => onRejectClick(item.id)}>*/}
+                                    {/*      <DropdownItem*/}
+                                    {/*        tag="a"*/}
+                                    {/*        href="#suspend"*/}
+                                    {/*        onClick={(ev) => {*/}
+                                    {/*          ev.preventDefault();*/}
+                                    {/*        }}*/}
+                                    {/*      >*/}
+                                    {/*        <Icon name="na"></Icon>*/}
+                                    {/*        <span>Suspend User</span>*/}
+                                    {/*      </DropdownItem>*/}
+                                    {/*    </li>*/}
+                                    {/*  </React.Fragment>*/}
+                                    {/*)}*/}
                                   </ul>
                                 </DropdownMenu>
                               </UncontrolledDropdown>

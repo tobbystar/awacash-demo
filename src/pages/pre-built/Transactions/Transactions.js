@@ -31,6 +31,7 @@ import {
 import { statusOptions, transData } from "./TransData";
 import { dateFormatterAlt } from "../../../utils/Utils";
 import { useForm } from "react-hook-form";
+import RecentTransactions from "../../../components/partials/default/recentTransactions/RecentTransactions";
 
 const TransListBasic = () => {
   const [onSearch, setonSearch] = useState(true);
@@ -281,12 +282,12 @@ const TransListBasic = () => {
                     </th>
                     <th className="tb-tnx-info">
                         <span className="tb-tnx-desc d-none d-md-inline-block">
-                          <span className="resize">Transaction Date</span>
+                          <span className="resize">Date</span>
                         </span>
                       <span className="tb-tnx-date d-md-inline-block d-none">
                           <span className="d-none d-md-block">
 
-                            <span>Transaction type</span>
+                            <span>Type</span>
                             <span>Account Number</span>
                           </span>
                         </span>
@@ -294,7 +295,7 @@ const TransListBasic = () => {
                     </th>
 
                     <th className="tb-tnx-destination">
-                      <span className="tb-tnx-destination d-none d-md-inline-block">Destination Amount</span>
+                      <span className="tb-tnx-destination d-none d-md-inline-block">Destination Account</span>
                     </th>
 
                     <th className="tb-tnx-amount is-alt">
@@ -491,3 +492,4 @@ const TransListBasic = () => {
 };
 
 export default TransListBasic;
+

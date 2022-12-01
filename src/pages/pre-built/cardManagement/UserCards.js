@@ -35,6 +35,7 @@ import {
 import { projectData, teamList } from "./ProjectData";
 import { findUpper, setDeadline, setDeadlineDays, calcPercentage } from "../../../utils/Utils";
 import { useForm } from "react-hook-form";
+import { filterStatus } from "../user-manage/UserData";
 
 export const UserCards = () => {
   const [sm, updateSm] = useState(false);
@@ -213,7 +214,7 @@ export const UserCards = () => {
         <BlockHead size="sm">
           <BlockBetween>
             <BlockHeadContent>
-              <BlockTitle page> Requests</BlockTitle>
+              <BlockTitle page>User Cards</BlockTitle>
               <BlockDes className="text-soft">You have total {data.length} User Cards</BlockDes>
             </BlockHeadContent>
             <BlockHeadContent>
@@ -224,62 +225,62 @@ export const UserCards = () => {
                 >
                   <Icon name="menu-alt-r"></Icon>
                 </Button>
-                <div className="toggle-expand-content" style={{ display: sm ? "block" : "none" }}>
-                  <ul className="nk-block-tools g-3">
-                    <li>
-                      <UncontrolledDropdown>
-                        <DropdownToggle tag="a" className="dropdown-toggle btn btn-white btn-dim btn-outline-light">
-                          <Icon name="filter-alt" className="d-none d-sm-inline"></Icon>
-                          <span>Filtered By</span>
-                          <Icon name="chevron-right" className="dd-indc"></Icon>
-                        </DropdownToggle>
-                        <DropdownMenu right>
-                          <ul className="link-list-opt no-bdr">
-                            <li>
-                              <DropdownItem
-                                tag="a"
-                                href="#dropdownitem"
-                                onClick={(ev) => {
-                                  ev.preventDefault();
-                                }}
-                              >
-                                <span>Open</span>
-                              </DropdownItem>
-                            </li>
-                            <li>
-                              <DropdownItem
-                                tag="a"
-                                href="#dropdownitem"
-                                onClick={(ev) => {
-                                  ev.preventDefault();
-                                }}
-                              >
-                                <span>Closed</span>
-                              </DropdownItem>
-                            </li>
-                            <li>
-                              <DropdownItem
-                                tag="a"
-                                href="#dropdownitem"
-                                onClick={(ev) => {
-                                  ev.preventDefault();
-                                }}
-                              >
-                                <span>Onhold</span>
-                              </DropdownItem>
-                            </li>
-                          </ul>
-                        </DropdownMenu>
-                      </UncontrolledDropdown>
-                    </li>
-                    <li className="nk-block-tools-opt" onClick={() => setModal({ add: true })}>
-                      <Button color="primary">
-                        <Icon name="plus"></Icon>
-                        <span>Add Request</span>
-                      </Button>
-                    </li>
-                  </ul>
-                </div>
+                {/*<div className="toggle-expand-content" style={{ display: sm ? "block" : "none" }}>*/}
+                {/*  <ul className="nk-block-tools g-3">*/}
+                {/*    <li>*/}
+                {/*      <UncontrolledDropdown>*/}
+                {/*        <DropdownToggle tag="a" className="dropdown-toggle btn btn-white btn-dim btn-outline-light">*/}
+                {/*          <Icon name="filter-alt" className="d-none d-sm-inline"></Icon>*/}
+                {/*          <span>Filtered By</span>*/}
+                {/*          <Icon name="chevron-right" className="dd-indc"></Icon>*/}
+                {/*        </DropdownToggle>*/}
+                {/*        <DropdownMenu right>*/}
+                {/*          <ul className="link-list-opt no-bdr">*/}
+                {/*            <li>*/}
+                {/*              <DropdownItem*/}
+                {/*                tag="a"*/}
+                {/*                href="#dropdownitem"*/}
+                {/*                onClick={(ev) => {*/}
+                {/*                  ev.preventDefault();*/}
+                {/*                }}*/}
+                {/*              >*/}
+                {/*                <span>Open</span>*/}
+                {/*              </DropdownItem>*/}
+                {/*            </li>*/}
+                {/*            <li>*/}
+                {/*              <DropdownItem*/}
+                {/*                tag="a"*/}
+                {/*                href="#dropdownitem"*/}
+                {/*                onClick={(ev) => {*/}
+                {/*                  ev.preventDefault();*/}
+                {/*                }}*/}
+                {/*              >*/}
+                {/*                <span>Closed</span>*/}
+                {/*              </DropdownItem>*/}
+                {/*            </li>*/}
+                {/*            <li>*/}
+                {/*              <DropdownItem*/}
+                {/*                tag="a"*/}
+                {/*                href="#dropdownitem"*/}
+                {/*                onClick={(ev) => {*/}
+                {/*                  ev.preventDefault();*/}
+                {/*                }}*/}
+                {/*              >*/}
+                {/*                <span>Onhold</span>*/}
+                {/*              </DropdownItem>*/}
+                {/*            </li>*/}
+                {/*          </ul>*/}
+                {/*        </DropdownMenu>*/}
+                {/*      </UncontrolledDropdown>*/}
+                {/*    </li>*/}
+                {/*    <li className="nk-block-tools-opt" onClick={() => setModal({ add: true })}>*/}
+                {/*      <Button color="primary">*/}
+                {/*        <Icon name="plus"></Icon>*/}
+                {/*        <span>Add Request</span>*/}
+                {/*      </Button>*/}
+                {/*    </li>*/}
+                {/*  </ul>*/}
+                {/*</div>*/}
               </div>
             </BlockHeadContent>
           </BlockBetween>
@@ -390,7 +391,7 @@ export const UserCards = () => {
                           <span>{item.lead}</span>
                         </DataTableRow>
                         <DataTableRow size="lg">
-                          <span>MasterCard</span>
+                          <span>{item.card}</span>
                         </DataTableRow>
 
                         <DataTableRow size="">
@@ -460,152 +461,152 @@ export const UserCards = () => {
           </DataTable>
         </Block>
 
-        <Modal isOpen={modal.add} toggle={() => setModal({ add: false })} className="modal-dialog-centered" size="lg">
-          <ModalBody>
-            <a
-              href="#cancel"
-              onClick={(ev) => {
-                ev.preventDefault();
-                onFormCancel();
-              }}
-              className="close"
-            >
-              <Icon name="cross-sm"></Icon>
-            </a>
-            <div className="p-2">
-              <h5 className="title">Add Project</h5>
-              <div className="mt-4">
-                <Form className="row gy-4" onSubmit={handleSubmit(onFormSubmit)}>
-                  <Col md="6">
-                    <FormGroup>
-                      <label className="form-label">Title</label>
-                      <input
-                        type="text"
-                        name="title"
-                        defaultValue={formData.title}
-                        placeholder="Enter Title"
-                        onChange={(e) => onInputChange(e)}
-                        className="form-control"
-                        ref={register({
-                          required: "This field is required",
-                        })}
-                      />
-                      {errors.title && <span className="invalid">{errors.title.message}</span>}
-                    </FormGroup>
-                  </Col>
-                  <Col md="6">
-                    <FormGroup>
-                      <label className="form-label">Client</label>
-                      <input
-                        type="text"
-                        name="subtitle"
-                        defaultValue={formData.subtitle}
-                        placeholder="Enter client name"
-                        onChange={(e) => onInputChange(e)}
-                        className="form-control"
-                        ref={register({
-                          required: "This field is required",
-                        })}
-                      />
-                      {errors.subtitle && <span className="invalid">{errors.subtitle.message}</span>}
-                    </FormGroup>
-                  </Col>
-                  <Col size="12">
-                    <FormGroup>
-                      <label className="form-label">Description</label>
-                      <textarea
-                        name="description"
-                        defaultValue={formData.description}
-                        placeholder="Your description"
-                        onChange={(e) => onInputChange(e)}
-                        className="form-control-xl form-control no-resize"
-                        ref={register({
-                          required: "This field is required",
-                        })}
-                      />
-                      {errors.description && <span className="invalid">{errors.description.message}</span>}
-                    </FormGroup>
-                  </Col>
-                  <Col md="6">
-                    <FormGroup>
-                      <label className="form-label">Number of Tasks</label>
-                      <input
-                        type="number"
-                        name="tasks"
-                        defaultValue={formData.tasks}
-                        onChange={(e) => onInputChange(e)}
-                        className="form-control"
-                        ref={register({
-                          required: "This field is required",
-                        })}
-                      />
-                      {errors.tasks && <span className="invalid">{errors.tasks.message}</span>}
-                    </FormGroup>
-                  </Col>
-                  <Col md="6">
-                    <FormGroup>
-                      <label className="form-label">Total Tasks</label>
-                      <input
-                        type="number"
-                        name="totalTask"
-                        defaultValue={formData.totalTask}
-                        onChange={(e) => onInputChange(e)}
-                        className="form-control"
-                        ref={register({
-                          required: "This field is required",
-                        })}
-                      />
-                      {errors.totalTask && <span className="invalid">{errors.totalTask.message}</span>}
-                    </FormGroup>
-                  </Col>
-                  <Col md="6">
-                    <FormGroup>
-                      <label className="form-label">Deadline Date</label>
-                      <DatePicker
-                        selected={formData.date}
-                        className="form-control"
-                        onChange={(date) => setFormData({ ...formData, date: date })}
-                        minDate={new Date()}
-                      />
-                    </FormGroup>
-                  </Col>
-                  <Col md="6">
-                    <FormGroup>
-                      <label className="form-label">Team Members</label>
-                      <RSelect options={teamList} isMulti onChange={(e) => setFormData({ ...formData, team: e })} />
-                    </FormGroup>
-                  </Col>
-                  <Col md="6">
-                    <FormGroup>
-                      <label className="form-label">Lead</label>
-                      <RSelect options={formData.team} onChange={(e) => setFormData({ ...formData, lead: e.value })} />
-                    </FormGroup>
-                  </Col>
-                  <Col size="12">
-                    <ul className="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
-                      <li>
-                        <Button color="primary" size="md" type="submit">
-                          Add Project
-                        </Button>
-                      </li>
-                      <li>
-                        <Button
-                          onClick={(ev) => {
-                            ev.preventDefault();
-                            onFormCancel();
-                          }}
-                          className="link link-light"
-                        >
-                          Cancel
-                        </Button>
-                      </li>
-                    </ul>
-                  </Col>
-                </Form>
-              </div>
-            </div>
-          </ModalBody>
-        </Modal>
+        {/*<Modal isOpen={modal.add} toggle={() => setModal({ add: false })} className="modal-dialog-centered" size="lg">*/}
+        {/*  <ModalBody>*/}
+        {/*    <a*/}
+        {/*      href="#cancel"*/}
+        {/*      onClick={(ev) => {*/}
+        {/*        ev.preventDefault();*/}
+        {/*        onFormCancel();*/}
+        {/*      }}*/}
+        {/*      className="close"*/}
+        {/*    >*/}
+        {/*      <Icon name="cross-sm"></Icon>*/}
+        {/*    </a>*/}
+        {/*    <div className="p-2">*/}
+        {/*      <h5 className="title">Add Project</h5>*/}
+        {/*      <div className="mt-4">*/}
+        {/*        <Form className="row gy-4" onSubmit={handleSubmit(onFormSubmit)}>*/}
+        {/*          <Col md="6">*/}
+        {/*            <FormGroup>*/}
+        {/*              <label className="form-label">Title</label>*/}
+        {/*              <input*/}
+        {/*                type="text"*/}
+        {/*                name="title"*/}
+        {/*                defaultValue={formData.title}*/}
+        {/*                placeholder="Enter Title"*/}
+        {/*                onChange={(e) => onInputChange(e)}*/}
+        {/*                className="form-control"*/}
+        {/*                ref={register({*/}
+        {/*                  required: "This field is required",*/}
+        {/*                })}*/}
+        {/*              />*/}
+        {/*              {errors.title && <span className="invalid">{errors.title.message}</span>}*/}
+        {/*            </FormGroup>*/}
+        {/*          </Col>*/}
+        {/*          <Col md="6">*/}
+        {/*            <FormGroup>*/}
+        {/*              <label className="form-label">Client</label>*/}
+        {/*              <input*/}
+        {/*                type="text"*/}
+        {/*                name="subtitle"*/}
+        {/*                defaultValue={formData.subtitle}*/}
+        {/*                placeholder="Enter client name"*/}
+        {/*                onChange={(e) => onInputChange(e)}*/}
+        {/*                className="form-control"*/}
+        {/*                ref={register({*/}
+        {/*                  required: "This field is required",*/}
+        {/*                })}*/}
+        {/*              />*/}
+        {/*              {errors.subtitle && <span className="invalid">{errors.subtitle.message}</span>}*/}
+        {/*            </FormGroup>*/}
+        {/*          </Col>*/}
+        {/*          <Col size="12">*/}
+        {/*            <FormGroup>*/}
+        {/*              <label className="form-label">Description</label>*/}
+        {/*              <textarea*/}
+        {/*                name="description"*/}
+        {/*                defaultValue={formData.description}*/}
+        {/*                placeholder="Your description"*/}
+        {/*                onChange={(e) => onInputChange(e)}*/}
+        {/*                className="form-control-xl form-control no-resize"*/}
+        {/*                ref={register({*/}
+        {/*                  required: "This field is required",*/}
+        {/*                })}*/}
+        {/*              />*/}
+        {/*              {errors.description && <span className="invalid">{errors.description.message}</span>}*/}
+        {/*            </FormGroup>*/}
+        {/*          </Col>*/}
+        {/*          <Col md="6">*/}
+        {/*            <FormGroup>*/}
+        {/*              <label className="form-label">Number of Tasks</label>*/}
+        {/*              <input*/}
+        {/*                type="number"*/}
+        {/*                name="tasks"*/}
+        {/*                defaultValue={formData.tasks}*/}
+        {/*                onChange={(e) => onInputChange(e)}*/}
+        {/*                className="form-control"*/}
+        {/*                ref={register({*/}
+        {/*                  required: "This field is required",*/}
+        {/*                })}*/}
+        {/*              />*/}
+        {/*              {errors.tasks && <span className="invalid">{errors.tasks.message}</span>}*/}
+        {/*            </FormGroup>*/}
+        {/*          </Col>*/}
+        {/*          <Col md="6">*/}
+        {/*            <FormGroup>*/}
+        {/*              <label className="form-label">Total Tasks</label>*/}
+        {/*              <input*/}
+        {/*                type="number"*/}
+        {/*                name="totalTask"*/}
+        {/*                defaultValue={formData.totalTask}*/}
+        {/*                onChange={(e) => onInputChange(e)}*/}
+        {/*                className="form-control"*/}
+        {/*                ref={register({*/}
+        {/*                  required: "This field is required",*/}
+        {/*                })}*/}
+        {/*              />*/}
+        {/*              {errors.totalTask && <span className="invalid">{errors.totalTask.message}</span>}*/}
+        {/*            </FormGroup>*/}
+        {/*          </Col>*/}
+        {/*          <Col md="6">*/}
+        {/*            <FormGroup>*/}
+        {/*              <label className="form-label">Deadline Date</label>*/}
+        {/*              <DatePicker*/}
+        {/*                selected={formData.date}*/}
+        {/*                className="form-control"*/}
+        {/*                onChange={(date) => setFormData({ ...formData, date: date })}*/}
+        {/*                minDate={new Date()}*/}
+        {/*              />*/}
+        {/*            </FormGroup>*/}
+        {/*          </Col>*/}
+        {/*          <Col md="6">*/}
+        {/*            <FormGroup>*/}
+        {/*              <label className="form-label">Team Members</label>*/}
+        {/*              <RSelect options={teamList} isMulti onChange={(e) => setFormData({ ...formData, team: e })} />*/}
+        {/*            </FormGroup>*/}
+        {/*          </Col>*/}
+        {/*          <Col md="6">*/}
+        {/*            <FormGroup>*/}
+        {/*              <label className="form-label">Lead</label>*/}
+        {/*              <RSelect options={formData.team} onChange={(e) => setFormData({ ...formData, lead: e.value })} />*/}
+        {/*            </FormGroup>*/}
+        {/*          </Col>*/}
+        {/*          <Col size="12">*/}
+        {/*            <ul className="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">*/}
+        {/*              <li>*/}
+        {/*                <Button color="primary" size="md" type="submit">*/}
+        {/*                  Add Project*/}
+        {/*                </Button>*/}
+        {/*              </li>*/}
+        {/*              <li>*/}
+        {/*                <Button*/}
+        {/*                  onClick={(ev) => {*/}
+        {/*                    ev.preventDefault();*/}
+        {/*                    onFormCancel();*/}
+        {/*                  }}*/}
+        {/*                  className="link link-light"*/}
+        {/*                >*/}
+        {/*                  Cancel*/}
+        {/*                </Button>*/}
+        {/*              </li>*/}
+        {/*            </ul>*/}
+        {/*          </Col>*/}
+        {/*        </Form>*/}
+        {/*      </div>*/}
+        {/*    </div>*/}
+        {/*  </ModalBody>*/}
+        {/*</Modal>*/}
 
         <Modal isOpen={modal.edit} toggle={() => setModal({ edit: false })} className="modal-dialog-centered" size="lg">
           <ModalBody>
@@ -620,129 +621,164 @@ export const UserCards = () => {
               <Icon name="cross-sm"></Icon>
             </a>
             <div className="p-2">
-              <h5 className="title">Update Project</h5>
+              <h5 className="title">User Cards</h5>
               <div className="mt-4">
                 <Form className="row gy-4" onSubmit={handleSubmit(onEditSubmit)}>
                   <Col md="6">
                     <FormGroup>
-                      <label className="form-label">Title</label>
+                      <label className="form-label">First Name</label>
                       <input
                         type="text"
-                        name="title"
-                        defaultValue={formData.title}
-                        placeholder="Enter Title"
+                        name="lead"
+                        defaultValue={formData.lead}
+                        placeholder="Enter Client First First Name"
                         onChange={(e) => onInputChange(e)}
                         ref={register({
                           required: "This field is required",
                         })}
                         className="form-control"
                       />
-                      {errors.title && <span className="invalid">{errors.title.message}</span>}
+                      {errors.lead && <span className="invalid">{errors.lead.message}</span>}
                     </FormGroup>
                   </Col>
                   <Col md="6">
                     <FormGroup>
-                      <label className="form-label">Client</label>
+                      <label className="form-label">Last Name</label>
                       <input
                         type="text"
-                        name="subtitle"
-                        defaultValue={formData.subtitle}
-                        placeholder="Enter client Name"
+                        name="lead"
+                        defaultValue={formData.lead}
+                        placeholder="Enter client Last Name"
                         onChange={(e) => onInputChange(e)}
                         ref={register({
                           required: "This field is required",
                         })}
                         className="form-control"
                       />
-                      {errors.subtitle && <span className="invalid">{errors.subtitle.message}</span>}
+                      {errors.lead && <span className="invalid">{errors.lead.message}</span>}
                     </FormGroup>
                   </Col>
-                  <Col size="12">
-                    <FormGroup>
-                      <label className="form-label">Description</label>
-                      <textarea
-                        name="description"
-                        defaultValue={formData.description}
-                        placeholder="Your description"
-                        onChange={(e) => onInputChange(e)}
-                        ref={register({
-                          required: "This field is required",
-                        })}
-                        className="form-control no-resize"
-                      />
-                      {errors.description && <span className="invalid">{errors.description.message}</span>}
-                    </FormGroup>
-                  </Col>
+
                   <Col md="6">
                     <FormGroup>
-                      <label className="form-label">Number of Tasks</label>
+                      <label className="form-label">Card Type</label>
                       <input
-                        type="number"
-                        name="tasks"
-                        onChange={(e) => onInputChange(e)}
-                        ref={register({
-                          required: "This field is required",
-                        })}
-                        defaultValue={formData.tasks}
-                        className="form-control"
-                      />
-                      {errors.tasks && <span className="invalid">{errors.tasks.message}</span>}
-                    </FormGroup>
-                  </Col>
-                  <Col md="6">
-                    <FormGroup>
-                      <label className="form-label">Total Tasks</label>
-                      <input
-                        type="number"
-                        name="totalTask"
-                        min={formData.totalTask}
-                        defaultValue={formData.totalTask}
+                        type="text"
+                        name="card"
+                        defaultValue={formData.card}
+                        placeholder="Enter client Card Type"
                         onChange={(e) => onInputChange(e)}
                         ref={register({
                           required: "This field is required",
                         })}
                         className="form-control"
                       />
-                      {errors.totalTask && <span className="invalid">{errors.totalTask.message}</span>}
+                      {errors.card && <span className="invalid">{errors.card.message}</span>}
                     </FormGroup>
                   </Col>
+                  {/*<Col size="12">*/}
+                  {/*  <FormGroup>*/}
+                  {/*    <label className="form-label">Description</label>*/}
+                  {/*    <textarea*/}
+                  {/*      name="description"*/}
+                  {/*      defaultValue={formData.description}*/}
+                  {/*      placeholder="Your description"*/}
+                  {/*      onChange={(e) => onInputChange(e)}*/}
+                  {/*      ref={register({*/}
+                  {/*        required: "This field is required",*/}
+                  {/*      })}*/}
+                  {/*      className="form-control no-resize"*/}
+                  {/*    />*/}
+                  {/*    {errors.description && <span className="invalid">{errors.description.message}</span>}*/}
+                  {/*  </FormGroup>*/}
+                  {/*</Col>*/}
+                  {/*<Col md="6">*/}
+                  {/*  <FormGroup>*/}
+                  {/*    <label className="form-label">Number of Tasks</label>*/}
+                  {/*    <input*/}
+                  {/*      type="number"*/}
+                  {/*      name="tasks"*/}
+                  {/*      onChange={(e) => onInputChange(e)}*/}
+                  {/*      ref={register({*/}
+                  {/*        required: "This field is required",*/}
+                  {/*      })}*/}
+                  {/*      defaultValue={formData.tasks}*/}
+                  {/*      className="form-control"*/}
+                  {/*    />*/}
+                  {/*    {errors.tasks && <span className="invalid">{errors.tasks.message}</span>}*/}
+                  {/*  </FormGroup>*/}
+                  {/*</Col>*/}
+                  {/*<Col md="6">*/}
+                  {/*  <FormGroup>*/}
+                  {/*    <label className="form-label">Total Tasks</label>*/}
+                  {/*    <input*/}
+                  {/*      type="number"*/}
+                  {/*      name="totalTask"*/}
+                  {/*      min={formData.totalTask}*/}
+                  {/*      defaultValue={formData.totalTask}*/}
+                  {/*      onChange={(e) => onInputChange(e)}*/}
+                  {/*      ref={register({*/}
+                  {/*        required: "This field is required",*/}
+                  {/*      })}*/}
+                  {/*      className="form-control"*/}
+                  {/*    />*/}
+                  {/*    {errors.totalTask && <span className="invalid">{errors.totalTask.message}</span>}*/}
+                  {/*  </FormGroup>*/}
+                  {/*</Col>*/}
+                  {/*<Col md="6">*/}
+                  {/*  <FormGroup>*/}
+                  {/*    <label className="form-label">Deadline Date</label>*/}
+                  {/*    <DatePicker*/}
+                  {/*      selected={formData.date}*/}
+                  {/*      className="form-control"*/}
+                  {/*      onChange={(date) => setFormData({ ...formData, date: date })}*/}
+                  {/*      minDate={new Date()}*/}
+                  {/*    />*/}
+                  {/*  </FormGroup>*/}
+                  {/*</Col>*/}
+                  {/*<Col md="6">*/}
+                  {/*  <FormGroup>*/}
+                  {/*    <label className="form-label">Team Members</label>*/}
+                  {/*    <RSelect*/}
+                  {/*      options={teamList}*/}
+                  {/*      isMulti*/}
+                  {/*      defaultValue={formData.team}*/}
+                  {/*      onChange={(e) => setFormData({ ...formData, team: e })}*/}
+                  {/*    />*/}
+                  {/*  </FormGroup>*/}
+                  {/*</Col>*/}
+                  {/*<Col md="6">*/}
+                  {/*  <FormGroup>*/}
+                  {/*    <label className="form-label">Lead</label>*/}
+                  {/*    <RSelect*/}
+                  {/*      options={formData.team}*/}
+                  {/*      defaultValue={[{ value: formData.lead, label: formData.lead }]}*/}
+                  {/*      onChange={(e) => setFormData({ ...formData, lead: e.value })}*/}
+                  {/*    />*/}
+                  {/*  </FormGroup>*/}
+                  {/*</Col>*/}
+
                   <Col md="6">
                     <FormGroup>
-                      <label className="form-label">Deadline Date</label>
-                      <DatePicker
-                        selected={formData.date}
-                        className="form-control"
-                        onChange={(date) => setFormData({ ...formData, date: date })}
-                        minDate={new Date()}
-                      />
+                      <label className="form-label">Status</label>
+                      <div className="form-control-wrap">
+                        <RSelect
+                          options={filterStatus}
+                          defaultValue={{
+                            value: formData.status,
+                            label: formData.status,
+                          }}
+                          onChange={(e) => setFormData({ ...formData, status: e.value })}
+                        />
+                      </div>
                     </FormGroup>
                   </Col>
-                  <Col md="6">
-                    <FormGroup>
-                      <label className="form-label">Team Members</label>
-                      <RSelect
-                        options={teamList}
-                        isMulti
-                        defaultValue={formData.team}
-                        onChange={(e) => setFormData({ ...formData, team: e })}
-                      />
-                    </FormGroup>
-                  </Col>
-                  <Col md="6">
-                    <FormGroup>
-                      <label className="form-label">Lead</label>
-                      <RSelect
-                        options={formData.team}
-                        defaultValue={[{ value: formData.lead, label: formData.lead }]}
-                        onChange={(e) => setFormData({ ...formData, lead: e.value })}
-                      />
-                    </FormGroup>
-                  </Col>
+
                   <Col size="12">
                     <ul className="align-center flex-wrap flex-sm-nowrap gx-4 gy-2">
                       <li>
                         <Button color="primary" size="md" type="submit">
-                          Update Project
+                          Update User Cards
                         </Button>
                       </li>
                       <li>

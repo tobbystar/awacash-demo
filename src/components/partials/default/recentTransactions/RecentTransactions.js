@@ -1,14 +1,7 @@
 import React, { useState, useEffect } from "react";
-//import Content from "../layout/content/Content";
-//import Head from "../layout/head/Head";
+// import Content from "../../../layout/content/Content";
+// import Head from "../../../layout/head/Head";
 import DatePicker from "react-datepicker";
-
-//import Icon from "../../../icon/Icon";
-import UserAvatar from "../../../user/UserAvatar";
-import { DataTableBody, DataTableHead, DataTableItem, DataTableRow } from "../../../table/DataTable";
-import { Link } from "react-router-dom";
-
-
 import {
   UncontrolledDropdown,
   DropdownMenu,
@@ -21,11 +14,24 @@ import {
   Form,
   Badge,
 } from "reactstrap";
-
-//import Block from "src/components/block/Block";
+import {
+  Button,
+  Block,
+  BlockBetween,
+  BlockHead,
+  BlockHeadContent,
+  BlockTitle,
+  Icon,
+  Col,
+  PaginationComponent,
+  Row,
+  RSelect,
+} from "../../../components/Component";
 import { statusOptions, transData } from "./transactionData";
-//import { dateFormatterAlt } from "../utils/Utils";
+import { dateFormatterAlt } from "../../../utils/Utils";
 import { useForm } from "react-hook-form";
+import Content from "../../../../layout/content/Content";
+
 
 const RecentTransactions = () => {
   const [onSearch, setonSearch] = useState(true);
@@ -84,6 +90,7 @@ const RecentTransactions = () => {
       due: new Date(),
       total: "",
       status: "",
+      ref: "",
     });
   };
 
@@ -132,7 +139,7 @@ const RecentTransactions = () => {
 
   return (
     <React.Fragment>
-      <Head title="Transaction Lists - Basic"></Head>
+      <Head title="Transaction Lists - Basic"><title></title></Head>
       <Content>
         <BlockHead size="sm">
           <BlockBetween>
@@ -142,7 +149,7 @@ const RecentTransactions = () => {
                 <p>You have total 560 transactions </p>
               </BlockDes> */}
             </BlockHeadContent>
-            <BlockHeadContent>
+            {/* <BlockHeadContent>
               <ul className="nk-block-tools g-3">
                 <li>
                   <Button color="primary" className="btn-icon" onClick={() => setModal({ add: true })}>
@@ -150,7 +157,7 @@ const RecentTransactions = () => {
                   </Button>
                 </li>
               </ul>
-            </BlockHeadContent>
+            </BlockHeadContent> */}
           </BlockBetween>
         </BlockHead>
 
@@ -269,60 +276,76 @@ const RecentTransactions = () => {
               <div className="card-inner p-0">
                 <table className="table table-tranx">
                   <thead>
-                    <tr className="tb-tnx-head">
-                      <th className="tb-tnx-id">
-                        <span className="">#</span>
-                      </th>
-                      <th className="tb-tnx-info">
-                        <span className="tb-tnx-desc d-none d-sm-inline-block">
-                          <span>Bill For</span>
+                  <tr className="tb-tnx-head">
+                    <th className="tb-tnx-id">
+                      <span className="">S/N</span>
+                    </th>
+                    <th className="tb-tnx-info">
+                        <span className="tb-tnx-desc d-none d-md-inline-block">
+                          <span className="resize">Date</span>
                         </span>
-                        <span className="tb-tnx-date d-md-inline-block d-none">
-                          <span className="d-md-none">Date</span>
+                      <span className="tb-tnx-date d-md-inline-block d-none">
                           <span className="d-none d-md-block">
-                            <span>Issue Date</span>
-                            <span>Due Date</span>
+
+                            <span>Type</span>
+                            <span>Account Number</span>
                           </span>
                         </span>
-                      </th>
-                      <th className="tb-tnx-amount is-alt">
-                        <span className="tb-tnx-total">Total</span>
-                        <span className="tb-tnx-status d-none d-md-inline-block">Status</span>
-                      </th>
-                      <th className="tb-tnx-action">
-                        <span>&nbsp;</span>
-                      </th>
-                    </tr>
+
+                    </th>
+
+                    <th className="tb-tnx-destination">
+                      <span className="tb-tnx-destination d-none d-md-inline-block">Destination Account</span>
+                    </th>
+
+                    <th className="tb-tnx-amount is-alt">
+                      <span className="tb-tnx-total">Amount</span>
+                      <span className="tb-tnx-status d-none d-md-inline-block">Status</span>
+                    </th>
+                    <th className="tb-tnx-action">
+                      <span>&nbsp;</span>
+                    </th>
+                  </tr>
                   </thead>
                   <tbody>
-                    {currentItems.length > 0
-                      ? currentItems.map((item) => {
-                          return (
-                            <tr key={item.id} className="tb-tnx-item">
-                              <td className="tb-tnx-id">
-                                <a
-                                  href="#ref"
-                                  onClick={(ev) => {
-                                    ev.preventDefault();
-                                  }}
-                                >
-                                  <span>{item.ref}</span>
-                                </a>
-                              </td>
-                              <td className="tb-tnx-info">
-                                <div className="tb-tnx-desc">
-                                  <span className="title">{item.bill}</span>
-                                </div>
-                                <div className="tb-tnx-date">
-                                  <span className="date">{item.issue}</span>
-                                  <span className="date">{item.due}</span>
-                                </div>
-                              </td>
-                              <td className="tb-tnx-amount is-alt">
-                                <div className="tb-tnx-total">
-                                  <span className="amount">${item.total}</span>
-                                </div>
-                                <div className="tb-tnx-status">
+                  {currentItems.length > 0
+                    ? currentItems.map((item) => {
+                      return (
+                        <tr key={item.id} className="tb-tnx-item">
+                          <td className="tb-tnx-id">
+                            <a
+                              href="#ref"
+                              onClick={(ev) => {
+                                ev.preventDefault();
+                              }}
+                            >
+                              <span>{item.ref}</span>
+                            </a>
+                          </td>
+                          <td className="tb-tnx-info">
+                            <div className="tb-tnx-desc">
+                              <span className="title">{item.issue}</span>
+                            </div>
+                            <div className="tb-tnx-date">
+                              <span className="date">{item.type}</span>
+                              <span className="amount">{item.due}</span>
+                            </div>
+                            <div></div>
+                          </td>
+
+
+                          <td className="tb-tnx-destination">
+                            <div className="tb-tnx-date">
+                              <span className="amount">{item.due}</span>
+                            </div>
+                          </td>
+
+
+                          <td className="tb-tnx-amount is-alt">
+                            <div className="tb-tnx-total">
+                              <span className="amount">${item.total}</span>
+                            </div>
+                            <div className="tb-tnx-status">
                                   <span
                                     className={`badge badge-dot badge-${
                                       item.status === "Paid" ? "success" : item.status === "Due" ? "warning" : "danger"
@@ -330,53 +353,53 @@ const RecentTransactions = () => {
                                   >
                                     {item.status}
                                   </span>
-                                </div>
-                              </td>
-                              <td className="tb-tnx-action">
-                                <UncontrolledDropdown>
-                                  <DropdownToggle
-                                    tag="a"
-                                    className="text-soft dropdown-toggle btn btn-icon btn-trigger"
+                            </div>
+                          </td>
+                          <td className="tb-tnx-action">
+                            <UncontrolledDropdown>
+                              <DropdownToggle
+                                tag="a"
+                                className="text-soft dropdown-toggle btn btn-icon btn-trigger"
+                              >
+                                <Icon name="more-h"></Icon>
+                              </DropdownToggle>
+                              <DropdownMenu right>
+                                <ul className="link-list-plain">
+                                  <li
+                                    onClick={() => {
+                                      loadDetail(item.id);
+                                      setViewModal(true);
+                                    }}
                                   >
-                                    <Icon name="more-h"></Icon>
-                                  </DropdownToggle>
-                                  <DropdownMenu right>
-                                    <ul className="link-list-plain">
-                                      <li
-                                        onClick={() => {
-                                          loadDetail(item.id);
-                                          setViewModal(true);
-                                        }}
-                                      >
-                                        <DropdownItem
-                                          tag="a"
-                                          href="#view"
-                                          onClick={(ev) => {
-                                            ev.preventDefault();
-                                          }}
-                                        >
-                                          View
-                                        </DropdownItem>
-                                      </li>
-                                      <li>
-                                        <DropdownItem
-                                          tag="a"
-                                          href="#print"
-                                          onClick={(ev) => {
-                                            ev.preventDefault();
-                                          }}
-                                        >
-                                          Print
-                                        </DropdownItem>
-                                      </li>
-                                    </ul>
-                                  </DropdownMenu>
-                                </UncontrolledDropdown>
-                              </td>
-                            </tr>
-                          );
-                        })
-                      : null}
+                                    <DropdownItem
+                                      tag="a"
+                                      href="#view"
+                                      onClick={(ev) => {
+                                        ev.preventDefault();
+                                      }}
+                                    >
+                                      View
+                                    </DropdownItem>
+                                  </li>
+                                  {/*<li>*/}
+                                  {/*  <DropdownItem*/}
+                                  {/*    tag="a"*/}
+                                  {/*    href="#print"*/}
+                                  {/*    onClick={(ev) => {*/}
+                                  {/*      ev.preventDefault();*/}
+                                  {/*    }}*/}
+                                  {/*  >*/}
+                                  {/*    Print*/}
+                                  {/*  </DropdownItem>*/}
+                                  {/*</li>*/}
+                                </ul>
+                              </DropdownMenu>
+                            </UncontrolledDropdown>
+                          </td>
+                        </tr>
+                      );
+                    })
+                    : null}
                   </tbody>
                 </table>
               </div>
@@ -398,6 +421,8 @@ const RecentTransactions = () => {
             </div>
           </Card>
         </Block>
+
+
 
         <Modal isOpen={modal.add} toggle={() => setModal({ add: false })} className="modal-dialog-centered" size="lg">
           <ModalBody>
@@ -561,3 +586,5 @@ const RecentTransactions = () => {
 };
 
 export default RecentTransactions;
+
+
