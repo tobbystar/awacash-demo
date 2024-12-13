@@ -20,6 +20,11 @@ const TransactionTable = () => {
     }
     setData(filteredData);
   }, [trans]);
+  
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemPerPage, setItemPerPage] = useState(10);
+  const [sort, setSortState] = useState("");
+
 
   const DropdownTrans = () => {
     return (
@@ -67,6 +72,12 @@ const TransactionTable = () => {
       </UncontrolledDropdown>
     );
   };
+
+  const indexOfLastItem = currentPage * itemPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemPerPage;
+  const currentItems = data.slice(indexOfFirstItem, indexOfLastItem);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
   return (
     <React.Fragment>
       <div className="card-inner">
@@ -184,6 +195,8 @@ const TransactionTable = () => {
         })}
       </DataTableBody>
     </React.Fragment>
+
+    
   );
 };
 export default TransactionTable;
